@@ -1,0 +1,7 @@
+# Dev / QA harness dependencies. NOT in production image (see .dockerignore).
+pytest==9.0.3
+requests
+pandas
+openpyxl
+pyyaml
+pymongo

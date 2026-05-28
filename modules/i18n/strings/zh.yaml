@@ -1,0 +1,78 @@
+# Chinese (zh) — lift-and-shift from legacy palettes.
+
+greeting.palette:
+  text:
+    - "你好"
+    - "您好"
+    - "早上好"
+    - "下午好"
+    - "欢迎"
+    - "很高兴为您服务"
+    - "感谢您的联系"
+    - "很高兴认识您"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[zh]."
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[zh])
+natural_qual.rescue_soft_bridge:
+  text: "为了继续协助您,请允许我直接询问 — {q}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[zh]."
+
+# Opener palette (Task 15 lift from sa_prompts.py _OPENER_PALETTE[zh])
+opener.palette:
+  text:
+    - "好的"
+    - "明白了"
+    - "知道了"
+    - "了解"
+    - "收到"
+    - "接下来"
+    - "那么"
+    - "另外"
+    - "有意思"
+    - "嗯"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sa_prompts.py _OPENER_PALETTE[zh]."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "预约会议"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[zh]."
+
+picker.other_services.label:
+  text: "其他服务"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[zh]."
+
+picker.stay_label:
+  text: "继续 {current_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[zh][0]."
+
+picker.switch_label:
+  text: "切换到 {target_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[zh][1]."

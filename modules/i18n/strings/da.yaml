@@ -1,0 +1,58 @@
+# Danish (da) — lift-and-shift from legacy palettes.
+
+greeting.palette:
+  text:
+    - "Hej"
+    - "Goddag"
+    - "God morgen"
+    - "Velkommen"
+    - "Tak fordi du henvendte dig"
+    - "Glæder mig at hjælpe"
+    - "Rart at møde dig"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[da]."
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[da])
+natural_qual.rescue_soft_bridge:
+  text: "For at komme videre, lad mig spørge direkte — {q}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[da]."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "Book et møde"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[da]."
+
+picker.other_services.label:
+  text: "Andre Tjenester"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[da]."
+
+picker.stay_label:
+  text: "Fortsæt {current_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[da][0]."
+
+picker.switch_label:
+  text: "Skift til {target_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[da][1]."

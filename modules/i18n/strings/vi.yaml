@@ -1,0 +1,57 @@
+# Vietnamese (vi) — lift-and-shift from legacy palettes.
+
+greeting.palette:
+  text:
+    - "Xin chào"
+    - "Chào bạn"
+    - "Rất vui được hỗ trợ"
+    - "Cảm ơn bạn đã liên hệ"
+    - "Hân hạnh được phục vụ"
+    - "Chào mừng bạn"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[vi]."
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[vi])
+natural_qual.rescue_soft_bridge:
+  text: "Để tiếp tục, cho phép tôi hỏi trực tiếp — {q}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[vi]."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "Đặt lịch cuộc họp"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[vi]."
+
+picker.other_services.label:
+  text: "Dịch Vụ Khác"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[vi]."
+
+picker.stay_label:
+  text: "Tiếp tục {current_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[vi][0]."
+
+picker.switch_label:
+  text: "Chuyển sang {target_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[vi][1]."

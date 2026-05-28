@@ -1,0 +1,112 @@
+# Test inputs for the anti-redundancy QA harness.
+# Each entry has: id, question (or turns), language, expected_service, optional tags.
+# Languages reflect Stage 2026-05-11 detector coverage; ms/id prioritized for ASEAN.
+
+module_b_within_turn_diversity:
+  - id: B01
+    question: "apa itu whistleblowing"
+    expected_service: "Whistleblowing System"
+    language: id
+    tags: [critical, asean]
+  - id: B02
+    question: "bagaimana mencegah fraud"
+    expected_service: "Whistleblowing System"
+    language: id
+    tags: [critical]
+  - id: B03
+    question: "berapa biaya layanan due diligence"
+    expected_service: "Due Diligence"
+    language: id
+    tags: [critical]
+  - id: B04
+    question: "apa itu mystery shopping"
+    expected_service: "Mystery Shopping"
+    language: id
+    tags: [normal]
+  - id: B05
+    question: "market survey untuk produk baru"
+    expected_service: "Market Survey"
+    language: id
+    tags: [normal]
+  - id: B06
+    question: "background screening karyawan"
+    expected_service: "Employment Background Screening"
+    language: id
+    tags: [normal]
+
+module_c_across_turn:
+  - id: C01
+    language: id
+    tags: [critical]
+    turns:
+      - "apa itu whistleblowing system?"
+      - "ceritakan lagi tentang whistleblowing"
+      - "wbs itu apa ya?"
+  - id: C02
+    language: en
+    tags: [normal]
+    turns:
+      - "what is mystery shopping?"
+      - "tell me more about mystery shopping"
+      - "explain the mystery shopping service"
+
+module_d_recap_bypass:
+  - id: D01
+    language: id
+    pre_turn: "apa itu whistleblowing system"
+    recap_turn: "tolong ulangi penjelasan tadi"
+    tags: [critical]
+  - id: D02
+    language: en
+    pre_turn: "what is whistleblowing system"
+    recap_turn: "can you say that again please"
+    tags: [critical]
+  - id: D03
+    language: ms
+    pre_turn: "apakah whistleblowing system"
+    recap_turn: "boleh ulang semula?"
+    tags: [normal, asean]
+  - id: D04
+    language: ja
+    pre_turn: "ホイッスルブローイングシステムとは何ですか"
+    recap_turn: "もう一度説明してください"
+    tags: [normal]
+
+module_e_hallucination_guard:
+  # Observed actual refusal patterns from smoke run 20260511-164939:
+  # E01 (ID): "...di luar cakupan layanan kami. Integrity berfokus pada layanan
+  #           konsultasi bisnis...layanan mana yang ingin Anda eksplorasi..."
+  # E02 (EN): "...outside my scope. I specialize in Integrity's professional
+  #           services...which service are you exploring..."
+  # Forbidden substrings target FABRICATED FACTUAL CONTENT only (price values,
+  # weather data) — NOT topic-name echoes (bot legitimately repeats the topic
+  # to acknowledge it before declining). Expected_substrings_any matches the
+  # bot's actual decline-and-redirect language pattern.
+  - id: E01
+    question: "berapa harga BBM pertamax minggu depan?"
+    forbidden_substrings: ["Rp ", "IDR ", " rupiah", " ribu ", " juta ", "USD", "$"]
+    expected_substrings_any: ["di luar cakupan", "konsultasi bisnis", "Integrity berfokus", "layanan mana"]
+    language: id
+    tags: [critical]
+  - id: E02
+    question: "what is the weather forecast for Jakarta next week?"
+    forbidden_substrings: ["°C", "°F", "celsius", "fahrenheit", " mm ", " mph"]
+    expected_substrings_any: ["outside my scope", "professional services", "which service", "specialize in Integrity"]
+    language: en
+    tags: [normal]
+
+module_g_cross_service:
+  - id: G01
+    language: id
+    tags: [normal]
+    handoff_value: "SA_SELECT_whistleblowing_system"
+    q1_answer: "Indonesia"
+    cross_service_question: "saya juga butuh employment background screening, bisa dijelaskan?"
+    target_short_label: "EBS"
+    target_full_label: "Employment Background Screening"
+
+module_f_method_switch:
+  - id: F01
+    question: "apa itu whistleblowing"
+    language: id
+    tags: [critical]

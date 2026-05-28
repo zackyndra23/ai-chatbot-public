@@ -1,0 +1,42 @@
+# Local-only Dockerfile for GPU verification.
+# Mirrors Dockerfile.prod runtime_cuda stage but installs from requirements.cuda.in
+# directly (bypassing the EMPTY requirements.cuda.lock — see git blame for the
+# lock-files-empty fix that should also land in Dockerfile.prod separately).
+
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04 AS deps_cuda
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    VIRTUAL_ENV=/opt/venv \
+    PATH="/opt/venv/bin:$PATH"
+
+WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends software-properties-common ca-certificates curl gnupg \
+    && add-apt-repository ppa:deadsnakes/ppa \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends python3.12 python3.12-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN /usr/bin/python3.12 -m venv /opt/venv
+
+COPY requirements.cuda.in .
+# --retries 10 + --timeout 300 + --resume-retries hardens against the torch CUDA
+# wheel download (~360 MB) being interrupted on flaky connections — observed
+# during initial build attempt.
+RUN pip install --upgrade pip \
+    && pip install --no-cache-dir --retries 10 --timeout 300 -r requirements.cuda.in
+
+FROM deps_cuda AS runtime_cuda
+
+WORKDIR /app
+
+COPY . .
+
+EXPOSE 2300
+
+CMD ["gunicorn", "--bind", "0.0.0.0:2300", "modules.system_detection.chatbot:app"]

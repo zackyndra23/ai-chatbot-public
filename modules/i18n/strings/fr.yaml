@@ -1,0 +1,98 @@
+# French (fr) — lift-and-shift from legacy palettes during Tasks 14-19 batch.
+
+greeting.palette:
+  text:
+    - "Bonjour"
+    - "Salut"
+    - "Bienvenue"
+    - "Ravi de vous aider"
+    - "Heureux de vous rencontrer"
+    - "Merci de nous contacter"
+    - "Enchanté"
+    - "Content de vous voir"
+    - "Bonne journée"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[fr] (production-validated; SME re-review deferred to Phase 2b)."
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[fr])
+natural_qual.rescue_soft_bridge:
+  text: "Pour avancer, permettez-moi de demander directement — {q}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[fr]."
+
+# Opener palette (Task 15 lift from sa_prompts.py _OPENER_PALETTE[fr])
+opener.palette:
+  text:
+    - "D'accord"
+    - "Compris"
+    - "Bien noté"
+    - "Parfait"
+    - "Très bien"
+    - "Entendu"
+    - "Alors"
+    - "Ensuite"
+    - "Maintenant"
+    - "Donc"
+    - "Intéressant"
+    - "Hmm"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sa_prompts.py _OPENER_PALETTE[fr]."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "Planifier une réunion"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[fr]."
+
+picker.other_services.label:
+  text: "Autres Services"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[fr]."
+
+picker.stay_label:
+  text: "Continuer {current_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[fr][0]."
+
+picker.switch_label:
+  text: "Passer à {target_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[fr][1]."
+
+# Meeting surfaces (Task 18 lift from sd_meeting.py)
+meeting.footer:
+  text: "Pour organiser une réunion avec notre équipe, vous pouvez nous contacter directement par e-mail à info@integrity-asia.com ou par téléphone au +62 21–769 8277. Indiquez vos disponibilités et vos besoins afin que notre équipe commerciale puisse vous proposer et confirmer un créneau adapté."
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_meeting_footer[fr]."
+
+meeting.other_slot_label:
+  text: "Autres créneaux proposés"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_other_slot_label[fr]."

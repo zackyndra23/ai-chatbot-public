@@ -1,0 +1,21 @@
+# Romansh (rm) — lift-and-shift from legacy palettes during Tasks 14-19 batch.
+# Phase 0 status: draft. NOT in CANON_17 per spec §Constraint #7.
+# Phase 1 follow-up: business decision on retain (extend CANON_17 to 18) vs drop.
+# See docs/modules/out_of_context.md "Known limitations" + "Phase 1 optimization opportunities".
+
+# Meeting surfaces (Task 18 lift from sd_meeting.py)
+meeting.footer:
+  text: "Per fixar in inscunter cun nossa squadra, pudais Vus scriver a info@integrity-asia.com u telefonar al +62 21–769 8277. Inditgai Vossas disponibilitads e ils servetschs che Vus vulais discutir, uschia che nossa squadra da vendita po confermar in termin adattà."
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_meeting_footer[rm]."
+
+meeting.other_slot_label:
+  text: "Auters propostas d'uras"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_other_slot_label[rm]."

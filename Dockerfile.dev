@@ -1,0 +1,12 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements_rag_app2.txt .
+RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements_rag_app2.txt
+
+COPY . .
+
+EXPOSE 2300
+
+CMD ["python", "main.py"]

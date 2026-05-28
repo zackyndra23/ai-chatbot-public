@@ -1,0 +1,76 @@
+# Portuguese (pt) — lift-and-shift from legacy palettes.
+
+greeting.palette:
+  text:
+    - "Olá"
+    - "Bom dia"
+    - "Boa tarde"
+    - "Bem-vindo"
+    - "Prazer em ajudar"
+    - "Obrigado pelo contato"
+    - "Que bom ter você aqui"
+    - "Saudações"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[pt]."
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[pt])
+natural_qual.rescue_soft_bridge:
+  text: "Para prosseguir, permita-me perguntar diretamente — {q}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[pt]."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "Agendar uma reunião"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[pt]."
+
+picker.other_services.label:
+  text: "Outros Serviços"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[pt]."
+
+picker.stay_label:
+  text: "Continuar {current_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[pt][0]."
+
+picker.switch_label:
+  text: "Mudar para {target_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[pt][1]."
+
+# Meeting surfaces (Task 18 lift from sd_meeting.py)
+meeting.footer:
+  text: "Para marcar uma reunião com a nossa equipa, pode contactar-nos diretamente através do e-mail info@integrity-asia.com ou pelo telefone +62 21–769 8277. Indique a sua disponibilidade e os serviços que pretende discutir para que a nossa equipa comercial possa propor e confirmar um horário adequado."
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_meeting_footer[pt]."
+
+meeting.other_slot_label:
+  text: "Outros horários sugeridos"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_other_slot_label[pt]."

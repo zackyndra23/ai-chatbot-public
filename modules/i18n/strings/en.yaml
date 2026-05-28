@@ -1,0 +1,488 @@
+# English baselines — Stage 0 OOC engine (2026-05-13).
+# All entries status: verified per spec Appendix A + B.
+# Text per spec §3 + Appendix A (cold-start) + Appendix B (mid-flow P1).
+
+# ============================================================================
+# Cold-start templates (13 categories)
+# ============================================================================
+
+ooc.OOC-PARTNERSHIP.cold_start:
+  text: |
+    Thanks for considering a partnership with Integrity — collaborations like this are outside our qualification scope, but we'd be glad to route you to the right team.
+
+    Please complete the partnership application at {partnership_url} so we can learn about your organization. Once submitted, our Partnerships team will follow up directly.
+
+    If you'd prefer to speak with someone first, you can also reach our Sales team at {indo_email} or {indo_phone} ({business_hours}).
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-FREELANCE.cold_start:
+  text: |
+    Thank you for your interest in joining us on a freelance basis — talent applications are handled outside the qualification flow.
+
+    Please apply through {freelancer_url} and let us know the types of projects you're passionate about. Our team reviews every application and will contact you if your profile matches an open need.
+
+    Note: If you're specifically interested in becoming a Mystery Shopper, that has a dedicated application — happy to share the link instead, just let me know.
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-MYSTERY-SHOPPER-APPLY.cold_start:
+  text: |
+    Great — we welcome applications for Mystery Shopper roles.
+
+    Please complete the application form here: {mystery_shopper_url}
+
+    Our team will reach out for next steps if your qualifications meet our criteria.
+
+    Heads-up: this is for joining our shopper pool. If you're a business looking to commission a Mystery Shopping engagement, I can help with that qualification right here.
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-CAREERS.cold_start:
+  text: |
+    Thanks for your interest in joining Integrity! Full-time openings and internships are managed outside my scope.
+
+    You can explore current openings at {careers_url} and apply directly to any role that matches your background. Our team reviews every application.
+
+    If you don't see a fitting role, you're welcome to send your CV to {indo_email} with the subject line "Career Inquiry — {user_field_hint}".
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-ADJACENT-SERVICE.cold_start:
+  text: |
+    Thanks for the question. {mentioned_service} sits outside Integrity's current service portfolio — we focus on compliance, risk, and investigation services for organizations.
+
+    We support inquiries across our four service pillars:
+
+    {pillar_block}
+
+    If any of these match what you actually need, I can take you through the qualification right now. If you'd like a referral or to explore adjacent options with our team, please reach out at {indo_email} or {indo_phone}.
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-ADJACENT-ISO.cold_start:
+  text: |
+    Integrity doesn't issue ISO certifications — those must come from an accredited certification body.
+
+    What we do offer is the ABMS E-Learning module, which prepares your team for ISO 37001 (Anti-Bribery Management System) certification with comprehensive coverage from awareness through best practices. Organizations typically use it alongside an accredited body's audit cycle.
+
+    Would you like to walk through whether the ABMS E-Learning fits your needs? Otherwise, I can connect you to our Sales team at {indo_email} or {indo_phone}.
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-PRESS-MEDIA.cold_start:
+  text: |
+    Thanks for reaching out — media and press inquiries are handled outside my scope by our Communications team.
+
+    Please email {indo_email} with the subject line "Media Inquiry — [Outlet / Topic]" along with your deadline and outline, and the team will respond as soon as possible during business hours ({business_hours}).
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-VENDOR-SUPPLIER.cold_start:
+  text: |
+    Thanks for reaching out. Vendor and procurement inquiries are outside my scope — I'm built to qualify client inquiries about our compliance and investigation services.
+
+    Please send a brief introduction of your offering to {indo_email} with the subject line "Vendor Inquiry — [Category]". Our procurement team will route it internally if there's a fit.
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-COMPLAINT.cold_start:
+  text: |
+    I'm sorry to hear that, and thank you for letting us know. Service-quality concerns need to be reviewed by a human team member rather than handled here in chat.
+
+    Please email {indo_email} with the subject line "Service Concern — {engagement_reference}". A senior team member will respond during business hours ({business_hours}).
+
+    For urgent matters, you can also call {indo_phone} directly.
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-PERSONAL-ADVICE.cold_start:
+  text: |
+    That's outside what I can help with — I'm focused on Integrity's organizational compliance and investigation services rather than personal legal, financial, or health matters. For personal advice, please consult a qualified professional in that field.
+
+    If there's anything organizational I can help with — for example, employment screening or fraud investigation for a company — I'd be glad to walk you through it.
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-CHITCHAT.cold_start:
+  text: |
+    That's a bit outside what I'm built for — I'm here to help with Integrity's compliance, risk, and investigation services.
+
+    I support inquiries across our four service pillars:
+
+    {pillar_block}
+
+    Is there a service area I can help you explore?
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-UNCLEAR.cold_start:
+  text: |
+    Happy to help — to point you in the right direction, could you tell me a little more about what you're looking for?
+
+    I support inquiries across our four service pillars:
+
+    {pillar_block}
+
+    Which of these is closest to your need? Or if it's something else entirely, please describe the situation and I'll do my best to route you.
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-CATCHALL.cold_start:
+  text: |
+    That falls outside what I can help with directly. For anything not covered here, the best path is to reach our Sales team — they can route you internally or refer you to the right partner.
+
+    • Indonesia: {indo_phone}  |  {indo_email}
+    • Malaysia / Singapore: {my_sg_phone}  |  {my_sg_email}
+    • Thailand / Vietnam: {th_vn_phone}  |  {th_vn_email}
+    • Business hours: {business_hours}
+
+    If there's an Integrity service I can help you qualify for instead, just let me know.
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+# ============================================================================
+# Mid-flow P1 (compressed per-category preamble)
+# ============================================================================
+
+ooc.OOC-PARTNERSHIP.midflow.p1:
+  text: "Thanks for the partnership interest — that's outside my qualification scope. Please complete the partnership application at {partnership_url}; our Partnerships team will follow up. You can also reach Sales at {indo_email} or {indo_phone} ({business_hours})."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-FREELANCE.midflow.p1:
+  text: "Thanks for the freelance interest — talent applications are handled outside the qualification flow. Please apply at {freelancer_url} and our team will contact you if your profile fits an open need. If it's Mystery Shopper specifically, that has a dedicated link — just let me know."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-MYSTERY-SHOPPER-APPLY.midflow.p1:
+  text: "For Mystery Shopper applications, please use this form: {mystery_shopper_url}. Our team will reach out if your qualifications meet our criteria. (If you're a business looking to commission a Mystery Shopping engagement instead, I can continue helping you with that right here.)"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-CAREERS.midflow.p1:
+  text: 'Thanks for the career interest — full-time openings and internships sit outside my scope. Browse current openings at {careers_url} and apply directly. Or send your CV to {indo_email} with the subject line "Career Inquiry — {user_field_hint}".'
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-ADJACENT-SERVICE.midflow.p1:
+  text: "Thanks — {mentioned_service} sits outside Integrity's current portfolio. We focus on compliance, risk, and investigation services across our four pillars (Prevention, Detection, Mitigation, Brand Protection). If any matches what you actually need, I can route you. For a referral or adjacent options, reach our team at {indo_email} or {indo_phone}."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-ADJACENT-ISO.midflow.p1:
+  text: "Integrity doesn't issue ISO certifications — that comes from an accredited certification body. We do offer the ABMS E-Learning module, which prepares your team for ISO 37001 certification through interactive content. Organizations typically pair it with an accredited body's audit. Want me to walk through whether ABMS E-Learning fits your needs, or connect you to Sales at {indo_email} or {indo_phone}?"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-PRESS-MEDIA.midflow.p1:
+  text: 'Media inquiries are handled by our Communications team — please email {indo_email} with subject line "Media Inquiry — [Outlet / Topic]", deadline, and outline. The team responds during business hours ({business_hours}).'
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-VENDOR-SUPPLIER.midflow.p1:
+  text: 'Vendor and procurement inquiries are outside my scope. Please send a brief introduction of your offering to {indo_email} with the subject line "Vendor Inquiry — [Category]". Our procurement team will route it internally if there''s a fit.'
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-COMPLAINT.midflow.p1:
+  text: 'I''m sorry to hear that — service-quality concerns need a human team member rather than chat. Please email {indo_email} with the subject line "Service Concern — {engagement_reference}". A senior team member will respond during business hours ({business_hours}). For urgent matters, call {indo_phone} directly.'
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-PERSONAL-ADVICE.midflow.p1:
+  text: "That's outside what I can help with — I'm focused on Integrity's organizational compliance and investigation services, not personal legal, financial, or health matters. For personal advice, please consult a qualified professional in that field."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-CHITCHAT.midflow.p1:
+  text: "That's a bit outside what I'm built for — I'm here to help with Integrity's compliance, risk, and investigation services."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-UNCLEAR.midflow.p1:
+  text: "Happy to help, though I'd want to make sure I understand what you're looking for. Could you tell me a little more?"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.OOC-CATCHALL.midflow.p1:
+  text: |
+    That falls outside what I can help with directly. For anything not covered, reach our Sales team:
+    • Indonesia: {indo_phone}  |  {indo_email}
+    • Malaysia / Singapore: {my_sg_phone}  |  {my_sg_email}
+    • Thailand / Vietnam: {th_vn_phone}  |  {th_vn_email}
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+# ============================================================================
+# Shared mid-flow paragraphs
+# ============================================================================
+
+ooc.midflow.p2_standard_with_field:
+  text: "Returning to your {active_service_label} qualification — you were just at the {current_field_label} step."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.midflow.p2_standard_service_only:
+  text: "Returning to your {active_service_label} qualification."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.midflow.p2_pre_data:
+  text: "Returning to your {active_service_label} qualification — we hadn't started yet."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.midflow.p3_repose:
+  text: "So, to pick up where we left off — {last_question}"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.midflow.p3_opt_in_continuation:
+  text: "If you'd like to continue, just let me know and we'll start from the beginning. Otherwise, the routing above should handle what you need."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.high_stakes.p4_escalation:
+  text: "If your situation is urgent or involves sensitive details you'd rather discuss directly, you can also reach our investigation team at {indo_phone} or {indo_email} ({business_hours})."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+# ============================================================================
+# Escalation handover
+# ============================================================================
+
+ooc.escalation.acknowledgment:
+  text: "I understand we've covered a few different topics that fall outside what I can directly help with. To make sure your time is well spent, let me connect you with our team who can address each of your questions properly."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.escalation.handover_contacts:
+  text: |
+    • Indonesia: {indo_phone}  |  {indo_email}
+    • Malaysia / Singapore: {my_sg_phone}  |  {my_sg_email}
+    • Thailand / Vietnam: {th_vn_phone}  |  {th_vn_email}
+    • Business hours: {business_hours}
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+ooc.escalation.resume_offer:
+  text: "If you'd like to continue with the {active_service_label} qualification later, just let me know and I'll pick up from your last question."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+# ============================================================================
+# Pillar block (English baseline — pillar names + service names all English)
+# ============================================================================
+
+ooc.service.taxonomy.pillar_block:
+  text: |
+    • Prevention — Employment Background Screening (EBS), Due Diligence, Know Your Customer, ABMS E-Learning
+    • Detection — Whistleblowing System (WBS), Mystery Shopping, Market Survey
+    • Mitigation — Corporate Fraud Investigation, Insurance Claim Investigation, Asset Tracing, Skip Tracing
+    • Brand Protection — Non-Use Investigation, Anti-Counterfeit Investigation, Parallel Trading Investigation, Trademark Investigation
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+# ============================================================================
+# Abandonment module
+# ============================================================================
+
+# ============================================================================
+# Greeting palette (Task 14 lift-and-shift from sd_prompts.py _GREETING_PALETTE)
+# ============================================================================
+
+greeting.palette:
+  text:
+    - "Hi there"
+    - "Hello"
+    - "Hey"
+    - "Good to hear from you"
+    - "Pleased to help"
+    - "Thanks for reaching out"
+    - "Welcome"
+    - "Glad you're here"
+    - "Nice to connect"
+    - "Great to meet you"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[en] (production-validated)."
+
+# ============================================================================
+# Abandonment module
+# ============================================================================
+
+abandonment.trigger_phrases:
+  text:
+    - "never mind"
+    - "cancel"
+    - "forget it"
+    - "nvm"
+    - "let's stop"
+    - "stop"
+    - "actually never mind"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+abandonment.acknowledgment:
+  text: "No problem — we'll stop here. Whenever you're ready to start fresh, just let me know."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[en])
+natural_qual.rescue_soft_bridge:
+  text: "To keep this moving, let me ask directly — {q}"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[en]."
+
+# Opener palette (Task 15 lift from sa_prompts.py _OPENER_PALETTE[en])
+opener.palette:
+  text:
+    - "Got it"
+    - "Understood"
+    - "Noted"
+    - "Makes sense"
+    - "Sure"
+    - "Alright"
+    - "Right"
+    - "Next"
+    - "So then"
+    - "Following that"
+    - "Hmm"
+    - "Interesting"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sa_prompts.py _OPENER_PALETTE[en]."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "Schedule a meeting"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[en]."
+
+picker.other_services.label:
+  text: "Other Services"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[en]."
+
+picker.stay_label:
+  text: "Continue {current_label}"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[en][0]."
+
+picker.switch_label:
+  text: "Switch to {target_label}"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[en][1]."
+
+# Meeting surfaces (Task 18 lift from sd_meeting.py)
+meeting.footer:
+  text: "If you would like to schedule a meeting with our team, please contact our sales team at +62 21–769 8277 or email info@integrity-asia.com. Share your availability and the services you wish to discuss, and we will propose and confirm a suitable slot."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_meeting_footer[en]."
+
+meeting.other_slot_label:
+  text: "Other Slot Recommendations"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_other_slot_label[en]."

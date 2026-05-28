@@ -1,0 +1,82 @@
+--index-url https://download.pytorch.org/whl/cu121
+--extra-index-url https://pypi.org/simple
+
+# === API & runtime ===
+fastapi
+uvicorn
+orjson
+python-dotenv
+
+# === Scheduling & time ===
+APScheduler
+pytz
+
+# === Google Sheets (service account) ===
+gspread
+google-auth
+
+# === Database ===
+pymongo
+
+# === HTTP clients (opsional, tapi berguna) ===
+httpx
+requests
+
+# === Deployment/Prod server (optional; use with -k uvicorn.workers.UvicornWorker) ===
+gunicorn
+
+# Core dependencies untuk RAG
+langchain
+langchain-core
+langchain-community
+langgraph
+
+# Provider & SDK
+openai
+langchain-openai
+langchain_chroma
+anthropic
+
+# Splitter & token
+langchain-text-splitters
+tiktoken
+regex
+
+# Vector DB & embeddings
+# faiss-cpu
+sentence-transformers
+chromadb
+
+# # Optional integrations
+# langchainhub
+# tavily-python
+# langchain-huggingface
+
+# Numerics
+numpy
+
+# Core dependencies
+langchain-anthropic
+langsmith
+anthropic
+# SQLAlchemy
+pydantic
+# pydantic_core
+
+# Flask untuk API
+flask==3.1.2
+
+# # schematic langgraph rag 
+# langchain-nomic
+
+# language detection
+langid
+pycountry
+
+# testing profilling
+psutil
+
+# --- GPU (PyTorch CUDA) ---
+torch
+torchvision
+torchaudio

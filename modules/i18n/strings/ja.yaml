@@ -1,0 +1,76 @@
+# Japanese (ja) — lift-and-shift from legacy palettes.
+
+greeting.palette:
+  text:
+    - "こんにちは"
+    - "はじめまして"
+    - "ようこそ"
+    - "お問い合わせありがとうございます"
+    - "お役に立てれば幸いです"
+    - "おはようございます"
+    - "お疲れさまです"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[ja]."
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[ja])
+natural_qual.rescue_soft_bridge:
+  text: "進めるために、直接お伺いさせてください — {q}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[ja]."
+
+# Opener palette (Task 15 lift from sa_prompts.py _OPENER_PALETTE[ja])
+opener.palette:
+  text:
+    - "了解しました"
+    - "承知しました"
+    - "なるほど"
+    - "かしこまりました"
+    - "では"
+    - "さて"
+    - "次に"
+    - "ところで"
+    - "興味深いですね"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sa_prompts.py _OPENER_PALETTE[ja]."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "打ち合わせを予約"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[ja]."
+
+picker.other_services.label:
+  text: "その他のサービス"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[ja]."
+
+picker.stay_label:
+  text: "{current_label} を続ける"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[ja][0]."
+
+picker.switch_label:
+  text: "{target_label} に切り替え"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[ja][1]."

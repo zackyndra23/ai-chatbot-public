@@ -1,0 +1,98 @@
+# Malay (ms) — lift-and-shift from legacy palettes during Tasks 14-19 batch.
+# Phase 0 status: draft for all entries (existing production translations from
+# legacy palette dicts; SME re-validation deferred to Phase 2b).
+
+greeting.palette:
+  text:
+    - "Hai"
+    - "Apa khabar"
+    - "Selamat datang"
+    - "Selamat sejahtera"
+    - "Selamat pagi"
+    - "Selamat tengah hari"
+    - "Senang dapat membantu"
+    - "Terima kasih kerana menghubungi"
+    - "Salam mesra"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[ms] (production-validated; SME re-review deferred to Phase 2b)."
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[ms])
+natural_qual.rescue_soft_bridge:
+  text: "Untuk saya bantu seterusnya, boleh saya tanya secara langsung — {q}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[ms]."
+
+# Opener palette (Task 15 lift from sa_prompts.py _OPENER_PALETTE[ms])
+opener.palette:
+  text:
+    - "Baiklah"
+    - "Faham"
+    - "Noted"
+    - "Oke"
+    - "Siap"
+    - "Seterusnya"
+    - "Kemudian"
+    - "Kalau begitu"
+    - "Menarik"
+    - "Hmm"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sa_prompts.py _OPENER_PALETTE[ms]."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "Jadualkan meeting"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[ms]."
+
+picker.other_services.label:
+  text: "Perkhidmatan Lain"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[ms]."
+
+picker.stay_label:
+  text: "Teruskan {current_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[ms][0]."
+
+picker.switch_label:
+  text: "Tukar ke {target_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[ms][1]."
+
+# Meeting surfaces (Task 18 lift from sd_meeting.py)
+meeting.footer:
+  text: "Untuk mengatur pertemuan dengan pasukan kami, anda boleh menghubungi pasukan jualan di +60 3–7931 1323 atau e-mel info@integrity-malaysia.com. Sila maklumkan jenis perkhidmatan dan masa yang anda inginkan supaya kami boleh mengesahkan jadual dengan anda."
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_meeting_footer[ms]."
+
+meeting.other_slot_label:
+  text: "Cadangan Slot Lain"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_other_slot_label[ms]."

@@ -1,0 +1,92 @@
+# Thai (th) — lift-and-shift from legacy palettes.
+
+greeting.palette:
+  text:
+    - "สวัสดี"
+    - "สวัสดีครับ"
+    - "สวัสดีค่ะ"
+    - "ยินดีต้อนรับ"
+    - "ยินดีที่ได้พบ"
+    - "ขอบคุณที่ติดต่อเรา"
+    - "ยินดีให้บริการ"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[th]."
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[th])
+natural_qual.rescue_soft_bridge:
+  text: "เพื่อให้ดำเนินการต่อได้ ขออนุญาตถามตรง ๆ — {q}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[th]."
+
+# Opener palette (Task 15 lift from sa_prompts.py _OPENER_PALETTE[th])
+opener.palette:
+  text:
+    - "เข้าใจแล้ว"
+    - "รับทราบ"
+    - "ตกลง"
+    - "โอเค"
+    - "ต่อไป"
+    - "แล้ว"
+    - "น่าสนใจ"
+    - "อืม"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sa_prompts.py _OPENER_PALETTE[th]."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "จองการประชุม"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[th]."
+
+picker.other_services.label:
+  text: "บริการอื่น ๆ"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[th]."
+
+picker.stay_label:
+  text: "ดำเนินการ {current_label} ต่อ"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[th][0]."
+
+picker.switch_label:
+  text: "เปลี่ยนเป็น {target_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[th][1]."
+
+# Meeting surfaces (Task 18 lift from sd_meeting.py)
+meeting.footer:
+  text: "หากคุณต้องการนัดประชุมกับทีมของเรา คุณสามารถติดต่อทีมขายได้โดยตรงที่ info@integrity-asia.com หรือโทร +62 21–769 8277 กรุณาแจ้งช่วงเวลาที่สะดวก และบริการที่ต้องการพูดคุย เพื่อให้ทีมของเราสามารถเสนอและยืนยันเวลา นัดหมายที่เหมาะสมให้คุณได้."
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_meeting_footer[th]."
+
+meeting.other_slot_label:
+  text: "ตัวเลือกเวลาอื่น"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_other_slot_label[th]."

@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>AItegrity Chatbot — UI Testing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    :root {
+      --bg: #0f1216;
+      --card: #151a21;
+      --text: #e6edf3;
+      --muted: #9aa4b2;
+      --accent: #22c55e;
+      --danger: #ef4444;
+      --shadow: rgba(0,0,0,0.3);
+    }
+    body {
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    .wrap { max-width: 920px; margin: 24px auto; padding: 0 16px; }
+    .title { text-align:center; margin: 8px 0 4px; font-weight: 800; letter-spacing: 0.2px; }
+    .subtitle { text-align:center; margin: 0 0 24px; color: var(--muted); font-weight: 600; }
+    .panel {
+      background: var(--card); box-shadow: 0 6px 24px var(--shadow);
+      border-radius: 14px; overflow: hidden; border: 1px solid #222a35;
+    }
+    .toolbar {
+      display:flex; gap:12px; align-items:center; padding: 12px 14px;
+      border-bottom: 1px solid #222a35; background: linear-gradient(180deg, #171c24, #151a21);
+      flex-wrap: wrap;
+    }
+    .toolbar .kv { display:flex; align-items:center; gap:8px; background:#11151b;
+      padding: 8px 10px; border-radius: 10px; border: 1px solid #202733; }
+    .toolbar code { color: var(--accent); font-weight: 700; }
+    .toolbar .actions { margin-left:auto; display:flex; gap:8px; }
+    .btn { padding:8px 12px; border-radius:10px; font-weight:800; cursor:pointer; border:none; }
+    .btn[disabled]{ opacity:.6; cursor:not-allowed; }
+    .btn-activate { background: var(--accent); color:#0a0f14; }
+    .btn-shutdown { background: var(--danger); color:#0a0f14; }
+    .chat { height: 62vh; overflow:auto; padding: 16px; display:flex; flex-direction: column; gap: 12px; }
+    .msg {
+      max-width: 80%; padding: 12px 14px; border-radius: 14px; line-height: 1.45;
+      white-space: pre-wrap; word-wrap: break-word;
+    }
+    .msg .foot {
+      display:block; margin-top:6px; font-size:12px; color:var(--muted);
+    }
+    .user { align-self: flex-end; background:#1f2937; border:1px solid #2b3544; }
+    .ai   { align-self: flex-start; background:#11151b; border:1px solid #202733; }
+    .composer {
+      display:flex; gap:12px; padding: 12px; border-top:1px solid #222a35;
+      background:linear-gradient(180deg, #151a21, #141920);
+    }
+    .composer input {
+      flex:1; background:#0f141a; border:1px solid #1f2732; color:var(--text);
+      padding:12px 14px; border-radius:12px; outline:none;
+    }
+    .composer button {
+      background: var(--accent); color: #0a0f14; border:none; padding: 12px 16px;
+      border-radius: 12px; font-weight: 800; cursor: pointer;
+    }
+    .composer button[disabled] { opacity: .6; cursor: not-allowed; }
+    .note { color: var(--muted); font-size: 12px; padding:8px 14px 14px; }
+    .err  { color: var(--danger); font-weight: 600; }
+
+    /* typing bubble */
+    .msg.ai.typing { opacity:.85; position: relative; }
+    .typing .dots { display:inline-block; width:1.4em; text-align:left }
+    .typing .dots::after {
+      content: '…'; animation: dots 1.2s steps(4, end) infinite;
+    }
+    @keyframes dots {
+      0% { content:''; }
+      25% { content:'.'; }
+      50% { content:'..'; }
+      75% { content:'...'; }
+    }
+
+    /* top banner "processing" (optional) */
+    #busy {
+      display:none; padding:8px 12px; border-top:1px solid #222a35;
+      background:#121720; color:#9aa4b2; font-size:12px;
+    }
+    #busy.show { display:block; }
+
+    .choices-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:8px;
+    }
+    .choice-pill {
+      background:#0f141a;
+      border:1px solid #1f2732;
+      border-radius:999px;
+      padding:4px 10px;
+      font-size:12px;
+      color:var(--muted);
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .choice-pill:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .choices-row.disabled .choice-pill {
+      opacity:0.5;
+      cursor:not-allowed;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="title">AItegrity Chatbot 🤖</h1>
+    <h3 class="subtitle">(RAG - Claude 4 Sonnet)</h3>
+
+    <div class="panel">
+      <div class="toolbar">
+        <div class="kv">nickname: <code id="nick">{{ nickname }}</code></div>
+        <div class="kv">email:    <code id="eml">{{ email }}</code></div>
+        <div class="kv">phone:    <code id="phn">{{ phone }}</code></div>
+        <div class="kv">country:  <code id="cty">{{ country }}</code></div>
+        <div class="kv">region:   <code id="rgn">{{ region }}</code></div>
+        <div class="kv">sessionId:<code id="sess">{{ session_id }}</code></div>   <!-- ⬅️ tampilkan dari dokumen -->
+        <div class="kv">tokenId:  <code id="tok">{{ token }}</code></div>         <!-- ⬅️ token aktif / Please Activate! -->
+        <div class="actions">
+          <button id="btnActivate" class="btn btn-activate">ACTIVATE</button>
+          <button id="btnShutdown"  class="btn btn-shutdown">SHUTDOWN</button>
+        </div>
+      </div>
+
+      <div id="chat" class="chat"></div>
+      <div id="busy">⏳ The assistant is thinking…</div>
+
+      <div class="composer">
+        <input id="input" type="text" placeholder="Ask me anything about Integrity..." />
+        <button id="send">Ask</button>
+      </div>
+      <div class="note">
+        This interface is for development and testing purposes. Do not share externally or use in production. No chat content is persisted on the server.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chat  = document.getElementById("chat");
+    const input = document.getElementById("input");
+    const send  = document.getElementById("send");
+    const btnAct = document.getElementById("btnActivate");
+    const btnShd = document.getElementById("btnShutdown");
+  </script>
+
+  <!-- bootstrap data dari server sebagai JSON yang valid -->
+  <script id="bootstrap" type="application/json">{{ bootstrap|tojson }}</script>
+
+  <script>
+    // Ambil JSON bootstrap yang sudah di-render Jinja
+    const BOOT = JSON.parse(document.getElementById('bootstrap').textContent);
+
+    // Data dari server (aman: selalu tipe JS yang valid)
+    const NAME       = BOOT.name ?? null;           
+    const NOT_FOUND  = Boolean(BOOT.not_found);     
+    let   SESSION    = BOOT.token ?? null;          
+
+    // Endpoints yang digunakan UI
+    const PROXY  = `/aitegrity-core/chatbot/claude4sonnet/ui_testing_proxy/${encodeURIComponent(NAME ?? "")}`;
+    const ACT_EP = `/aitegrity-core/chatbot/claude4sonnet/ui_testing_activate/${encodeURIComponent(NAME ?? "")}`;
+    const SHD_EP = `/aitegrity-core/chatbot/claude4sonnet/ui_testing_shutdown/${encodeURIComponent(NAME ?? "")}`;
+
+    let choiceRows = [];  // semua blok pilihan yang pernah dibuat
+
+    function disableAllChoiceRows() {
+      choiceRows.forEach(row => {
+        row.classList.add("disabled");
+        row.querySelectorAll("button.choice-pill").forEach(btn => {
+          btn.disabled = true;
+        });
+      });
+    }
+
+    function setAskEnabled(v){ send.disabled = !v; }
+
+    // Initial state: Ask disabled kalau belum ada session
+    (function init(){
+      if (NOT_FOUND || !NAME) {
+        setAskEnabled(false);
+        btnAct && (btnAct.disabled = true);
+        btnShd && (btnShd.disabled = true);
+        append("ai", "USER NOT FOUND");
+        return;
+      }
+      if (!SESSION || String(SESSION).toLowerCase().includes("please")) {
+        setAskEnabled(false);
+        btnShd.disabled = true;      // tidak boleh shutdown tanpa token
+        btnAct.disabled = false;
+      } else {
+        btnAct.disabled = true;      // sudah aktif → jangan activate lagi
+        btnShd.disabled = false;
+      }
+    })();
+
+    // === ACTIVATE handler ===
+    btnAct?.addEventListener("click", async () => {
+      if (NOT_FOUND) return;
+      btnAct.disabled = true;
+      try {
+        const res = await fetch(ACT_EP, { method: "POST" });
+        if (!res.ok) {
+          const t = await res.text();
+          append("ai", `Activation error ${res.status}: ${t}`);
+          btnAct.disabled = false;
+          return;
+        }
+        let j=null; try { j = await res.json(); } catch {}
+        const newToken =
+          j && (j.tokenId || j.token || j.session_id || (j.data && (j.data.tokenId || j.data.token || j.data.session_id)));
+
+        const tokEl = document.getElementById("tok");
+        SESSION = newToken || "(active)";
+        if (tokEl) tokEl.textContent = SESSION;
+
+        setAskEnabled(true);
+        btnAct.disabled = true;     // setelah aktif, lock activate
+        btnShd.disabled = false;    // boleh shutdown
+        append("ai", "✅ Session activated. You can start asking now.");
+      } catch (e) {
+        append("ai", `Activation failed: ${e}`);
+        btnAct.disabled = false;
+      }
+    });
+
+    function parseChatMessage(msg) {
+      // default
+      const out = { type: "string", text: "", choices: [], required: false };
+
+      // case lama: string biasa
+      if (typeof msg === "string") {
+        out.type = "string";
+        out.text = msg;
+        return out;
+      }
+
+      // case baru: ChatMessage object
+      if (msg && typeof msg === "object") {
+        const t = msg.type;
+
+        if (t === "string") {
+          out.type = "string";
+          out.text = (msg.content && typeof msg.content.text === "string") ? msg.content.text : "";
+          return out;
+        }
+
+        if (t === "picker") {
+          out.type = "picker";
+          out.text = (msg.content && typeof msg.content.text === "string") ? msg.content.text : "";
+          out.choices = (msg.content && Array.isArray(msg.content.choices)) ? msg.content.choices : [];
+          out.required = Boolean(msg.content && msg.content.required);
+          return out;
+        }
+      }
+
+      // fallback
+      out.type = "string";
+      out.text = (msg == null) ? "" : String(msg);
+      return out;
+    }
+
+    async function sendQuestion(q) {
+      if (!q) return;
+
+      if (!SESSION || String(SESSION).toLowerCase().includes("please")) {
+        append("ai", "❗ No active sessionId. Please click ACTIVATE first.");
+        return;
+      }
+
+      send.disabled = true;
+      const t0 = performance.now();
+      document.getElementById("busy")?.classList.add("show");
+      const placeholder = appendTyping();
+
+      try {
+        const res = await fetch(PROXY, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: q })
+        });
+        const t1 = performance.now();
+
+        if (!res.ok) {
+          const errText = await res.text();
+          setTypingText(placeholder, `Error ${res.status}: ${errText}`);
+          return;
+        }
+
+        let data;
+        try { data = await res.json(); } catch { data = await res.text(); }
+
+        // === ambil teks jawaban dari message ===
+        let msgField = (data && typeof data === "object") ? data.message : data;
+        const parsed = parseChatMessage(msgField);
+
+        // metrik
+        const durSrv = (data && typeof data === "object") ? data.respond_duration : null;
+
+        let inTok = null;
+        let outTok = null;
+
+        if (data && typeof data === "object") {
+          // 🔹 PAKAI TOTAL DULU, baru fallback ke yang lama
+          inTok = (
+            data.input_total ??
+            data.input_token ??
+            data.inputTokens ??
+            (data.usage && data.usage.input_tokens) ??
+            null
+          );
+
+          outTok = (
+            data.output_total ??
+            data.output_token ??
+            data.outputTokens ??
+            (data.usage && data.usage.output_tokens) ??
+            null
+          );
+        }
+
+        const durClient = ((t1 - t0) / 1000);
+        const dur = Number.isFinite(durSrv) ? durSrv : durClient;
+        const foot = `⏱️ ${Number.isFinite(durSrv) ? "Server" : "Client"} ${dur.toFixed(2)}s · 🔤 in ${inTok ?? "-"} / out ${outTok ?? "-"}`;
+
+        // // === siapkan choices jika message.type == 'picker' ===
+        // let choices = [];
+        // if (msgField && typeof msgField === "object" && msgField.type === "picker" && msgField.content) {
+        //   choices = Array.isArray(msgField.content.choices) ? msgField.content.choices : [];
+        // }
+
+        setTypingText(placeholder, parsed.text, foot, parsed.choices, parsed.required);
+      } catch (err) {
+        setTypingText(placeholder, `❌ Request failed: ${err}`);
+      } finally {
+        document.getElementById("busy")?.classList.remove("show");
+        send.disabled = false;
+      }
+    }
+
+    // Wrapper lama: baca dari input
+    async function ask() {
+      const q = input.value.trim();
+      if (!q) return;
+      input.value = "";
+      append("user", q);
+      await sendQuestion(q);
+    }
+
+    // === SHUTDOWN (append record baru) ===
+    btnShd?.addEventListener("click", async () => {
+      if (NOT_FOUND) return;
+      btnShd.disabled = true;
+      try {
+        const res = await fetch(SHD_EP, { method:"POST" });
+        if (!res.ok) { append("ai", `Shutdown error ${res.status}: ${await res.text()}`); btnShd.disabled=false; return; }
+
+        // Setelah append deactive, token tak lagi aktif:
+        const tokEl = document.getElementById("tok");
+        SESSION = "Please Activate!";
+        if (tokEl) tokEl.textContent = SESSION;
+
+        setAskEnabled(false);      // Ask dilarang
+        btnAct.disabled = false;   // boleh activate lagi
+        btnShd.disabled = true;    // shutdown dilarang (tidak ada token aktif)
+        append("ai", "🛑 Session deactivated. Please Activate! To start a new convo.");
+      } catch (e) {
+        append("ai", `Shutdown failed: ${e}`);
+        btnShd.disabled = false;
+      }
+    });
+
+    // Send handlers
+    send.addEventListener("click", ask);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        ask();
+      }
+    });
+
+    function append(role, text) {
+      const div = document.createElement("div");
+      div.className = `msg ${role}`;
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function append(role, text) {
+      const div = document.createElement("div");
+      div.className = `msg ${role}`;
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+      return div; // return element
+    }
+
+    // tampilkan placeholder "AI is thinking..."
+    function appendTyping() {
+      const div = document.createElement("div");
+      div.className = "msg ai typing";
+      div.innerHTML = `Thinking<span class="dots"></span>`;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+      return div;
+    }
+
+    function lockInput(lock) {
+      input.disabled = lock;
+      send.disabled = lock;
+    }
+
+    // ganti teks di placeholder
+    function setTypingText(el, text, footnote, choices, required) {
+      el.classList.remove("typing");
+      el.textContent = text;
+
+      // default: input boleh dipakai
+      lockInput(false);
+
+      if (Array.isArray(choices) && choices.length > 0) {
+        disableAllChoiceRows();
+
+        const row = document.createElement("div");
+        row.className = "choices-row";
+
+        // kalau required=true, kunci input sampai pilih
+        if (required) {
+          lockInput(true);
+        }
+
+        choices.forEach(ch => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "choice-pill";
+          btn.textContent = ch.label ?? ch.value ?? "-";
+
+          btn.addEventListener("click", async () => {
+            if (row.classList.contains("disabled")) return;
+
+            // setelah memilih, input boleh dipakai lagi
+            lockInput(false);
+
+            const val = ch.value ?? "";
+            const payload = `SA_SELECT_${val}`;
+            append("user", payload);
+            await sendQuestion(payload);
+          });
+
+          row.appendChild(btn);
+        });
+
+        el.appendChild(row);
+        choiceRows.push(row);
+      }
+
+      if (footnote) {
+        const f = document.createElement("span");
+        f.className = "foot";
+        f.textContent = footnote;
+        el.appendChild(f);
+      }
+    }
+  </script>
+</body>
+</html>

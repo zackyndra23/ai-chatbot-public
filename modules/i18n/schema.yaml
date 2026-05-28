@@ -1,0 +1,501 @@
+# Authoritative i18n key catalog for the chatbot.
+#
+# Stage 0 (2026-05-13) — OOC Response Engine + abandonment handler.
+# Per spec docs/superpowers/specs/2026-05-13-ooc-response-engine-design.md §4.2.
+#
+# Per-key fields:
+#   surface             — broad category (ooc, abandonment, greeting, opener, ...)
+#   category            — OOC category enum value (when applicable)
+#   shape               — cold_start | mid_flow_* | escalation_handover (when applicable)
+#   placeholders        — list of {placeholder_name} tokens the text must contain
+#   type                — "list" for palette-style entries; omit for normal string templates
+#   max_words           — target word ceiling (loader checks at max_words × 1.1)
+#   tone                — formality enum (per spec §4.5)
+#   required_for        — langs that MUST have this key at startup (CRITICAL if missing)
+#   auto_bidi_wrap_extracted_vars — if true, extracted_mention/_hint get bidi-wrapped for RTL
+#   template_variant_for_lang — per-lang variant override map (D6 row 11)
+#   field_label_lang_exceptions — list of lang codes that skip the noun-phrase lint rule
+#   notes               — free-form context for translators
+
+# ============================================================================
+# Cold-start templates (13 categories)
+# ============================================================================
+
+ooc.OOC-PARTNERSHIP.cold_start:
+  surface: "ooc"
+  category: "OOC-PARTNERSHIP"
+  shape: "cold_start"
+  placeholders: [partnership_url, indo_email, indo_phone, business_hours]
+  max_words: 200
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Partnership inquiry — Partnership URL + Indo email/phone routing."
+
+ooc.OOC-FREELANCE.cold_start:
+  surface: "ooc"
+  category: "OOC-FREELANCE"
+  shape: "cold_start"
+  placeholders: [freelancer_url]
+  max_words: 200
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Freelance/talent inquiry — Freelancer URL + Mystery Shopper cross-promo."
+
+ooc.OOC-MYSTERY-SHOPPER-APPLY.cold_start:
+  surface: "ooc"
+  category: "OOC-MYSTERY-SHOPPER-APPLY"
+  shape: "cold_start"
+  placeholders: [mystery_shopper_url]
+  max_words: 200
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Mystery shopper applicant — URL + business commission distinction."
+
+ooc.OOC-CAREERS.cold_start:
+  surface: "ooc"
+  category: "OOC-CAREERS"
+  shape: "cold_start"
+  placeholders: [careers_url, indo_email, user_field_hint]
+  max_words: 200
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Careers/job inquiry. user_field_hint is polymorphic per spec §7.5 (literal placeholder when None)."
+
+ooc.OOC-ADJACENT-SERVICE.cold_start:
+  surface: "ooc"
+  category: "OOC-ADJACENT-SERVICE"
+  shape: "cold_start"
+  placeholders: [mentioned_service, pillar_block, indo_email, indo_phone]
+  max_words: 250
+  tone: "professional_courteous"
+  required_for: [en, id]
+  auto_bidi_wrap_extracted_vars: true
+  notes: "Adjacent-service inquiry with pillar_block. extracted_mention wrapped for RTL langs (D6 row 10)."
+
+ooc.OOC-ADJACENT-ISO.cold_start:
+  surface: "ooc"
+  category: "OOC-ADJACENT-ISO"
+  shape: "cold_start"
+  placeholders: [indo_email, indo_phone]
+  max_words: 200
+  tone: "formal_technical"
+  required_for: [en, id]
+  notes: "ISO certification inquiry — pivot to ABMS E-Learning."
+
+ooc.OOC-PRESS-MEDIA.cold_start:
+  surface: "ooc"
+  category: "OOC-PRESS-MEDIA"
+  shape: "cold_start"
+  placeholders: [indo_email, business_hours]
+  max_words: 100
+  tone: "formal_corporate"
+  required_for: [en, id]
+  notes: "Press/media inquiry. English subject-line tag stays English (Constraint #6)."
+
+ooc.OOC-VENDOR-SUPPLIER.cold_start:
+  surface: "ooc"
+  category: "OOC-VENDOR-SUPPLIER"
+  shape: "cold_start"
+  placeholders: [indo_email]
+  max_words: 100
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Vendor/supplier intro. English subject-line tag stays English."
+
+ooc.OOC-COMPLAINT.cold_start:
+  surface: "ooc"
+  category: "OOC-COMPLAINT"
+  shape: "cold_start"
+  placeholders: [indo_email, indo_phone, business_hours, engagement_reference]
+  max_words: 150
+  tone: "formal_apologetic"
+  required_for: [en, id]
+  notes: "Service-quality complaint. engagement_reference is polymorphic per spec §7.5."
+
+ooc.OOC-PERSONAL-ADVICE.cold_start:
+  surface: "ooc"
+  category: "OOC-PERSONAL-ADVICE"
+  shape: "cold_start"
+  placeholders: []
+  max_words: 150
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Personal advice request — pivot to org services."
+
+ooc.OOC-CHITCHAT.cold_start:
+  surface: "ooc"
+  category: "OOC-CHITCHAT"
+  shape: "cold_start"
+  placeholders: [pillar_block]
+  max_words: 200
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Chitchat / casual conversation — redirect to pillars."
+
+ooc.OOC-UNCLEAR.cold_start:
+  surface: "ooc"
+  category: "OOC-UNCLEAR"
+  shape: "cold_start"
+  placeholders: [pillar_block]
+  max_words: 200
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Unclear input — clarification request with pillars."
+
+ooc.OOC-CATCHALL.cold_start:
+  surface: "ooc"
+  category: "OOC-CATCHALL"
+  shape: "cold_start"
+  placeholders: [indo_phone, indo_email, my_sg_phone, my_sg_email, th_vn_phone, th_vn_email, business_hours]
+  max_words: 150
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Catch-all fallback — 3-region contact block."
+
+# ============================================================================
+# Mid-flow P1 (compressed per-category preamble, 13 categories)
+# ============================================================================
+
+ooc.OOC-PARTNERSHIP.midflow.p1:
+  surface: "ooc"
+  category: "OOC-PARTNERSHIP"
+  shape: "mid_flow_p1"
+  placeholders: [partnership_url, indo_email, indo_phone, business_hours]
+  max_words: 80
+  tone: "professional_courteous"
+  required_for: [en, id]
+
+ooc.OOC-FREELANCE.midflow.p1:
+  surface: "ooc"
+  category: "OOC-FREELANCE"
+  shape: "mid_flow_p1"
+  placeholders: [freelancer_url]
+  max_words: 80
+  tone: "professional_courteous"
+  required_for: [en, id]
+
+ooc.OOC-MYSTERY-SHOPPER-APPLY.midflow.p1:
+  surface: "ooc"
+  category: "OOC-MYSTERY-SHOPPER-APPLY"
+  shape: "mid_flow_p1"
+  placeholders: [mystery_shopper_url]
+  max_words: 80
+  tone: "professional_courteous"
+  required_for: [en, id]
+
+ooc.OOC-CAREERS.midflow.p1:
+  surface: "ooc"
+  category: "OOC-CAREERS"
+  shape: "mid_flow_p1"
+  placeholders: [careers_url, indo_email, user_field_hint]
+  max_words: 80
+  tone: "professional_courteous"
+  required_for: [en, id]
+
+ooc.OOC-ADJACENT-SERVICE.midflow.p1:
+  surface: "ooc"
+  category: "OOC-ADJACENT-SERVICE"
+  shape: "mid_flow_p1"
+  placeholders: [mentioned_service, indo_email, indo_phone]
+  max_words: 80
+  tone: "professional_courteous"
+  required_for: [en, id]
+  auto_bidi_wrap_extracted_vars: true
+
+ooc.OOC-ADJACENT-ISO.midflow.p1:
+  surface: "ooc"
+  category: "OOC-ADJACENT-ISO"
+  shape: "mid_flow_p1"
+  placeholders: [indo_email, indo_phone]
+  max_words: 100
+  tone: "formal_technical"
+  required_for: [en, id]
+
+ooc.OOC-PRESS-MEDIA.midflow.p1:
+  surface: "ooc"
+  category: "OOC-PRESS-MEDIA"
+  shape: "mid_flow_p1"
+  placeholders: [indo_email, business_hours]
+  max_words: 60
+  tone: "formal_corporate"
+  required_for: [en, id]
+
+ooc.OOC-VENDOR-SUPPLIER.midflow.p1:
+  surface: "ooc"
+  category: "OOC-VENDOR-SUPPLIER"
+  shape: "mid_flow_p1"
+  placeholders: [indo_email]
+  max_words: 60
+  tone: "professional_courteous"
+  required_for: [en, id]
+
+ooc.OOC-COMPLAINT.midflow.p1:
+  surface: "ooc"
+  category: "OOC-COMPLAINT"
+  shape: "mid_flow_p1"
+  placeholders: [indo_email, indo_phone, business_hours, engagement_reference]
+  max_words: 100
+  tone: "formal_apologetic"
+  required_for: [en, id]
+
+ooc.OOC-PERSONAL-ADVICE.midflow.p1:
+  surface: "ooc"
+  category: "OOC-PERSONAL-ADVICE"
+  shape: "mid_flow_p1"
+  placeholders: []
+  max_words: 80
+  tone: "professional_courteous"
+  required_for: [en, id]
+
+ooc.OOC-CHITCHAT.midflow.p1:
+  surface: "ooc"
+  category: "OOC-CHITCHAT"
+  shape: "mid_flow_p1"
+  placeholders: []
+  max_words: 50
+  tone: "professional_courteous"
+  required_for: [en, id]
+
+ooc.OOC-UNCLEAR.midflow.p1:
+  surface: "ooc"
+  category: "OOC-UNCLEAR"
+  shape: "mid_flow_p1"
+  placeholders: []
+  max_words: 40
+  tone: "professional_courteous"
+  required_for: [en, id]
+
+ooc.OOC-CATCHALL.midflow.p1:
+  surface: "ooc"
+  category: "OOC-CATCHALL"
+  shape: "mid_flow_p1"
+  placeholders: [indo_phone, indo_email, my_sg_phone, my_sg_email, th_vn_phone, th_vn_email]
+  max_words: 80
+  tone: "professional_courteous"
+  required_for: [en, id]
+
+# ============================================================================
+# Shared mid-flow paragraphs (P2 / P3 / P4)
+# ============================================================================
+
+ooc.midflow.p2_standard_with_field:
+  surface: "ooc"
+  shape: "mid_flow_p2"
+  placeholders: [active_service_label, current_field_label]
+  max_words: 30
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "P2 for mid_flow_standard / mid_flow_high_stakes when current_field_label is known."
+
+ooc.midflow.p2_standard_service_only:
+  surface: "ooc"
+  shape: "mid_flow_p2"
+  placeholders: [active_service_label]
+  max_words: 20
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "P2 graceful fallback when current_field_label is None (Q#2)."
+
+ooc.midflow.p2_pre_data:
+  surface: "ooc"
+  shape: "mid_flow_p2"
+  placeholders: [active_service_label]
+  max_words: 25
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "P2 for mid_flow_pre_data — qualification not yet started."
+
+ooc.midflow.p3_repose:
+  surface: "ooc"
+  shape: "mid_flow_p3"
+  placeholders: [last_question]
+  max_words: 30
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "P3 re-pose of the last unanswered qualification question."
+
+ooc.midflow.p3_opt_in_continuation:
+  surface: "ooc"
+  shape: "mid_flow_p3"
+  placeholders: []
+  max_words: 40
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "P3 for mid_flow_pre_data — opt-in continuation (no re-pose since no question asked yet)."
+
+ooc.high_stakes.p4_escalation:
+  surface: "ooc"
+  shape: "mid_flow_p4"
+  placeholders: [indo_phone, indo_email, business_hours]
+  max_words: 50
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "P4 for mid_flow_high_stakes — senior contact / urgent routing."
+
+# ============================================================================
+# Escalation handover (consecutive-OOC threshold reached)
+# ============================================================================
+
+ooc.escalation.acknowledgment:
+  surface: "ooc"
+  shape: "escalation_handover_p1"
+  placeholders: []
+  max_words: 50
+  tone: "formal_apologetic"
+  required_for: [en, id]
+
+ooc.escalation.handover_contacts:
+  surface: "ooc"
+  shape: "escalation_handover_p2"
+  placeholders: [indo_phone, indo_email, my_sg_phone, my_sg_email, th_vn_phone, th_vn_email, business_hours]
+  max_words: 60
+  tone: "formal_apologetic"
+  required_for: [en, id]
+
+ooc.escalation.resume_offer:
+  surface: "ooc"
+  shape: "escalation_handover_p3"
+  placeholders: [active_service_label]
+  max_words: 40
+  tone: "professional_courteous"
+  required_for: [en, id]
+
+# ============================================================================
+# Pillar block (used by 3 cold-start categories)
+# ============================================================================
+
+ooc.service.taxonomy.pillar_block:
+  surface: "ooc"
+  placeholders: []
+  max_words: 80
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "4-pillar service taxonomy. Pillar names translated, service line names stay English per glossary policy."
+
+# ============================================================================
+# Abandonment module (separate concern per spec §Architecture point 4)
+# ============================================================================
+
+# ============================================================================
+# Meeting surfaces (Task 18 — migrated from sd_meeting.py build_meeting_footer
+# + build_other_slot_label. build_meeting_picker_preamble deferred to Phase 1
+# due to per-lang structural variants — see docs/modules/out_of_context.md
+# Phase 0 limitations + Phase 1 optimization opportunities.)
+# ============================================================================
+
+meeting.footer:
+  surface: "meeting"
+  placeholders: []
+  max_words: 80
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Meeting-arrangement footer prose (sales contact info, business hours). Multi-paragraph per lang. Migrated from sd_meeting.py build_meeting_footer during Task 18. Romansh (rm) lifted; partial-coverage limitation per docs/modules/out_of_context.md."
+
+meeting.other_slot_label:
+  surface: "meeting"
+  placeholders: []
+  max_words: 8
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Picker button label for OTHER_PICKED_SLOT choice. Migrated from sd_meeting.py build_other_slot_label during Task 18."
+
+# ============================================================================
+# Picker labels (Task 17 — migrated from sd_service.py _book_meeting_label,
+# _other_services_label, _stay_switch_labels)
+# ============================================================================
+# Note: 4th label "stay-ack" from `feedback_picker_label_languages.md` memory
+# not located via grep; deferred to Phase 1 if/when it surfaces.
+
+picker.book_meeting.label:
+  surface: "picker"
+  placeholders: []
+  max_words: 6
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Picker button label for 'book a meeting' action. Migrated from sd_service.py _book_meeting_label during Task 17."
+
+picker.other_services.label:
+  surface: "picker"
+  placeholders: []
+  max_words: 6
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Picker button label for 'other services' batch button. Migrated from sd_service.py _other_services_label during Task 17."
+
+picker.stay_label:
+  surface: "picker"
+  placeholders: [current_label]
+  max_words: 8
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Cross-service bridge picker — 'stay' button label. {current_label} = the user's currently-active service. Migrated from sd_service.py _stay_switch_labels during Task 17."
+
+picker.switch_label:
+  surface: "picker"
+  placeholders: [target_label]
+  max_words: 8
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Cross-service bridge picker — 'switch' button label. {target_label} = the target service the user could switch to. Migrated from sd_service.py _stay_switch_labels during Task 17."
+
+# ============================================================================
+# Service-agent opener palette + banned openers (Task 15 — migrated from
+# sa_prompts.py _OPENER_PALETTE + _BANNED_OPENERS_BY_LANG)
+# ============================================================================
+
+opener.palette:
+  surface: "opener"
+  placeholders: []
+  type: "list"
+  required_for: [en, id]
+  notes: "SA Sentence-1 opener palette. Migrated from sa_prompts.py _OPENER_PALETTE during Task 15. 10 langs in legacy (id, en, ms, fr, de, th, ru, zh, it, ja); pt/es/vi/da deferred to Phase 2b (status=missing). 4 langs missing per spec §Existing localization assets table."
+
+opener.banned_forms:
+  surface: "opener"
+  placeholders: []
+  type: "list"
+  required_for: [id]
+  notes: "Openers to forbid entirely for a given language (case-insensitive). Indonesian 'Baik'/'Baiklah' is Claude's default + drives repetition. Migrated from sa_prompts.py _BANNED_OPENERS_BY_LANG during Task 15."
+
+# ============================================================================
+# Natural qualification — rescue soft-bridge (Task 16 — migrated from
+# nq_policies.py RESCUE_SOFT_BRIDGE)
+# ============================================================================
+
+natural_qual.rescue_soft_bridge:
+  surface: "natural_qual"
+  placeholders: [q]
+  max_words: 30
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Soft-bridge template injected before a re-pose of an unanswered min-set question. {q} = the question text. Migrated from nq_policies.py RESCUE_SOFT_BRIDGE during Task 16."
+
+# ============================================================================
+# Greeting palette (Task 14 — migrated from sd_prompts.py _GREETING_PALETTE)
+# ============================================================================
+
+greeting.palette:
+  surface: "greeting"
+  placeholders: []
+  type: "list"
+  required_for: [en, id]
+  notes: "Programmatic greeting picker per memory project_greeting_palette.md. Migrated from _GREETING_PALETTE in sd_prompts.py during Task 14 batch (Step 3 of migration phasing)."
+
+# ============================================================================
+# Abandonment module
+# ============================================================================
+
+abandonment.trigger_phrases:
+  surface: "abandonment"
+  placeholders: []
+  type: "list"
+  required_for: [en, id]
+  notes: "List of trigger phrases (lowercase) for abandonment detection. Per-lang banks; cross-lang fallback in AbandonmentHandler.matches()."
+
+abandonment.acknowledgment:
+  surface: "abandonment"
+  placeholders: []
+  max_words: 30
+  tone: "professional_courteous"
+  required_for: [en, id]
+  notes: "Ack returned after state-clear. Should not promise follow-up; just confirms reset."

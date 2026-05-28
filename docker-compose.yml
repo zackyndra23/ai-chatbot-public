@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  rag_chatbot:
+    image: ${RAG_REGISTRY_IMAGE}/rag-${RAG_FLAVOR}:${RAG_IMAGE_TAG}
+    env_file:
+      - .env
+    ports:
+      - "2300:2300"
+    restart: unless-stopped
+    volumes:
+      # Persist Chroma vector store between restarts. First container start
+      # auto-rebuilds from Mongo (see chatbot.py:_ensure_vectorstore self-heal).
+      # Subsequent restarts re-use the volume → fast cold-start (~3s vs ~3min).
+      - rag_chroma_data:/app/vector_data
+      # Service account key — provide via host mount (don't bake into image).
+      # If you store SA as JSON inline in GOOGLE_SERVICE_ACCOUNT env, this
+      # mount can be removed.
+      - ./secrets:/app/secrets:ro
+    environment:
+      NVIDIA_VISIBLE_DEVICES: ${NVIDIA_VISIBLE_DEVICES:-all}
+      NVIDIA_DRIVER_CAPABILITIES: ${NVIDIA_DRIVER_CAPABILITIES:-compute,utility}
+    device_requests:
+      - driver: nvidia
+        count: ${RAG_GPU_COUNT:-0}
+        capabilities: ["gpu"]
+
+volumes:
+  rag_chroma_data:

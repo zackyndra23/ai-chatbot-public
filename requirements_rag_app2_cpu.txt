@@ -1,0 +1,66 @@
+﻿# === API & runtime ===
+fastapi
+uvicorn
+orjson
+python-dotenv
+
+# === Scheduling & time ===
+APScheduler
+pytz
+
+# === Google Sheets (service account) ===
+gspread
+google-auth
+
+# === Database ===
+pymongo
+
+# === HTTP clients (opsional, tapi berguna) ===
+httpx
+requests
+
+# === Deployment/Prod server ===
+gunicorn
+
+# === Core dependencies untuk RAG ===
+langchain
+langchain-core
+langchain-community
+langgraph
+
+# === Provider & SDK ===
+openai
+langchain-openai
+langchain_chroma
+anthropic
+langchain-anthropic
+langsmith
+
+# === Splitter & token ===
+langchain-text-splitters
+tiktoken
+regex
+
+# === Vector DB & embeddings ===
+sentence-transformers
+chromadb
+numpy
+
+# === Flask untuk API ===
+flask==3.1.2
+
+# === language detection ===
+langid
+pycountry
+
+# === testing profilling ===
+psutil
+
+# === OPTIONAL: kalau pakai FAISS lokal ===
+faiss-cpu
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+torchaudio
+rapidfuzz

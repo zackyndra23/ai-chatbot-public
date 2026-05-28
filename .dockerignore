@@ -1,0 +1,52 @@
+# IDE and editor settings
+.idea/
+.vscode/
+
+# Python cache & bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Git files
+.git/
+.gitignore
+
+# Environment files (sensitive)
+.env
+.env.*
+
+# Local secrets (sa.json etc) — provide via env / mount, don't bake into image
+secrets/
+
+# Vector store — runtime artifact, rebuilt from Mongo on container start
+# (see modules/system_detection/chatbot.py:_ensure_vectorstore auto-rebuild)
+vector_data/
+
+# Local Python venvs (Anda punya rag_chatbot_cpu/, rag_chatbot_gpu/)
+rag_chatbot_cpu/
+rag_chatbot_gpu/
+
+# Tests + run logs (not needed inside container)
+tests/
+run_logs/
+
+# Logs
+*.log
+
+# Local docs and images (ignore if not needed inside container)
+docs/
+!docs/needed_file.md  # keep specific docs if needed
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# QA harness — not part of production image
+/qa
+requirements-dev.txt

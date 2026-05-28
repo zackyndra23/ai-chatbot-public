@@ -1,0 +1,123 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_BUILDKIT: "1"
+
+
+lock-deps-cuda:
+  stage: build
+  image: python:3.12-slim
+  script:
+    # Pin a known-compatible pip/pip-tools pair to avoid API mismatch in CI.
+    - python -m pip install --upgrade "pip<25" "pip-tools>=7.4.1,<8"
+    - python -m pip --version
+    - pip-compile --version
+    - |
+      if [ ! -s requirements.cuda.lock ] || ! grep -qE '^[^#[:space:]]' requirements.cuda.lock; then
+        echo "Generating requirements.cuda.lock via pip-compile..."
+        pip-compile --output-file requirements.cuda.lock requirements.cuda.in
+        echo "requirements.cuda.lock generated in CI. Commit it for reproducible builds."
+      else
+        echo "Using committed requirements.cuda.lock."
+      fi
+  artifacts:
+    paths:
+      - requirements.cuda.lock
+    expire_in: 1 week
+  only:
+    - Production
+    - /^task\/.*$/
+  tags: [10.30.40.155, Alpine, Docker, Ubuntu]
+
+
+deps-image-cuda:
+  stage: build
+  image: docker:latest
+  needs:
+    - job: lock-deps-cuda
+      artifacts: true
+  before_script:
+    - apk add --no-cache ca-certificates >/dev/null || true
+    - unset DOCKER_HOST DOCKER_TLS_CERTDIR || true
+    - echo "DOCKER_HOST=${DOCKER_HOST:-<unset>}"
+    - docker version
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+  script: |
+    set -euo pipefail
+    DEPS_HASH_CUDA="$(sha256sum requirements.cuda.lock | awk '{print $1}')"
+    DEPS_IMAGE_CUDA="$CI_REGISTRY_IMAGE/rag-deps-cuda:cu121-py312-$DEPS_HASH_CUDA"
+    echo "CUDA deps image: $DEPS_IMAGE_CUDA"
+    if docker manifest inspect "$DEPS_IMAGE_CUDA" >/dev/null 2>&1; then
+      echo "CUDA deps image already exists. Skipping build."
+    else
+      docker build -f Dockerfile.prod --target deps_cuda -t "$DEPS_IMAGE_CUDA" .
+      docker push "$DEPS_IMAGE_CUDA"
+    fi
+  only:
+    - Production
+    - /^task\/.*$/
+  tags: [10.30.40.155, Alpine, Docker, Ubuntu]
+
+
+app-image-cuda:
+  stage: build
+  image: docker:latest
+  needs:
+    - job: lock-deps-cuda
+      artifacts: true
+    - job: deps-image-cuda
+  before_script:
+    - apk add --no-cache ca-certificates >/dev/null || true
+    - unset DOCKER_HOST DOCKER_TLS_CERTDIR || true
+    - echo "DOCKER_HOST=${DOCKER_HOST:-<unset>}"
+    - docker version
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+  script: |
+    set -euo pipefail
+    DEPS_HASH_CUDA="$(sha256sum requirements.cuda.lock | awk '{print $1}')"
+    DEPS_IMAGE_CUDA="$CI_REGISTRY_IMAGE/rag-deps-cuda:cu121-py312-$DEPS_HASH_CUDA"
+    docker pull "$DEPS_IMAGE_CUDA" || true
+    docker build -f Dockerfile.prod --target runtime_cuda --cache-from "$DEPS_IMAGE_CUDA" -t "$CI_REGISTRY_IMAGE/rag-cuda:$CI_COMMIT_SHORT_SHA" .
+    docker push "$CI_REGISTRY_IMAGE/rag-cuda:$CI_COMMIT_SHORT_SHA"
+    docker tag "$CI_REGISTRY_IMAGE/rag-cuda:$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE/rag-cuda:latest"
+    docker push "$CI_REGISTRY_IMAGE/rag-cuda:latest"
+  only:
+    - Production
+    - /^task\/.*$/
+  tags: [10.30.40.155, Alpine, Docker, Ubuntu]
+
+deploy-to-server:
+  stage: deploy
+  needs:
+    - job: app-image-cuda
+  script:
+    - set -euxo pipefail
+    - eval "$(ssh-agent -s)"
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+
+    - |
+      ssh -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new \
+        "$SSH_USER@$SSH_HOST" "
+          set -euo pipefail
+          echo 'Connected to:' \$(hostname)
+          update_env_var() {
+            local key=\"\$1\"
+            local value=\"\$2\"
+            if [ -f .env ] && grep -q \"^\\\${key}=\" .env; then
+              sed -i \"s|^\\\${key}=.*|\\\${key}=\\\${value}|\" .env
+            else
+              echo \"\\\${key}=\\\${value}\" >> .env
+            fi
+          }
+          docker login -u \"$CI_REGISTRY_USER\" --password-stdin \"$CI_REGISTRY\" <<< \"$REGISTRY_PASSWORD\"
+          cd \"$DEPLOY_DIR\"
+          update_env_var RAG_IMAGE_TAG \"$CI_COMMIT_SHORT_SHA\"
+          if [ -n \"${RAG_FLAVOR:-}\" ]; then update_env_var RAG_FLAVOR \"$RAG_FLAVOR\"; fi
+          docker compose pull rag_chatbot
+          docker compose up -d rag_chatbot
+        "
+
+  only: [Production]
+  tags: [10.30.40.155, Shell, Ubuntu]

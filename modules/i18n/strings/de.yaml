@@ -1,0 +1,97 @@
+# German (de) — lift-and-shift from legacy palettes during Tasks 14-19 batch.
+
+greeting.palette:
+  text:
+    - "Hallo"
+    - "Guten Tag"
+    - "Willkommen"
+    - "Schön, dass Sie da sind"
+    - "Freut mich zu helfen"
+    - "Danke für Ihre Anfrage"
+    - "Schönen Tag"
+    - "Grüß Sie"
+    - "Hallo zusammen"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[de] (production-validated; SME re-review deferred to Phase 2b)."
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[de])
+natural_qual.rescue_soft_bridge:
+  text: "Um voranzukommen, lassen Sie mich direkt fragen — {q}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[de]."
+
+# Opener palette (Task 15 lift from sa_prompts.py _OPENER_PALETTE[de])
+opener.palette:
+  text:
+    - "Verstanden"
+    - "Klar"
+    - "In Ordnung"
+    - "Alles klar"
+    - "Gut"
+    - "Dann"
+    - "Jetzt"
+    - "Also"
+    - "Übrigens"
+    - "Interessant"
+    - "Hmm"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sa_prompts.py _OPENER_PALETTE[de]."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "Meeting vereinbaren"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[de]."
+
+picker.other_services.label:
+  text: "Weitere Dienstleistungen"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[de]."
+
+picker.stay_label:
+  text: "{current_label} fortsetzen"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[de][0]."
+
+picker.switch_label:
+  text: "Zu {target_label} wechseln"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[de][1]."
+
+# Meeting surfaces (Task 18 lift from sd_meeting.py)
+meeting.footer:
+  text: "Um einen Termin mit unserem Team zu vereinbaren, können Sie uns direkt unter info@integrity-asia.com oder telefonisch unter +62 21–769 8277 kontaktieren. Teilen Sie uns bitte Ihre Verfügbarkeit und Ihr Anliegen mit, damit unser Vertriebsteam einen passenden Termin bestätigen kann."
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_meeting_footer[de]."
+
+meeting.other_slot_label:
+  text: "Weitere Terminvorschläge"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_other_slot_label[de]."

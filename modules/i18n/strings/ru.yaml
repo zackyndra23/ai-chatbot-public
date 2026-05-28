@@ -1,0 +1,95 @@
+# Russian (ru) — lift-and-shift from legacy palettes.
+
+greeting.palette:
+  text:
+    - "Здравствуйте"
+    - "Привет"
+    - "Добрый день"
+    - "Доброе утро"
+    - "Добро пожаловать"
+    - "Рад вам помочь"
+    - "Спасибо за обращение"
+    - "Приятно познакомиться"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[ru]."
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[ru])
+natural_qual.rescue_soft_bridge:
+  text: "Чтобы продвинуться дальше, позвольте спросить напрямую — {q}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[ru]."
+
+# Opener palette (Task 15 lift from sa_prompts.py _OPENER_PALETTE[ru])
+opener.palette:
+  text:
+    - "Понятно"
+    - "Хорошо"
+    - "Ясно"
+    - "Отлично"
+    - "Принято"
+    - "Итак"
+    - "Теперь"
+    - "Дальше"
+    - "Интересно"
+    - "Хм"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sa_prompts.py _OPENER_PALETTE[ru]."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "Назначить встречу"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[ru]."
+
+picker.other_services.label:
+  text: "Другие Услуги"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[ru]."
+
+picker.stay_label:
+  text: "Продолжить {current_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[ru][0]."
+
+picker.switch_label:
+  text: "Перейти к {target_label}"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[ru][1]."
+
+# Meeting surfaces (Task 18 lift from sd_meeting.py)
+meeting.footer:
+  text: "Чтобы согласовать встречу с нашей командой, вы можете связаться с нами по электронной почте info@integrity-asia.com или по телефону +62 21–769 8277. Пожалуйста, укажите удобные для вас даты и время, а также интересующие услуги, и наша команда продаж предложит и подтвердит подходящий слот."
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_meeting_footer[ru]."
+
+meeting.other_slot_label:
+  text: "Другие варианты времени"
+  status: draft
+  reviewer: null
+  reviewed_date: null
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_other_slot_label[ru]."

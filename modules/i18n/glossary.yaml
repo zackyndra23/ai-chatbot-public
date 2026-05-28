@@ -1,0 +1,111 @@
+# Glossary — service line labels, field labels, common UI terms per language.
+#
+# Per spec §4.9. Used by OOCRenderer (Task 8 + 9) to resolve {active_service_label}
+# and {current_field_label} placeholders in mid-flow shapes.
+#
+# Stage 0 Phase 2a scope: en + id. Other 15 langs land in Phase 2b/2c/2d.
+#
+# Service line names policy (per glossary.yaml policy matrix):
+#   - English markets / global: keep service line name fully English
+#   - Indonesian / Asian markets: bilingual format "<localized> (<English>)" OR pure English
+#     for terms with no good local equivalent (e.g., "Mystery Shopping", "ABMS E-Learning").
+#
+# Field labels: noun phrases per spec §4.9 Refinement (D4). Per-lang exceptions
+# tracked via field_label_lang_exceptions in schema.yaml when needed.
+
+service_labels:
+  wbs:
+    en: "Whistleblowing System (WBS)"
+    id: "Sistem Whistleblowing (WBS)"
+  ebs:
+    en: "Employment Background Screening (EBS)"
+    id: "Pemeriksaan Latar Belakang Karyawan (EBS)"
+  due_diligence:
+    en: "Due Diligence"
+    id: "Due Diligence"
+  kyc:
+    en: "Know Your Customer (KYC)"
+    id: "Know Your Customer (KYC)"
+  abms_elearning:
+    en: "ABMS E-Learning"
+    id: "ABMS E-Learning"
+  mystery_shopping:
+    en: "Mystery Shopping"
+    id: "Mystery Shopping"
+  market_survey:
+    en: "Market Survey"
+    id: "Survei Pasar"
+  corporate_fraud_investigation:
+    en: "Corporate Fraud Investigation"
+    id: "Investigasi Fraud Korporasi"
+  insurance_claim_investigation:
+    en: "Insurance Claim Investigation"
+    id: "Investigasi Klaim Asuransi"
+  asset_tracing:
+    en: "Asset Tracing"
+    id: "Pelacakan Aset"
+  skip_tracing:
+    en: "Skip Tracing"
+    id: "Skip Tracing"
+  non_use_investigation:
+    en: "Non-Use Investigation"
+    id: "Investigasi Non-Use"
+  anti_counterfeit_investigation:
+    en: "Anti-Counterfeit Investigation"
+    id: "Investigasi Anti-Pemalsuan"
+  parallel_trading_investigation:
+    en: "Parallel Trading Investigation"
+    id: "Investigasi Perdagangan Paralel"
+  trademark_investigation:
+    en: "Trademark Investigation"
+    id: "Investigasi Merek Dagang"
+
+# Field labels — noun phrases per spec §4.9 Refinement.
+# These render in mid-flow P2 as {current_field_label}.
+# Add new field IDs as service-agent flows reference them in P2.
+field_labels:
+  case_handler_quantity:
+    en: "Number of Case Handlers"
+    id: "Jumlah Penanggung Jawab Kasus"
+  screening_volume_per_year:
+    en: "Annual Screening Volume"
+    id: "Volume Pemeriksaan Tahunan"
+  entity_type:
+    en: "Entity Type"
+    id: "Jenis Entitas"
+  shopper_count_needed:
+    en: "Number of Shoppers Needed"
+    id: "Jumlah Shopper yang Dibutuhkan"
+  jurisdiction_scope:
+    en: "Jurisdiction Scope"
+    id: "Lingkup Yurisdiksi"
+  case_summary:
+    en: "Case Summary"
+    id: "Ringkasan Kasus"
+  industry_sector:
+    en: "Industry Sector"
+    id: "Sektor Industri"
+  company_size:
+    en: "Company Size"
+    id: "Ukuran Perusahaan"
+  service_scope:
+    en: "Service Scope"
+    id: "Lingkup Layanan"
+  timeline_urgency:
+    en: "Timeline / Urgency"
+    id: "Waktu / Tingkat Urgensi"
+
+# Common UI terms used across multiple surfaces.
+ui_terms:
+  qualification:
+    en: "qualification"
+    id: "kualifikasi"
+  meeting:
+    en: "meeting"
+    id: "pertemuan"
+  service_line:
+    en: "service line"
+    id: "lini layanan"
+  inquiry:
+    en: "inquiry"
+    id: "pertanyaan"

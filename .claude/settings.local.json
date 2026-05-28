@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rag_chatbot_cpu/Scripts/python.exe -c \"import app; print\\('app import OK'\\); print\\('routes:', [r.path for r in app.app.routes if 'knowledgebase' in str\\(r.path\\) or 'faq-automation' in str\\(r.path\\) or 'sales-slots-update' in str\\(r.path\\)]\\)\")",
+      "Bash(rag_chatbot_cpu/Scripts/python.exe tests/test_meeting_picker_i18n.py)",
+      "Bash(rag_chatbot_cpu/Scripts/python.exe -c ' *)",
+      "Bash(grep -vE \"^\\(Loading|Fetching|Downloading|$\\)\")",
+      "Bash(git *)",
+      "Bash(grep -E \"^\\\\.env$|^secrets/\")",
+      "WebFetch(domain:docs.anthropic.com)"
+    ]
+  }
+}

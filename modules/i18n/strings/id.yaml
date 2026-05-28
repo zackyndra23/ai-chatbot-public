@@ -1,0 +1,507 @@
+# Indonesian translations — Stage 0 Phase 2a (2026-05-13).
+# All entries status: draft — awaiting Indonesian SME validation per spec §6.1.
+# OOC-COMPLAINT cold_start + mid_flow_p1: source = docs/i18n/sample-translations-2026-05-13.md Sample 1.1 / 1.6
+# OOC-ADJACENT-SERVICE cold_start + mid_flow_p1: source = Sample 2.3 / 2.4
+# Tone calibration per spec §4.5: "Anda" formal; no banned forms (kamu/kau/lu/Baik/Baiklah/dijelasin).
+# Subject-line tags stay English (Constraint #6).
+
+# ============================================================================
+# Cold-start templates
+# ============================================================================
+
+ooc.OOC-PARTNERSHIP.cold_start:
+  text: |
+    Terima kasih atas minat Anda untuk bermitra dengan Integrity — kolaborasi seperti ini berada di luar lingkup kualifikasi kami, namun kami dengan senang hati akan mengarahkan Anda ke tim yang tepat.
+
+    Silakan lengkapi formulir aplikasi kemitraan di {partnership_url} agar kami dapat mengenal organisasi Anda. Setelah dikirim, tim Kemitraan kami akan menindaklanjutinya secara langsung.
+
+    Jika Anda ingin berbicara dengan tim kami terlebih dahulu, Anda juga dapat menghubungi tim Sales di {indo_email} atau {indo_phone} ({business_hours}).
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-FREELANCE.cold_start:
+  text: |
+    Terima kasih atas minat Anda untuk bergabung secara freelance — aplikasi talenta ditangani di luar alur kualifikasi.
+
+    Silakan mendaftar melalui {freelancer_url} dan beri tahu kami jenis proyek yang Anda minati. Tim kami meninjau setiap aplikasi dan akan menghubungi Anda jika profil Anda sesuai dengan kebutuhan yang sedang dibuka.
+
+    Catatan: Jika Anda secara khusus tertarik menjadi Mystery Shopper, terdapat aplikasi khusus untuk itu — saya dapat membagikan tautannya, cukup beri tahu saya.
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-MYSTERY-SHOPPER-APPLY.cold_start:
+  text: |
+    Bagus — kami menerima aplikasi untuk peran Mystery Shopper.
+
+    Silakan isi formulir aplikasi di sini: {mystery_shopper_url}
+
+    Tim kami akan menghubungi Anda untuk langkah berikutnya jika kualifikasi Anda memenuhi kriteria.
+
+    Catatan: Ini untuk bergabung ke pool shopper kami. Jika Anda mewakili bisnis yang ingin menggunakan layanan Mystery Shopping, saya dapat membantu kualifikasinya di sini.
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-CAREERS.cold_start:
+  text: |
+    Terima kasih atas minat Anda untuk bergabung dengan Integrity! Lowongan penuh waktu dan magang dikelola di luar lingkup saya.
+
+    Anda dapat melihat lowongan saat ini di {careers_url} dan melamar langsung ke posisi yang sesuai dengan latar belakang Anda. Tim kami meninjau setiap aplikasi.
+
+    Jika Anda tidak melihat posisi yang cocok, silakan kirim CV Anda ke {indo_email} dengan baris subjek "Career Inquiry — {user_field_hint}".
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-ADJACENT-SERVICE.cold_start:
+  text: |
+    Terima kasih atas pertanyaan Anda. {mentioned_service} berada di luar portofolio layanan Integrity saat ini — kami berfokus pada layanan compliance, risiko, dan investigasi untuk organisasi.
+
+    Kami mendukung pertanyaan terkait empat pilar layanan kami:
+
+    {pillar_block}
+
+    Jika salah satu dari layanan tersebut sesuai dengan kebutuhan Anda, saya dapat memandu Anda melalui kualifikasinya sekarang. Untuk rujukan atau opsi terkait lainnya bersama tim kami, silakan hubungi {indo_email} atau {indo_phone}.
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-ADJACENT-ISO.cold_start:
+  text: |
+    Integrity tidak menerbitkan sertifikasi ISO — sertifikasi tersebut harus berasal dari badan sertifikasi terakreditasi.
+
+    Yang kami tawarkan adalah modul ABMS E-Learning, yang menyiapkan tim Anda untuk sertifikasi ISO 37001 (Anti-Bribery Management System) dengan cakupan komprehensif dari kesadaran hingga praktik terbaik. Organisasi biasanya menggunakannya bersamaan dengan siklus audit dari badan terakreditasi.
+
+    Apakah Anda ingin saya jelaskan apakah ABMS E-Learning sesuai dengan kebutuhan Anda? Atau saya dapat menghubungkan Anda ke tim Sales di {indo_email} atau {indo_phone}.
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-PRESS-MEDIA.cold_start:
+  text: |
+    Terima kasih telah menghubungi kami — pertanyaan media dan pers ditangani di luar lingkup saya oleh tim Communications kami.
+
+    Silakan kirim email ke {indo_email} dengan baris subjek "Media Inquiry — [Outlet / Topic]" beserta tenggat waktu dan ringkasan Anda, dan tim akan merespons sesegera mungkin pada jam kerja ({business_hours}).
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-VENDOR-SUPPLIER.cold_start:
+  text: |
+    Terima kasih telah menghubungi kami. Pertanyaan vendor dan pengadaan berada di luar lingkup saya — saya dirancang untuk mengkualifikasi pertanyaan klien tentang layanan compliance dan investigasi kami.
+
+    Silakan kirim perkenalan singkat tentang penawaran Anda ke {indo_email} dengan baris subjek "Vendor Inquiry — [Category]". Tim pengadaan kami akan meneruskannya secara internal jika sesuai.
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-COMPLAINT.cold_start:
+  text: |
+    Saya turut menyesal mendengar hal ini, dan terima kasih telah menyampaikannya kepada kami. Kekhawatiran terkait kualitas layanan perlu ditinjau oleh anggota tim kami secara langsung, bukan melalui obrolan ini.
+
+    Mohon kirim email ke {indo_email} dengan baris subjek "Service Concern — {engagement_reference}". Anggota tim senior kami akan menanggapi Anda pada jam kerja ({business_hours}).
+
+    Untuk hal-hal yang mendesak, Anda juga dapat menghubungi {indo_phone} secara langsung.
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-PERSONAL-ADVICE.cold_start:
+  text: |
+    Hal tersebut di luar yang dapat saya bantu — saya berfokus pada layanan compliance dan investigasi organisasi Integrity, bukan urusan pribadi seperti hukum, keuangan, atau kesehatan. Untuk nasihat pribadi, silakan berkonsultasi dengan profesional yang berkualifikasi di bidang tersebut.
+
+    Jika ada hal terkait organisasi yang dapat saya bantu — misalnya pemeriksaan latar belakang karyawan atau investigasi fraud untuk perusahaan — saya dengan senang hati akan memandu Anda.
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-CHITCHAT.cold_start:
+  text: |
+    Hal tersebut sedikit di luar fungsi saya — saya di sini untuk membantu dengan layanan compliance, risiko, dan investigasi dari Integrity.
+
+    Saya mendukung pertanyaan terkait empat pilar layanan kami:
+
+    {pillar_block}
+
+    Apakah ada area layanan yang dapat saya bantu Anda telusuri?
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-UNCLEAR.cold_start:
+  text: |
+    Dengan senang hati membantu — agar saya dapat mengarahkan Anda dengan tepat, dapatkah Anda menjelaskan lebih lanjut apa yang Anda cari?
+
+    Saya mendukung pertanyaan terkait empat pilar layanan kami:
+
+    {pillar_block}
+
+    Manakah dari layanan ini yang paling dekat dengan kebutuhan Anda? Atau jika kebutuhan Anda sesuatu yang lain, silakan jelaskan situasinya dan saya akan berupaya semaksimal mungkin untuk mengarahkan Anda.
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-CATCHALL.cold_start:
+  text: |
+    Hal tersebut berada di luar yang dapat saya bantu secara langsung. Untuk hal-hal yang tidak tercakup di sini, jalur terbaik adalah menghubungi tim Sales kami — mereka dapat mengarahkan Anda secara internal atau merujuk Anda ke mitra yang tepat.
+
+    • Indonesia: {indo_phone}  |  {indo_email}
+    • Malaysia / Singapura: {my_sg_phone}  |  {my_sg_email}
+    • Thailand / Vietnam: {th_vn_phone}  |  {th_vn_email}
+    • Jam kerja: {business_hours}
+
+    Jika ada layanan Integrity yang dapat saya bantu kualifikasinya, silakan beri tahu saya.
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+# ============================================================================
+# Mid-flow P1 (compressed per-category preamble)
+# ============================================================================
+
+ooc.OOC-PARTNERSHIP.midflow.p1:
+  text: "Terima kasih atas minat kemitraannya — hal tersebut di luar lingkup kualifikasi saya. Silakan lengkapi aplikasi kemitraan di {partnership_url}; tim Kemitraan kami akan menindaklanjuti. Anda juga dapat menghubungi Sales di {indo_email} atau {indo_phone} ({business_hours})."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-FREELANCE.midflow.p1:
+  text: "Terima kasih atas minat freelance-nya — aplikasi talenta ditangani di luar alur kualifikasi. Silakan mendaftar di {freelancer_url} dan tim kami akan menghubungi Anda jika profil Anda sesuai. Jika khusus untuk Mystery Shopper, ada tautan khusus — silakan beri tahu saya."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-MYSTERY-SHOPPER-APPLY.midflow.p1:
+  text: "Untuk aplikasi Mystery Shopper, silakan gunakan formulir ini: {mystery_shopper_url}. Tim kami akan menghubungi Anda jika kualifikasi Anda memenuhi kriteria. (Jika Anda mewakili bisnis yang ingin menggunakan layanan Mystery Shopping, saya dapat membantu kualifikasinya di sini.)"
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-CAREERS.midflow.p1:
+  text: 'Terima kasih atas minat kariernya — lowongan penuh waktu dan magang di luar lingkup saya. Jelajahi lowongan saat ini di {careers_url} dan lamar langsung. Atau kirim CV Anda ke {indo_email} dengan baris subjek "Career Inquiry — {user_field_hint}".'
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-ADJACENT-SERVICE.midflow.p1:
+  text: "Terima kasih — {mentioned_service} berada di luar portofolio Integrity saat ini. Kami berfokus pada layanan compliance, risiko, dan investigasi yang mencakup empat pilar kami (Pencegahan, Deteksi, Mitigasi, Perlindungan Merek). Jika ada yang sesuai dengan kebutuhan Anda, saya dapat mengarahkan Anda. Untuk rujukan atau opsi terkait, silakan hubungi tim kami di {indo_email} atau {indo_phone}."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-ADJACENT-ISO.midflow.p1:
+  text: "Integrity tidak menerbitkan sertifikasi ISO — sertifikasi tersebut berasal dari badan sertifikasi terakreditasi. Yang kami tawarkan adalah modul ABMS E-Learning yang menyiapkan tim Anda untuk sertifikasi ISO 37001 melalui konten interaktif. Organisasi biasanya memasangkannya dengan audit dari badan terakreditasi. Apakah Anda ingin saya jelaskan apakah ABMS E-Learning sesuai, atau menghubungkan Anda ke Sales di {indo_email} atau {indo_phone}?"
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-PRESS-MEDIA.midflow.p1:
+  text: 'Pertanyaan media ditangani oleh tim Communications kami — silakan kirim email ke {indo_email} dengan baris subjek "Media Inquiry — [Outlet / Topic]", tenggat waktu, dan ringkasan. Tim akan merespons pada jam kerja ({business_hours}).'
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-VENDOR-SUPPLIER.midflow.p1:
+  text: 'Pertanyaan vendor dan pengadaan berada di luar lingkup saya. Silakan kirim perkenalan singkat tentang penawaran Anda ke {indo_email} dengan baris subjek "Vendor Inquiry — [Category]". Tim pengadaan kami akan meneruskannya secara internal jika sesuai.'
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-COMPLAINT.midflow.p1:
+  text: 'Saya turut menyesal mendengar hal ini — kekhawatiran terkait kualitas layanan perlu ditangani oleh anggota tim, bukan melalui obrolan. Mohon kirim email ke {indo_email} dengan baris subjek "Service Concern — {engagement_reference}". Anggota tim senior akan menanggapi pada jam kerja ({business_hours}). Untuk hal mendesak, Anda dapat menghubungi {indo_phone} secara langsung.'
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-PERSONAL-ADVICE.midflow.p1:
+  text: "Hal tersebut di luar yang dapat saya bantu — saya berfokus pada layanan compliance dan investigasi organisasi Integrity, bukan urusan pribadi hukum, keuangan, atau kesehatan. Untuk nasihat pribadi, silakan berkonsultasi dengan profesional yang berkualifikasi di bidang tersebut."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-CHITCHAT.midflow.p1:
+  text: "Hal tersebut sedikit di luar fungsi saya — saya di sini untuk membantu dengan layanan compliance, risiko, dan investigasi dari Integrity."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-UNCLEAR.midflow.p1:
+  text: "Dengan senang hati membantu, tetapi saya ingin memastikan saya memahami apa yang Anda cari. Dapatkah Anda menjelaskan lebih lanjut?"
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.OOC-CATCHALL.midflow.p1:
+  text: |
+    Hal tersebut berada di luar yang dapat saya bantu secara langsung. Untuk hal-hal yang tidak tercakup, silakan hubungi tim Sales kami:
+    • Indonesia: {indo_phone}  |  {indo_email}
+    • Malaysia / Singapura: {my_sg_phone}  |  {my_sg_email}
+    • Thailand / Vietnam: {th_vn_phone}  |  {th_vn_email}
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+# ============================================================================
+# Shared mid-flow paragraphs
+# ============================================================================
+
+ooc.midflow.p2_standard_with_field:
+  text: "Kembali ke kualifikasi {active_service_label} Anda — Anda baru saja berada di tahap {current_field_label}."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.midflow.p2_standard_service_only:
+  text: "Kembali ke kualifikasi {active_service_label} Anda."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.midflow.p2_pre_data:
+  text: "Kembali ke kualifikasi {active_service_label} Anda — kita belum memulainya."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.midflow.p3_repose:
+  text: "Jadi, untuk melanjutkan dari tempat kita berhenti — {last_question}"
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.midflow.p3_opt_in_continuation:
+  text: "Jika Anda ingin melanjutkan, silakan beri tahu saya dan kita akan mulai dari awal. Atau, informasi rujukan di atas seharusnya sudah memenuhi kebutuhan Anda."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.high_stakes.p4_escalation:
+  text: "Jika situasi Anda mendesak atau melibatkan detail sensitif yang lebih baik dibahas secara langsung, Anda juga dapat menghubungi tim investigasi kami di {indo_phone} atau {indo_email} ({business_hours})."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+# ============================================================================
+# Escalation handover
+# ============================================================================
+
+ooc.escalation.acknowledgment:
+  text: "Saya memahami bahwa kita telah membahas beberapa topik berbeda yang berada di luar yang dapat saya bantu secara langsung. Agar waktu Anda dimanfaatkan dengan baik, izinkan saya menghubungkan Anda dengan tim kami yang dapat menangani setiap pertanyaan Anda dengan tepat."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.escalation.handover_contacts:
+  text: |
+    • Indonesia: {indo_phone}  |  {indo_email}
+    • Malaysia / Singapura: {my_sg_phone}  |  {my_sg_email}
+    • Thailand / Vietnam: {th_vn_phone}  |  {th_vn_email}
+    • Jam kerja: {business_hours}
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+ooc.escalation.resume_offer:
+  text: "Jika Anda ingin melanjutkan kualifikasi {active_service_label} nanti, silakan beri tahu saya dan saya akan melanjutkan dari pertanyaan terakhir Anda."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+# ============================================================================
+# Pillar block (Indonesian — pillar names translated, service line names stay English per glossary policy)
+# ============================================================================
+
+ooc.service.taxonomy.pillar_block:
+  text: |
+    • Pencegahan (Prevention) — Employment Background Screening (EBS), Due Diligence, Know Your Customer, ABMS E-Learning
+    • Deteksi (Detection) — Whistleblowing System (WBS), Mystery Shopping, Market Survey
+    • Mitigasi (Mitigation) — Corporate Fraud Investigation, Insurance Claim Investigation, Asset Tracing, Skip Tracing
+    • Perlindungan Merek (Brand Protection) — Non-Use Investigation, Anti-Counterfeit Investigation, Parallel Trading Investigation, Trademark Investigation
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+# ============================================================================
+# Abandonment module
+# ============================================================================
+
+# ============================================================================
+# Greeting palette (Task 14 lift-and-shift from sd_prompts.py _GREETING_PALETTE)
+# ============================================================================
+
+greeting.palette:
+  text:
+    - "Halo"
+    - "Hai"
+    - "Selamat pagi"
+    - "Selamat siang"
+    - "Selamat sore"
+    - "Apa kabar"
+    - "Senang bisa membantu"
+    - "Senang bertemu Anda"
+    - "Terima kasih sudah menghubungi"
+    - "Salam hangat"
+    - "Senang berbincang"
+    - "Selamat datang"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_prompts.py _GREETING_PALETTE[id] (production-validated)."
+
+# ============================================================================
+# Abandonment module
+# ============================================================================
+
+abandonment.trigger_phrases:
+  text:
+    - "udahan saja"
+    - "udah dulu"
+    - "tidak jadi"
+    - "ngga jadi"
+    - "batalkan"
+    - "batalin"
+    - "lupakan"
+    - "berhenti"
+    - "stop"
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+abandonment.acknowledgment:
+  text: "Tidak masalah — kita berhenti di sini. Kapan pun Anda siap memulai dari awal, beri tahu saya."
+  status: draft
+  reviewer: "@indonesia-team"
+  reviewed_date: null
+  ai_assisted: true
+
+# Natural-qual rescue soft-bridge (Task 16 lift from nq_policies.py RESCUE_SOFT_BRIDGE[id])
+natural_qual.rescue_soft_bridge:
+  text: "Biar saya bisa lanjut bantu, boleh saya konfirmasi langsung — {q}"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from nq_policies.py RESCUE_SOFT_BRIDGE[id]."
+
+# Opener palette (Task 15 lift from sa_prompts.py _OPENER_PALETTE[id])
+opener.palette:
+  text:
+    - "Oke"
+    - "Siap"
+    - "Paham"
+    - "Mengerti"
+    - "Noted"
+    - "Tentu"
+    - "Catat"
+    - "Nah"
+    - "Lalu"
+    - "Selanjutnya"
+    - "Kalau begitu"
+    - "Menarik"
+    - "Hmm"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sa_prompts.py _OPENER_PALETTE[id]."
+
+# Banned openers (Task 15 lift from sa_prompts.py _BANNED_OPENERS_BY_LANG[id])
+opener.banned_forms:
+  text:
+    - "baik"
+    - "baiklah"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sa_prompts.py _BANNED_OPENERS_BY_LANG[id] (case-insensitive)."
+
+# Picker labels (Task 17 lift from sd_service.py)
+picker.book_meeting.label:
+  text: "Jadwalkan meeting"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _book_meeting_label[id]."
+
+picker.other_services.label:
+  text: "Layanan Lainnya"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _other_services_label[id]."
+
+picker.stay_label:
+  text: "Lanjut {current_label}"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[id][0]."
+
+picker.switch_label:
+  text: "Pindah ke {target_label}"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_service.py _stay_switch_labels[id][1]."
+
+# Meeting surfaces (Task 18 lift from sd_meeting.py)
+meeting.footer:
+  text: "Untuk menjadwalkan pertemuan dengan tim kami, Anda dapat langsung menghubungi tim Sales di +62 21–769 8277 atau email info@integrity-asia.com. Sampaikan layanan yang ingin didiskusikan serta waktu yang Anda inginkan, dan tim kami akan menghubungi Anda kembali untuk mengonfirmasi jadwal."
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_meeting_footer[id]."
+
+meeting.other_slot_label:
+  text: "Rekomendasi Slot Lainnya"
+  status: verified
+  reviewer: "@design"
+  reviewed_date: "2026-05-13"
+  ai_assisted: false
+  notes: "Lifted from sd_meeting.py build_other_slot_label[id]."
