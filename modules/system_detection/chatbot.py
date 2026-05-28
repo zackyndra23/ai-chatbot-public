@@ -32,7 +32,7 @@ def _ensure_vectorstore():
     - Restart with healthy volume → Chroma loads existing → skip rebuild (fast)
     - Volume corrupt / wrong embedding model → empty count → auto-rebuild
     - Mongo unreachable at startup → log warning, continue with empty KB
-      (operator can retry via POST /aitegrity-core/knowledgebase-rebuild)
+      (operator can retry via POST /rag-assistant/knowledgebase-rebuild)
 
     The auto-rebuild on first start replaces the previous "deployer must
     manually trigger /knowledgebase-rebuild" workflow. See
@@ -80,7 +80,7 @@ def _ensure_vectorstore():
                     logger.warning({
                         "event": "kb_auto_rebuild_failed",
                         "error": f"{type(e).__name__}: {e}",
-                        "hint": "POST /aitegrity-core/knowledgebase-rebuild after fixing root cause",
+                        "hint": "POST /rag-assistant/knowledgebase-rebuild after fixing root cause",
                     })
         else:
             if logger:

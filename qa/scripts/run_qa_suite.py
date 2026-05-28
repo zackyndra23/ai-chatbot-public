@@ -7,7 +7,7 @@ and restarts Flask between methods.
 Usage:
     python qa/scripts/run_qa_suite.py                          # all methods, default port
     python qa/scripts/run_qa_suite.py --method mmr             # one method only
-    python qa/scripts/run_qa_suite.py --target http://10.30.40.155:2305 --allow-prod
+    python qa/scripts/run_qa_suite.py --target https://chatbot.example.com:2305 --allow-prod
     python qa/scripts/run_qa_suite.py --perf-samples 30        # bump perf sample count
 """
 from __future__ import annotations

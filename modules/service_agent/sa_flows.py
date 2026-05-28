@@ -5,7 +5,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         "ebs.candidate_countries_1": QuestionStep(
             id="ebs.candidate_countries_1",
             service_code="EBS",
-            service_label="Employment Background Screening",
+            service_label="Background Check",
             section="Scope Specification",
             order=1,
             field_name="ebs_candidate_countries",
@@ -24,11 +24,11 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         # "ebs.context_purpose_2": QuestionStep(
         #     id="ebs.context_purpose_2",
         #     service_code="EBS",
-        #     service_label="Employment Background Screening",
+        #     service_label="Background Check",
         #     section="Context Confirmation",
         #     order=2,
         #     field_name="ebs_context_purpose",
-        #     text="Are you looking for employment background screening for your candidates or existing employees?",
+        #     text="Are you looking for background check for your candidates or existing employees?",
         #     type="string",
         #     # choices=[
         #     #     Choice(value="ebs_sa_switch", label="More Services", selected=False),
@@ -40,7 +40,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         "ebs.checks_needed_3": QuestionStep(
             id="ebs.checks_needed_3",
             service_code="EBS",
-            service_label="Employment Background Screening",
+            service_label="Background Check",
             section="Investigation Parameter",
             order=3,
             field_name="ebs_checks_needed",
@@ -60,7 +60,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         "ebs.volume_estimate_4": QuestionStep(
             id="ebs.volume_estimate_4",
             service_code="EBS",
-            service_label="Employment Background Screening",
+            service_label="Background Check",
             section="Scope Specification",
             order=4,
             field_name="ebs_volume_estimate",
@@ -78,7 +78,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         # "ebs.contact_details_5": QuestionStep(
         #     id="ebs.contact_details_5",
         #     service_code="EBS",
-        #     service_label="Employment Background Screening",
+        #     service_label="Background Check",
         #     section="Next Steps & Contact",
         #     order=5,
         #     field_name="ebs_contact_details",
@@ -94,7 +94,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         # "ebs.budget_preference_6": QuestionStep(
         #     id="ebs.budget_preference_6",
         #     service_code="EBS",
-        #     service_label="Employment Background Screening",
+        #     service_label="Background Check",
         #     section="Budget & next steps",
         #     order=6,
         #     field_name="ebs_budget_preference",
@@ -110,7 +110,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         "ebs.position_types_7": QuestionStep(
             id="ebs.position_types_7",
             service_code="EBS",
-            service_label="Employment Background Screening",
+            service_label="Background Check",
             section="Scope Specification",
             order=7,
             field_name="ebs_position_types",
@@ -126,7 +126,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         "ebs.process_preference_8": QuestionStep(
             id="ebs.process_preference_8",
             service_code="EBS",
-            service_label="Employment Background Screening",
+            service_label="Background Check",
             section="Investigation Parameter",
             order=8,
             field_name="ebs_process_preference",
@@ -142,7 +142,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         "ebs.project_type_9": QuestionStep(
             id="ebs.project_type_9",
             service_code="EBS",
-            service_label="Employment Background Screening",
+            service_label="Background Check",
             section="Context Confirmation",
             order=9,
             field_name="ebs_project_type",
@@ -158,7 +158,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         "ebs.user_role_10": QuestionStep(
             id="ebs.user_role_10",
             service_code="EBS",
-            service_label="Employment Background Screening",
+            service_label="Background Check",
             section="Organization & role",
             order=10,
             field_name="ebs_user_role",
@@ -174,7 +174,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         "ebs.company_profile_11": QuestionStep(
             id="ebs.company_profile_11",
             service_code="EBS",
-            service_label="Employment Background Screening",
+            service_label="Background Check",
             section="Organization & role",
             order=11,
             field_name="ebs_company_profile",
@@ -190,7 +190,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         "ebs.compliance_requirements_12": QuestionStep(
             id="ebs.compliance_requirements_12",
             service_code="EBS",
-            service_label="Employment Background Screening",
+            service_label="Background Check",
             section="Timeline & Priorities",
             order=12,
             field_name="ebs_compliance_requirements",
@@ -206,7 +206,7 @@ def build_ebs_flow() -> dict[str, QuestionStep]:
         "ebs.tat_expectation_13": QuestionStep(
             id="ebs.tat_expectation_13",
             service_code="EBS",
-            service_label="Employment Background Screening",
+            service_label="Background Check",
             section="Timeline & Priorities",
             order=13,
             field_name="ebs_tat_expectation",
@@ -602,7 +602,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.target_asset_countries_1": QuestionStep(
             id="ast.target_asset_countries_1",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Investigation Parameter",
             order=1,
             field_name="ast_target_asset_countries",
@@ -614,12 +614,12 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         # "ast.context_confirmation_2": QuestionStep(
         #     id="ast.context_confirmation_2",
         #     service_code="AST",
-        #     service_label="Asset Tracing",
+        #     service_label="Asset Verification",
         #     section="Context Confirmation",
         #     order=2,
         #     field_name="ast_context_confirmation",
         #     text=(
-        #         "Are you looking for asset tracing / asset investigations to identify assets belonging to an individual or a company?"
+        #         "Are you looking for asset verification / asset investigations to identify assets belonging to an individual or a company?"
         #     ),
         #     type="string",
         #     default_next="ast.main_objective_3",
@@ -628,12 +628,12 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.main_objective_3": QuestionStep(
             id="ast.main_objective_3",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Context Confirmation",
             order=3,
             field_name="ast_main_objective",
             text=(
-                "What is the main objective of asset tracing? For example:\n"
+                "What is the main objective of asset verification? For example:\n"
                 "- Debt recovery or unpaid invoices\n"
                 "- Enforcement of a court judgment or arbitration award\n"
                 "- Pre-litigation assessment (to see if its worth suing)\n"
@@ -647,7 +647,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.asset_types_of_interest_4": QuestionStep(
             id="ast.asset_types_of_interest_4",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Investigation Parameter",
             order=4,
             field_name="ast_asset_types_of_interest",
@@ -666,7 +666,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.target_identity_and_relationship_5": QuestionStep(
             id="ast.target_identity_and_relationship_5",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Scope Specification",
             order=5,
             field_name="ast_target_identity_and_relationship",
@@ -678,7 +678,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.legal_stage_6": QuestionStep(
             id="ast.legal_stage_6",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Investigation Parameter",
             order=6,
             field_name="ast_legal_stage",
@@ -690,7 +690,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.depth_level_7": QuestionStep(
             id="ast.depth_level_7",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Timeline & Priorities",
             order=7,
             field_name="ast_depth_level",
@@ -706,7 +706,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.deliverable_preference_8": QuestionStep(
             id="ast.deliverable_preference_8",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Budget & next steps",
             order=8,
             field_name="ast_deliverable_preference",
@@ -723,11 +723,11 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.future_cases_9": QuestionStep(
             id="ast.future_cases_9",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Next Steps & Contact",
             order=9,
             field_name="ast_future_cases",
-            text="Is this a one-off case, or do you expect similar asset tracing matters in the future?",
+            text="Is this a one-off case, or do you expect similar asset verification matters in the future?",
             type="string",
             # default_next="ast.budget_range_10",
             default_next="st.client_company_profile_11",
@@ -736,7 +736,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         # "ast.budget_range_10": QuestionStep(
         #     id="ast.budget_range_10",
         #     service_code="AST",
-        #     service_label="Asset Tracing",
+        #     service_label="Asset Verification",
         #     section="Budget & next steps",
         #     order=10,
         #     field_name="ast_budget_range",
@@ -748,7 +748,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.client_company_profile_11": QuestionStep(
             id="ast.client_company_profile_11",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Organization & role",
             order=11,
             field_name="ast_client_company_profile",
@@ -760,7 +760,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.user_role_12": QuestionStep(
             id="ast.user_role_12",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Organization & role",
             order=12,
             field_name="ast_user_role",
@@ -773,7 +773,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         # "ast.contact_details_13": QuestionStep(
         #     id="ast.contact_details_13",
         #     service_code="AST",
-        #     service_label="Asset Tracing",
+        #     service_label="Asset Verification",
         #     section="Next Steps & Contact",
         #     order=13,
         #     field_name="ast_contact_details",
@@ -785,7 +785,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.amount_at_stake_14": QuestionStep(
             id="ast.amount_at_stake_14",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Scope Specification",
             order=14,
             field_name="ast_amount_at_stake",
@@ -797,7 +797,7 @@ def build_ast_flow() -> dict[str, QuestionStep]:
         "ast.method_constraints_15": QuestionStep(
             id="ast.method_constraints_15",
             service_code="AST",
-            service_label="Asset Tracing",
+            service_label="Asset Verification",
             section="Timeline & Priorities",
             order=15,
             field_name="ast_method_constraints",
@@ -812,7 +812,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs.availability_countries_1": QuestionStep(
             id="wbs.availability_countries_1",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Scope Specification",
             order=1,
             field_name="wbs_availability_countries",
@@ -824,7 +824,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs.user_eligibility_2": QuestionStep(
             id="wbs.user_eligibility_2",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Scope Specification",
             order=2,
             field_name="wbs_user_eligibility",
@@ -841,7 +841,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs.channels_3": QuestionStep(
             id="wbs.channels_3",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Investigation Parameter",
             order=3,
             field_name="wbs_channels",
@@ -861,7 +861,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs.languages_4": QuestionStep(
             id="wbs.languages_4",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Timeline & Priorities",
             order=4,
             field_name="wbs_languages",
@@ -873,11 +873,11 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs.launch_timeline_5": QuestionStep(
             id="wbs.launch_timeline_5",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Timeline & Priorities",
             order=5,
             field_name="wbs_launch_timeline",
-            text="When would you ideally like to launch or upgrade your whistleblowing system? (approximate month or deadline)",
+            text="When would you ideally like to launch or upgrade your whistleblowing hotline? (approximate month or deadline)",
             type="string",
             default_next="wbs.main_objective_6",
         ),
@@ -885,7 +885,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs.main_objective_6": QuestionStep(
             id="wbs.main_objective_6",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Context Confirmation",
             order=6,
             field_name="wbs_main_objective",
@@ -904,7 +904,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs.entities_coverage_7": QuestionStep(
             id="wbs.entities_coverage_7",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Scope Specification",
             order=7,
             field_name="wbs_entities_coverage",
@@ -916,7 +916,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs.case_handlers_8": QuestionStep(
             id="wbs.case_handlers_8",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Investigation Parameter",
             order=8,
             field_name="wbs_case_handlers",
@@ -934,7 +934,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs.company_profile_9": QuestionStep(
             id="wbs.company_profile_9",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Organization & role",
             order=9,
             field_name="wbs_company_profile",
@@ -946,7 +946,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs.employee_and_countries_10": QuestionStep(
             id="wbs.employee_and_countries_10",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Organization & role",
             order=10,
             field_name="wbs_employee_and_countries",
@@ -958,7 +958,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs.features_needed_11": QuestionStep(
             id="wbs.features_needed_11",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Budget & next steps",
             order=11,
             field_name="wbs_features_needed",
@@ -975,7 +975,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs_solution_term_12": QuestionStep(
             id="wbs_solution_term_12",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Budget & next steps",
             order=12,
             field_name="wbs_solution_term",
@@ -988,7 +988,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         # "wbs_budget_range_13": QuestionStep(
         #     id="wbs_budget_range_13",
         #     service_code="WBS",
-        #     service_label="Whistleblowing System",
+        #     service_label="Whistleblowing Hotline",
         #     section="Budget & next steps",
         #     order=13,
         #     field_name="wbs_budget_range",
@@ -1000,11 +1000,11 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs_existing_provider_14": QuestionStep(
             id="wbs_existing_provider_14",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Next Steps & Contact",
             order=14,
             field_name="wbs_existing_provider",
-            text="Are you replacing an existing provider, or is this your first whistleblowing system?",
+            text="Are you replacing an existing provider, or is this your first whistleblowing hotline?",
             type="string",
             default_next="wbs_anonymity_mode_15",
         ),
@@ -1012,7 +1012,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs_anonymity_mode_15": QuestionStep(
             id="wbs_anonymity_mode_15",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Investigation Parameter",
             order=15,
             field_name="wbs_anonymity_mode",
@@ -1024,7 +1024,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs_proposal_summary_request_16": QuestionStep(
             id="wbs_proposal_summary_request_16",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Next Steps & Contact",
             order=16,
             field_name="wbs_proposal_summary_request",
@@ -1036,7 +1036,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         "wbs_regulations_and_policies_17": QuestionStep(
             id="wbs_regulations_and_policies_17",
             service_code="WBS",
-            service_label="Whistleblowing System",
+            service_label="Whistleblowing Hotline",
             section="Timeline & Priorities",
             order=17,
             field_name="wbs_regulations_and_policies",
@@ -1049,7 +1049,7 @@ def build_wbs_flow() -> dict[str, QuestionStep]:
         # "wbs_contact_details_18": QuestionStep(
         #     id="wbs_contact_details_18",
         #     service_code="WBS",
-        #     service_label="Whistleblowing System",
+        #     service_label="Whistleblowing Hotline",
         #     section="Next Steps & Contact",
         #     order=18,
         #     field_name="wbs_contact_details",
@@ -1334,7 +1334,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy.geography_1": QuestionStep(
             id="msy.geography_1",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Scope Specification",
             order=1,
             field_name="msy_geography",
@@ -1346,7 +1346,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy.methods_2": QuestionStep(
             id="msy.methods_2",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Investigation Parameter",
             order=2,
             field_name="msy_methods",
@@ -1365,7 +1365,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy.b2b_b2c_3": QuestionStep(
             id="msy.b2b_b2c_3",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Scope Specification",
             order=3,
             field_name="msy_b2b_b2c",
@@ -1377,7 +1377,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy.main_objective_4": QuestionStep(
             id="msy.main_objective_4",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Context Confirmation",
             order=4,
             field_name="msy_main_objective",
@@ -1397,12 +1397,12 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy.context_confirmation_5": QuestionStep(
             id="msy.context_confirmation_5",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Context Confirmation",
             order=5,
             field_name="msy_context_confirmation",
             text=(
-                "Are you looking for a market survey / market research to better understand customers, competitors, or a specific market?"
+                "Are you looking for a market research / market research to better understand customers, competitors, or a specific market?"
             ),
             type="string",
             default_next="msy.respondent_volume_6",
@@ -1411,7 +1411,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy.respondent_volume_6": QuestionStep(
             id="msy.respondent_volume_6",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Investigation Parameter",
             order=6,
             field_name="msy_respondent_volume",
@@ -1423,7 +1423,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy.fieldwork_timeline_7": QuestionStep(
             id="msy.fieldwork_timeline_7",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Timeline & Priorities",
             order=7,
             field_name="msy_fieldwork_timeline",
@@ -1436,7 +1436,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         # "msy.budget_range_8": QuestionStep(
         #     id="msy.budget_range_8",
         #     service_code="MSY",
-        #     service_label="Market Survey",
+        #     service_label="Market Research",
         #     section="Budget & next steps",
         #     order=8,
         #     field_name="msy_budget_range",
@@ -1448,7 +1448,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy.survey_frequency_9": QuestionStep(
             id="msy.survey_frequency_9",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Next Steps & Contact",
             order=9,
             field_name="msy_survey_frequency",
@@ -1460,7 +1460,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy.deliverable_preference_10": QuestionStep(
             id="msy.deliverable_preference_10",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Budget & next steps",
             order=10,
             field_name="msy_deliverable_preference",
@@ -1478,7 +1478,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy.questionnaire_readiness_11": QuestionStep(
             id="msy.questionnaire_readiness_11",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Investigation Parameter",
             order=11,
             field_name="msy_questionnaire_readiness",
@@ -1490,7 +1490,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy_target_audience_12": QuestionStep(
             id="msy_target_audience_12",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Scope Specification",
             order=12,
             field_name="msy_target_audience",
@@ -1508,7 +1508,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy_client_company_profile_13": QuestionStep(
             id="msy_client_company_profile_13",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Organization & role",
             order=13,
             field_name="msy_client_company_profile",
@@ -1520,7 +1520,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy_user_role_14": QuestionStep(
             id="msy_user_role_14",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Organization & role",
             order=14,
             field_name="msy_user_role",
@@ -1532,7 +1532,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         "msy_proposal_summary_request_15": QuestionStep(
             id="msy_proposal_summary_request_15",
             service_code="MSY",
-            service_label="Market Survey",
+            service_label="Market Research",
             section="Next Steps & Contact",
             order=15,
             field_name="msy_proposal_summary_request",
@@ -1545,7 +1545,7 @@ def build_msy_flow() -> dict[str, QuestionStep]:
         # "msy_contact_details_16": QuestionStep(
         #     id="msy_contact_details_16",
         #     service_code="MSY",
-        #     service_label="Market Survey",
+        #     service_label="Market Research",
         #     section="Next Steps & Contact",
         #     order=16,
         #     field_name="msy_contact_details",
@@ -1562,7 +1562,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.possible_countries_1": QuestionStep(
             id="skt.possible_countries_1",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Scope Specification",
             order=1,
             field_name="skt_possible_countries",
@@ -1574,12 +1574,12 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         # "skt.context_confirmation_2": QuestionStep(
         #     id="skt.context_confirmation_2",
         #     service_code="SKT",
-        #     service_label="Skip Tracing",
+        #     service_label="Contact Verification",
         #     section="Context Confirmation",
         #     order=2,
         #     field_name="skt_context_confirmation",
         #     text=(
-        #         "Are you looking to skip tracing / locating a person whose current whereabouts are unknown?"
+        #         "Are you looking to contact verification / locating a person whose current whereabouts are unknown?"
         #     ),
         #     type="string",
         #     default_next="skt.target_type_3",
@@ -1588,11 +1588,11 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.target_type_3": QuestionStep(
             id="skt.target_type_3",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Scope Specification",
             order=3,
             field_name="skt_target_type",
-            text="Who is the target of the skip tracing: an individual or a company representative?",
+            text="Who is the target of the contact verification: an individual or a company representative?",
             type="string",
             default_next="skt.target_identity_and_relationship_4",
         ),
@@ -1600,7 +1600,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.target_identity_and_relationship_4": QuestionStep(
             id="skt.target_identity_and_relationship_4",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Scope Specification",
             order=4,
             field_name="skt_target_identity_and_relationship",
@@ -1612,7 +1612,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.available_information_5": QuestionStep(
             id="skt.available_information_5",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Timeline & Priorities",
             order=5,
             field_name="skt_available_information",
@@ -1632,7 +1632,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.previous_attempts_6": QuestionStep(
             id="skt.previous_attempts_6",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Investigation Parameter",
             order=6,
             field_name="skt_previous_attempts",
@@ -1644,7 +1644,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.main_objective_7": QuestionStep(
             id="skt.main_objective_7",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Context Confirmation",
             order=7,
             field_name="skt_main_objective",
@@ -1664,7 +1664,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.legal_stage_8": QuestionStep(
             id="skt.legal_stage_8",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Investigation Parameter",
             order=8,
             field_name="skt_legal_stage",
@@ -1676,7 +1676,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.client_company_profile_9": QuestionStep(
             id="skt.client_company_profile_9",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Organization & role",
             order=9,
             field_name="skt_client_company_profile",
@@ -1688,7 +1688,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.user_role_10": QuestionStep(
             id="skt.user_role_10",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Organization & role",
             order=10,
             field_name="skt_user_role",
@@ -1700,7 +1700,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.proposal_request_11": QuestionStep(
             id="skt.proposal_request_11",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Next Steps & Contact",
             order=11,
             field_name="skt_proposal_request",
@@ -1713,7 +1713,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         # "skt.contact_details_12": QuestionStep(
         #     id="skt.contact_details_12",
         #     service_code="SKT",
-        #     service_label="Skip Tracing",
+        #     service_label="Contact Verification",
         #     section="Next Steps & Contact",
         #     order=12,
         #     field_name="skt_contact_details",
@@ -1725,7 +1725,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.amount_at_stake_13": QuestionStep(
             id="skt.amount_at_stake_13",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Investigation Parameter",
             order=13,
             field_name="skt_amount_at_stake",
@@ -1737,11 +1737,11 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.future_cases_14": QuestionStep(
             id="skt.future_cases_14",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Next Steps & Contact",
             order=14,
             field_name="skt_future_cases",
-            text="Is this a one-time case, or do you expect similar skip tracing needs in the future (e.g. portfolio of debtors or frequent cases)?",
+            text="Is this a one-time case, or do you expect similar contact verification needs in the future (e.g. portfolio of debtors or frequent cases)?",
             type="string",
             default_next="skt.deliverable_preference_15",
         ),
@@ -1749,7 +1749,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.deliverable_preference_15": QuestionStep(
             id="skt.deliverable_preference_15",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Budget & next steps",
             order=15,
             field_name="skt_deliverable_preference",
@@ -1765,7 +1765,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.timeline_expectation_16": QuestionStep(
             id="skt.timeline_expectation_16",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Timeline & Priorities",
             order=16,
             field_name="skt_timeline_expectation",
@@ -1777,7 +1777,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         "skt.constraints_17": QuestionStep(
             id="skt.constraints_17",
             service_code="SKT",
-            service_label="Skip Tracing",
+            service_label="Contact Verification",
             section="Timeline & Priorities",
             order=17,
             field_name="skt_constraints",
@@ -1796,7 +1796,7 @@ def build_skt_flow() -> dict[str, QuestionStep]:
         # "skt.budget_range_18": QuestionStep(
         #     id="skt.budget_range_18",
         #     service_code="SKT",
-        #     service_label="Skip Tracing",
+        #     service_label="Contact Verification",
         #     section="Budget & next steps",
         #     order=18,
         #     field_name="skt_budget_range",

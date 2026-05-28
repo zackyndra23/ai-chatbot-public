@@ -20,7 +20,7 @@ svc = OOCService()
 
 # Stage 0 entry — explicit data contract
 ctx = OOCContext(
-    user_text="I want to partner with Integrity",
+    user_text="I want to partner with Acme Services",
     user_detected_language="en",
     raw_detected_language="en",
     raw_detection_confidence=0.95,
@@ -103,7 +103,7 @@ would otherwise swallow more specific personal/ISO queries).
 | `OOC-FREELANCE` | freelancer applicant | cold_start + mid_flow_p1 |
 | `OOC-MYSTERY-SHOPPER-APPLY` | mystery shopper applicant (NOT business commission) | cold_start + mid_flow_p1 |
 | `OOC-CAREERS` | full-time / internship job seekers | cold_start + mid_flow_p1 |
-| `OOC-ADJACENT-SERVICE` | service Integrity doesn't offer (tax, audit, legal, etc.) | cold_start + mid_flow_p1 |
+| `OOC-ADJACENT-SERVICE` | service Acme Services doesn't offer (tax, audit, legal, etc.) | cold_start + mid_flow_p1 |
 | `OOC-ADJACENT-ISO` | ISO certification requests → pivot to ABMS E-Learning | cold_start + mid_flow_p1 |
 | `OOC-PRESS-MEDIA` | journalists, interview requests | cold_start + mid_flow_p1 |
 | `OOC-VENDOR-SUPPLIER` | vendor introductions, procurement | cold_start + mid_flow_p1 |
@@ -140,15 +140,15 @@ Bank is intentionally narrow — only unambiguous in-scope terminology. Strict-k
 | `ebs` | Prevention | High-traffic; well-established in-scope terminology |
 | `due_diligence` | Prevention | High-traffic; well-established in-scope terminology |
 | `mystery_shopping` | Detection | High-traffic; risk of OOC-MYSTERY-SHOPPER-APPLY false-positives |
-| `corporate_fraud_investigation` | Mitigation | **High_stakes** (P4 routing) |
-| `insurance_claim_investigation` | Mitigation | **High_stakes** (P4 routing) |
-| `asset_tracing` | Mitigation | **High_stakes** (P4 routing) |
-| `skip_tracing` | Mitigation | **High_stakes** (P4 routing) |
+| `compliance_audit` | Mitigation | **High_stakes** (P4 routing) |
+| `claim_review` | Mitigation | **High_stakes** (P4 routing) |
+| `asset_verification` | Mitigation | **High_stakes** (P4 routing) |
+| `contact_verification` | Mitigation | **High_stakes** (P4 routing) |
 
 **7 services without explicit banks** — these have NO deterministic Constraint #4 layer:
 
 - `kyc`, `abms_elearning` (Prevention)
-- `market_survey` (Detection)
+- `market_research` (Detection)
 - `non_use_investigation`, `anti_counterfeit_investigation`, `parallel_trading_investigation`, `trademark_investigation` (Brand Protection)
 
 **Coverage gap — explicit framing (per Phase 2 review):**
@@ -245,7 +245,7 @@ This ledger tracks behaviors NOT exercised by automated tests in the current chr
 
 | # | What needs verification | Introduced by | Smoke step | Expected pass criteria |
 |---|---|---|---|---|
-| 1 | Stage 0 wire-up at `sd_service.py:5701` produces valid chat-turn payload | Task 20 | Recipe Step 1: POST cold-start OOC "I want to partner with Integrity" | Response has `route="ooc_agent_stage_0"`, partnership URL + Indo email in text, no `{` placeholders |
+| 1 | Stage 0 wire-up at `sd_service.py:5701` produces valid chat-turn payload | Task 20 | Recipe Step 1: POST cold-start OOC "I want to partner with Acme Services" | Response has `route="ooc_agent_stage_0"`, partnership URL + Indo email in text, no `{` placeholders |
 | 2 | Cold-start OOC in Indonesian renders correctly via i18n loader | Task 20 | Recipe Step 2: POST "saya ingin jadi freelancer" | Indonesian text with "Anda" formal pronoun, `route="ooc_agent_stage_0"`, freelancer URL substituted |
 | 3 | Decision 2 `return_none_on_non_ooc_passthrough=True` produces correct pass-through with real handle_chat | Task 20 | Recipe Step 3: POST non-OOC cold-start ("tell me about your services") | Response routes through RAG/picker (`route="system_detection"`); NO `ooc_handler` audit row for this session |
 | 4 | `OOC_AGENT_ENABLED=off` rollback is byte-identical to pre-Task-20 behavior | Task 20 (Decision 4) | Recipe Step 4: Set `OOC_AGENT_ENABLED=off`, restart, POST partnership intent | Response has `route="ooc_agent"` (legacy, NOT `"ooc_agent_stage_0"`), legacy English partnership template, NO `ooc_handler` audit row |
@@ -266,7 +266,7 @@ This ledger tracks behaviors NOT exercised by automated tests in the current chr
 | 18 | Opener guidance block renders with id banned-forms gating in flag-on | Task 15 | Trigger SA Sentence-1 in Indonesian via active service flow with confirmed user msg | Response opener is one of the 13 lifted id palette entries; "Baik" / "Baiklah" do NOT appear; flag-on path verified |
 | 19 | Rescue soft-bridge renders mid-flow when natural-qual triggers | Task 16 | Drive Method B natural-qual rescue path (3 consecutive empty turns on same min-set field) in id session | Response contains "Biar saya bisa lanjut bantu, boleh saya konfirmasi langsung —" prefix + the field's decision-tree question text (q placeholder substituted) |
 | 20 | Picker labels render correctly via i18n in user lang (4 keys × 14 langs) | Task 17 | Hit cross-service bridge in Indonesian session (SA_STAY picker) — verify both stay + switch labels | stay label: "Lanjut {current_service}", switch label: "Pindah ke {target_service}"; both with {current_label}/{target_label} substituted per i18n template |
-| 21 | Meeting footer renders correctly via i18n in supported langs | Task 18 | Send meeting-arrangement intent ("jadwalkan meeting") in id session | Response includes `meeting.footer.id` text with "tim Sales" + "+62 21" + "info@integrity-asia.com" |
+| 21 | Meeting footer renders correctly via i18n in supported langs | Task 18 | Send meeting-arrangement intent ("jadwalkan meeting") in id session | Response includes `meeting.footer.id` text with "tim Sales" + "+62 21" + "info@acmeservices.example.com" |
 | 22 | Romansh (rm) partial coverage exercises gracefully | Task 18 (Phase 0 limitation) | Synthetic rm session — send meeting intent | Footer text in Romansh; greeting/opener/rescue/picker labels in English (fall-back per CANON_17 exclusion) |
 | 23 | `build_meeting_picker_preamble` legacy path STILL serves correctly (not yet migrated) | Task 18 (deferred per Phase 0 limitation) | Session reaches meeting-arrangement picker preamble | Preamble text in user lang via legacy if/elif chain; no i18n loader call attempted |
 | 24 | Picker helpers (`_book_meeting_label`, `_other_services_label`, `_stay_switch_labels`) inline safety fallback triggers correctly when i18n raises | Task 19 partial | Force i18n loader unavailable (test fixture or break schema temporarily) | Helpers return inline English baseline ("Schedule a meeting", "Other Services", "Continue X" / "Switch to Y") — no exception escapes; no crash |
@@ -319,7 +319,7 @@ Decision deferred to Q#5 scoping in Phase 1.
 - **Retain:** Extend CANON_17 to 18 langs (add `"rm"`). Add Romansh to OOC translation coverage (Phase 2b/c/d work). Update spec §Constraint #7 + i18n schema `required_for` lists.
 - **Drop:** Remove Romansh from `sd_meeting.py` palette + delete `rm.yaml`. Reroute Romansh users to English at the SA layer.
 
-**Decision criteria:** is Romansh a strategic locale for Integrity? Business owner input needed.
+**Decision criteria:** is Romansh a strategic locale for Acme Services? Business owner input needed.
 
 **Telemetry:** count of sessions with `detected_language` starting with `"rm"` in `query_recording` over the next month. If <1 session/week, drop is low-risk.
 

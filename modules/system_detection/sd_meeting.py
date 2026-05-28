@@ -44,7 +44,7 @@ def is_meeting_request(text: str, language_code: Optional[str]) -> bool:
         lang_kw = [
             "janji temu", "janjian", "ketemu tim", "ketemu dengan tim",
             "pertemuan", "meeting dengan tim", "jadwalkan meeting",
-            "temu janji", "bertemu tim integrity",
+            "temu janji", "bertemu tim acme services",
         ]
     elif lang.startswith("ms"):
         lang_kw = [
@@ -122,7 +122,7 @@ def build_meeting_footer(language_code: Optional[str]) -> str:
     except Exception:
         return (
             "If you would like to schedule a meeting with our team, please contact our sales "
-            "team at +62 21–769 8277 or email info@integrity-asia.com."
+            "team at +1 (555) 010-0100 or email info@acmeservices.example.com."
         )
     # Task 19 (2026-05-13): legacy if/elif chain dead code — superseded by i18n loader above
     lang = (language_code or "").lower()
@@ -130,70 +130,70 @@ def build_meeting_footer(language_code: Optional[str]) -> str:
     if lang.startswith("id"):
         return (
             "Untuk menjadwalkan pertemuan dengan tim kami, Anda dapat langsung "
-            "menghubungi tim Sales di +62 21–769 8277 atau email info@integrity-asia.com. "
+            "menghubungi tim Sales di +1 (555) 010-0100 atau email info@acmeservices.example.com. "
             "Sampaikan layanan yang ingin didiskusikan serta waktu yang Anda inginkan, dan "
             "tim kami akan menghubungi Anda kembali untuk mengonfirmasi jadwal."
         )
     if lang.startswith("ms"):
         return (
             "Untuk mengatur pertemuan dengan pasukan kami, anda boleh menghubungi pasukan "
-            "jualan di +60 3–7931 1323 atau e-mel info@integrity-malaysia.com. "
+            "jualan di +1 (555) 010-0101 atau e-mel info@acmeservices.example.com. "
             "Sila maklumkan jenis perkhidmatan dan masa yang anda inginkan supaya kami "
             "boleh mengesahkan jadual dengan anda."
         )
     if lang.startswith("fr"):
         return (
             "Pour organiser une réunion avec notre équipe, vous pouvez nous contacter "
-            "directement par e-mail à info@integrity-asia.com ou par téléphone au "
-            "+62 21–769 8277. Indiquez vos disponibilités et vos besoins afin que notre "
+            "directement par e-mail à info@acmeservices.example.com ou par téléphone au "
+            "+1 (555) 010-0100. Indiquez vos disponibilités et vos besoins afin que notre "
             "équipe commerciale puisse vous proposer et confirmer un créneau adapté."
         )
     if lang.startswith("de"):
         return (
             "Um einen Termin mit unserem Team zu vereinbaren, können Sie uns direkt "
-            "unter info@integrity-asia.com oder telefonisch unter +62 21–769 8277 "
+            "unter info@acmeservices.example.com oder telefonisch unter +1 (555) 010-0100 "
             "kontaktieren. Teilen Sie uns bitte Ihre Verfügbarkeit und Ihr Anliegen mit, "
             "damit unser Vertriebsteam einen passenden Termin bestätigen kann."
         )
     if lang.startswith("it"):
         return (
             "Per fissare un incontro con il nostro team, può contattarci direttamente "
-            "all’indirizzo e-mail info@integrity-asia.com o al numero +62 21–769 8277. "
+            "all’indirizzo e-mail info@acmeservices.example.com o al numero +1 (555) 010-0100. "
             "Indichi le sue disponibilità e i servizi di cui desidera parlare, così il "
             "nostro team commerciale potrà proporre e confermare uno slot adatto."
         )
     if lang.startswith("rm"):
         return (
             "Per fixar in inscunter cun nossa squadra, pudais Vus scriver a "
-            "info@integrity-asia.com u telefonar al +62 21–769 8277. Inditgai Vossas "
+            "info@acmeservices.example.com u telefonar al +1 (555) 010-0100. Inditgai Vossas "
             "disponibilitads e ils servetschs che Vus vulais discutir, uschia che nossa "
             "squadra da vendita po confermar in termin adattà."
         )
     if lang.startswith("ru"):
         return (
             "Чтобы согласовать встречу с нашей командой, вы можете связаться с нами по "
-            "электронной почте info@integrity-asia.com или по телефону +62 21–769 8277. "
+            "электронной почте info@acmeservices.example.com или по телефону +1 (555) 010-0100. "
             "Пожалуйста, укажите удобные для вас даты и время, а также интересующие "
             "услуги, и наша команда продаж предложит и подтвердит подходящий слот."
         )
     if lang.startswith("th"):
         return (
             "หากคุณต้องการนัดประชุมกับทีมของเรา คุณสามารถติดต่อทีมขายได้โดยตรงที่ "
-            "info@integrity-asia.com หรือโทร +62 21–769 8277 กรุณาแจ้งช่วงเวลาที่สะดวก "
+            "info@acmeservices.example.com หรือโทร +1 (555) 010-0100 กรุณาแจ้งช่วงเวลาที่สะดวก "
             "และบริการที่ต้องการพูดคุย เพื่อให้ทีมของเราสามารถเสนอและยืนยันเวลา "
             "นัดหมายที่เหมาะสมให้คุณได้."
         )
     if lang.startswith("es"):
         return (
             "Si desea concertar una reunión con nuestro equipo, puede ponerse en contacto "
-            "directamente con nosotros en info@integrity-asia.com o llamar al +62 21–769 8277. "
+            "directamente con nosotros en info@acmeservices.example.com o llamar al +1 (555) 010-0100. "
             "Indíquenos sus horarios disponibles y los servicios que desea tratar para que "
             "nuestro equipo comercial pueda proponer y confirmar una franja adecuada."
         )
     if lang.startswith("pt"):
         return (
             "Para marcar uma reunião com a nossa equipa, pode contactar-nos diretamente "
-            "através do e-mail info@integrity-asia.com ou pelo telefone +62 21–769 8277. "
+            "através do e-mail info@acmeservices.example.com ou pelo telefone +1 (555) 010-0100. "
             "Indique a sua disponibilidade e os serviços que pretende discutir para que a "
             "nossa equipa comercial possa propor e confirmar um horário adequado."
         )
@@ -201,7 +201,7 @@ def build_meeting_footer(language_code: Optional[str]) -> str:
     # Default EN
     return (
         "If you would like to schedule a meeting with our team, please contact our sales "
-        "team at +62 21–769 8277 or email info@integrity-asia.com. Share your availability "
+        "team at +1 (555) 010-0100 or email info@acmeservices.example.com. Share your availability "
         "and the services you wish to discuss, and we will propose and confirm a suitable slot."
     )
 

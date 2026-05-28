@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import JSONResponse
 
-router = APIRouter(prefix="/aitegrity-core", tags=["faq"])
+router = APIRouter(prefix="/rag-assistant", tags=["faq"])
 
 @router.post("/faq-automation")
 async def ingest(request: Request):
@@ -29,7 +29,7 @@ async def ingest(request: Request):
         )
 
     # === Sumber URL dinamis ===
-    # Jika PUBLIC_BASE_URL diset (mis. "https://api.integrity-asia.com:2303"),
+    # Jika PUBLIC_BASE_URL diset (mis. "https://api.acmeservices.example.com:2303"),
     # pakai itu; kalau tidak, pakai URL dari request (host/ip saat ini).
     if getattr(cfg, "PUBLIC_BASE_URL", None):
         source_url = cfg.PUBLIC_BASE_URL.rstrip("/") + request.url.path

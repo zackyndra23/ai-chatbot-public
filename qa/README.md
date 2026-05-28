@@ -9,7 +9,7 @@ produces a comparison Excel report.
 1. **Flask chatbot running** on `http://localhost:2305` (or override via
    `QA_TARGET_URL`).
 2. **Mongo & Chroma initialized** — same Mongo URI as the chatbot, KB
-   rebuilt via `/aitegrity-core/knowledgebase-rebuild` so every chunk has
+   rebuilt via `/rag-assistant/knowledgebase-rebuild` so every chunk has
    `metadata.chunk_id`.
 3. **Env vars set**: `MONGO_URI`, `MONGO_DB`, `API_KEY`, `API_HEADER_NAME`,
    `CHAT_HISTORY_COLL` (or use defaults).
@@ -37,7 +37,7 @@ After all 4 methods complete, an Excel workbook lands at
 
 ```bash
 python qa/scripts/run_qa_suite.py \
-  --target http://10.30.40.155:2305 \
+  --target https://chatbot.example.com:2305 \
   --allow-prod
 ```
 

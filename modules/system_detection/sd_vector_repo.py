@@ -151,8 +151,8 @@ def _resolve_alias_to_service_id(service_label) -> str | None:
 
     Examples:
       "WBS" → "whistleblowing-system"
-      "Whistleblowing System" → "whistleblowing-system"
-      ["WBS", "Whistleblowing System"] → "whistleblowing-system"
+      "Whistleblowing Hotline" → "whistleblowing-system"
+      ["WBS", "Whistleblowing Hotline"] → "whistleblowing-system"
 
     Returns None if no match found among loaded collections.
     """

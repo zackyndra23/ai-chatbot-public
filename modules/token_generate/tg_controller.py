@@ -13,7 +13,7 @@ svc = TokenService(repo)
 
 log = logging.getLogger(__name__)
 
-@bp.route("/aitegrity-core/user-id-generate", methods=["POST"])
+@bp.route("/rag-assistant/user-id-generate", methods=["POST"])
 def api_key_generate():
     """
     Terima:
@@ -76,7 +76,7 @@ def api_key_generate():
         log.exception("user-id-generate error: %s", e)
         return jsonify({"error": "internal_error"}), 500
 
-@bp.route("/aitegrity-core/session-id-generate", methods=["POST"])
+@bp.route("/rag-assistant/session-id-generate", methods=["POST"])
 def session_id_generate():
     try:
         raw = request.get_data(as_text=True) or ""

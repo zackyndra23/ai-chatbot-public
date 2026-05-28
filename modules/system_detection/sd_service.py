@@ -402,12 +402,12 @@ def build_service_choices(related_services: list[str], *, value_prefix: str = SA
         })
 
     has_dd = "due_diligence" in seen_values
-    has_ebs = "employment_background_screening" in seen_values
+    has_ebs = "background_check" in seen_values
     if has_dd and not has_ebs:
-        seen_values.add("employment_background_screening")
+        seen_values.add("background_check")
         normalized.append({
-            "value_code": "employment_background_screening",
-            "label": SERVICE_LABEL_CODE_MAP.get("employment_background_screening", "Employment Background Screening"),
+            "value_code": "background_check",
+            "label": SERVICE_LABEL_CODE_MAP.get("background_check", "Background Check"),
         })
     elif has_ebs and not has_dd:
         seen_values.add("due_diligence")
@@ -821,8 +821,8 @@ def _service_aliases(canonical_label: str) -> list[str]:
     """Return all plausible metadata values that represent the same service.
 
     Example:
-      canonical "Whistleblowing System" → ["Whistleblowing System", "WBS"]
-      canonical "Market Survey"         → ["Market Survey", "MSY"]
+      canonical "Whistleblowing Hotline" → ["Whistleblowing Hotline", "WBS"]
+      canonical "Market Research"         → ["Market Research", "MSY"]
       canonical "General Service"       → ["General Service", "General", "GRL"]
 
     Used to build Chroma filters that match across stored forms (short alias
@@ -859,10 +859,10 @@ def _infer_service_from_query(question: str) -> str | None:
     the service word is present (most Indonesian/Malay users use English
     service names).
 
-    Returns the canonical SERVICE_LABEL_CODE_MAP value (e.g. "Market Survey")
+    Returns the canonical SERVICE_LABEL_CODE_MAP value (e.g. "Market Research")
     or None if no confident match.
 
-    Example: "Tolong jelaskan tentang Merket survey" → "Market Survey".
+    Example: "Tolong jelaskan tentang Merket survey" → "Market Research".
     """
     import difflib
     import re as _re
@@ -872,7 +872,7 @@ def _infer_service_from_query(question: str) -> str | None:
         return None
 
     # Build {canonical_label: [aliases]} map. Canonical is the long form from
-    # SERVICE_LABEL_CODE_MAP (e.g. "Market Survey"). Aliases include short
+    # SERVICE_LABEL_CODE_MAP (e.g. "Market Research"). Aliases include short
     # codes (EBS, WBS) via VALUE_TO_FLOW_CODE keys.
     from modules.service_agent.sa_policies import VALUE_TO_FLOW_CODE as _V2F
     canon_to_aliases: dict[str, list[str]] = {}
@@ -1474,7 +1474,7 @@ def _call_service_agent_http(session_id: str, question: str, token_id: str | Non
     Forward payload yg sama persis ke endpoint /service-agent.
     """
     base_url = cfg.PUBLIC_BASE_URL or f"http://127.0.0.1:{cfg.PORT_CHATBOT}"
-    url = base_url.rstrip("/") + "/aitegrity-core/chatbot/claude4sonnet/service-agent"
+    url = base_url.rstrip("/") + "/rag-assistant/chatbot/claude4sonnet/service-agent"
 
     headers = {
         # kunci internal khusus service agent
@@ -1798,7 +1798,7 @@ def _detect_cross_service_target(
 
     candidates: list[tuple[str, str, str, str, int]] = []
     # Build candidate list from SA policy maps. Priority: longer string match first
-    # so "Employment Background Screening" beats accidental "EBS" substring inside
+    # so "Background Check" beats accidental "EBS" substring inside
     # an unrelated word.
     for short_label, flow_code in (SA_POL.VALUE_TO_FLOW_CODE or {}).items():
         if not flow_code:
@@ -1863,8 +1863,8 @@ def _parse_sa_stay_value(value: str) -> tuple[str, str] | None:
     """Parse SA_STAY_<source_value_code>_to_<target_value_code>. Returns (source, target) or None.
 
     Examples:
-      'SA_STAY_whistleblowing_system_to_employment_background_screening' →
-        ('whistleblowing_system', 'employment_background_screening')
+      'SA_STAY_whistleblowing_hotline_to_background_check' →
+        ('whistleblowing_hotline', 'background_check')
       'SA_STAY' (legacy) → None
       'SA_SELECT_x' → None
     """
@@ -2635,13 +2635,13 @@ def _render_sa_continue_via_sd(
     service_code = service_code.strip()
 
     # RAG context untuk SA continue (jangan pakai user_answer mentah)
-    # rag_query = f"{service_label}. {next_q_for_prompt}".strip() or service_code or "Integrity service"
+    # rag_query = f"{service_label}. {next_q_for_prompt}".strip() or service_code or "Acme Services service"
     type_now = (ia2.get("type") or "").strip()
 
     if type_now in ("question_only", "answer_and_question"):
-        rag_query = f"{service_label}. {user_question}".strip() or service_code or "Integrity service"
+        rag_query = f"{service_label}. {user_question}".strip() or service_code or "Acme Services service"
     else:
-        rag_query = f"{service_label}. {next_q_for_prompt}".strip() or service_code or "Integrity service"
+        rag_query = f"{service_label}. {next_q_for_prompt}".strip() or service_code or "Acme Services service"
 
     # Service-biased retrieval when the active service is known. The 4+2 split
     # gives the LLM strong domain context plus two best-pick docs from other
@@ -3254,7 +3254,7 @@ def _read_all_chat_pairs(session_id: str, token_id: str | None, limit: int = 500
 
 def _value_code_to_label(value_code: str) -> str:
     """
-    Convert service value_code (e.g. 'whistleblowing_system') -> human label.
+    Convert service value_code (e.g. 'whistleblowing_hotline') -> human label.
     Safe terhadap format SERVICE_LABEL_CODE_MAP yang bisa string/dict.
     """
     from modules.service_agent import sa_policies as SA_POL
@@ -3278,7 +3278,7 @@ def _guess_last_service_code(pairs: list[dict]) -> str:
     NOTE: sd_repo chat_history biasanya tidak menyimpan extra.service_code,
     jadi kita fallback ke:
     - route: 'agent_service_wbs' -> 'WBS'
-    - question: 'SA_SELECT_whistleblowing_system' -> map ke flow code
+    - question: 'SA_SELECT_whistleblowing_hotline' -> map ke flow code
     """
     from modules.service_agent import sa_policies as SA_POL
 
@@ -3291,7 +3291,7 @@ def _guess_last_service_code(pairs: list[dict]) -> str:
                 return suffix.upper()
 
     # 2) selection question fallback
-    #    contoh: SA_SELECT_whistleblowing_system -> value_code = 'whistleblowing_system'
+    #    contoh: SA_SELECT_whistleblowing_hotline -> value_code = 'whistleblowing_hotline'
     for p in reversed(pairs or []):
         q = (p.get("question") or "").strip()
         if q.startswith("SA_SELECT_"):
@@ -3313,8 +3313,8 @@ def _guess_last_service_code(pairs: list[dict]) -> str:
 def _map_related_service_to_value_code(service: str) -> tuple[str, str]:
     """
     Map related service (label / flow-code / SA_SELECT_* ) -> (value_code, label)
-    - value_code: "whistleblowing_system" (TANPA prefix SA_SELECT_)
-    - label: "Whistleblowing System"
+    - value_code: "whistleblowing_hotline" (TANPA prefix SA_SELECT_)
+    - label: "Whistleblowing Hotline"
     """
     s = (service or "").strip()
     if not s:
@@ -3345,7 +3345,7 @@ def _map_related_service_to_value_code(service: str) -> tuple[str, str]:
         label = SERVICE_LABEL_CODE_MAP.get(value_code) or value_code.replace("_", " ").title()
         return (value_code, label)
 
-    # 3) If it's a label already (e.g. "Whistleblowing System")
+    # 3) If it's a label already (e.g. "Whistleblowing Hotline")
     # SERVICE_LABEL_CODE_MAP sekarang: value_code -> label (dipakai di tempat lain)
     # Jadi reverse match label -> value_code:
     try:
@@ -3464,21 +3464,21 @@ def _all_service_catalog_choices() -> list[dict]:
     2026-05-18 (post KYC + CLI build), all 15 catalog entries resolve.
     """
     ordered_value_codes = [
-        "employment_background_screening",
+        "background_check",
         "due_diligence",
         "mystery_shopping",
-        "asset_tracing",
-        "skip_tracing",
+        "asset_verification",
+        "contact_verification",
         "fraud_investigation",
         "claim_investigation",
-        "market_survey",
+        "market_research",
         "non-use_investigation",
         "anti-counterfeiting_investigation",
         "parallel_trading_investigation",
         "abms_eLearning",
         "trademark_investigation",
         "know_your_customer",
-        "whistleblowing_system",
+        "whistleblowing_hotline",
     ]
 
     out = []
@@ -3893,7 +3893,7 @@ def _render_reset_text(
 
     base = (
         "You are an AI Assistant acting as a professional, instructional, persuasive, and trustworthy business consultant "
-        "providing accurate and up-to-date information about Integrity’s services.\n"
+        "providing accurate and up-to-date information about Acme Services’s services.\n"
         f"Target language: {lang}. Use the context only if directly relevant; otherwise keep it concise.\n\n"
         "Guidelines:\n"
         "- Your reply MUST be EXACTLY 2–3 sentences in a SINGLE paragraph.\n"
@@ -3931,7 +3931,7 @@ def _render_reset_text(
 
 def _service_value_code_from_flow_code(flow_code: str) -> str:
     """
-    Convert SA flow_code (mis. 'WBS') -> service_value_code (mis. 'whistleblowing_system')
+    Convert SA flow_code (mis. 'WBS') -> service_value_code (mis. 'whistleblowing_hotline')
     via inverse lookup of SA_POL.SERVICE_CODE_TO_FLOW_CODE.
     """
     fc = (flow_code or "").strip()
@@ -3945,7 +3945,7 @@ def _service_value_code_from_flow_code(flow_code: str) -> str:
 
 def _service_label_from_flow_code(flow_code: str) -> str:
     """
-    Convert SA flow_code -> human label (e.g., 'Whistleblowing System')
+    Convert SA flow_code -> human label (e.g., 'Whistleblowing Hotline')
     using SERVICE_LABEL_CODE_MAP (service_value_code -> label).
     """
     svc_val = _service_value_code_from_flow_code(flow_code)
@@ -6242,7 +6242,7 @@ def handle_chat(session_id: str, question: str, token_id: str | None = None) -> 
         if one in FLOW_REGISTRY:
             flow_code = one
 
-        # B) kalau berupa service value code (mystery_shopping, whistleblowing_system, general_service, ...)
+        # B) kalau berupa service value code (mystery_shopping, whistleblowing_hotline, general_service, ...)
         if not flow_code and one in SA_POL.SERVICE_CODE_TO_FLOW_CODE:
             flow_code = SA_POL.SERVICE_CODE_TO_FLOW_CODE[one]  # mystery_shopping -> MSG
 

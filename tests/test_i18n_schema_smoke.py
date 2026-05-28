@@ -62,12 +62,12 @@ def test_real_ooc_partnership_cold_start_renders_en():
         "en",
         partnership_url="https://example.com/partners",
         indo_email="contact@example.com",
-        indo_phone="+62 21 1234 5678",
+        indo_phone="+1 (555) 010-0100",
         business_hours="Mon-Fri 09:00-18:00 WIB",
     )
     assert "https://example.com/partners" in out
     assert "contact@example.com" in out
-    assert "+62 21 1234 5678" in out
+    assert "+1 (555) 010-0100" in out
     assert "{" not in out, f"Unsubstituted placeholder in output: {out!r}"
 
 
@@ -78,7 +78,7 @@ def test_real_ooc_partnership_cold_start_renders_id():
         "id",
         partnership_url="https://example.com/partners",
         indo_email="contact@example.com",
-        indo_phone="+62 21 1234 5678",
+        indo_phone="+1 (555) 010-0100",
         business_hours="Mon-Fri 09:00-18:00 WIB",
     )
     assert "https://example.com/partners" in out
@@ -118,8 +118,8 @@ def test_real_pillar_block_renders_id_bilingual():
     assert "Mitigasi" in out
     assert "Perlindungan Merek" in out
     # Service line names stay English
-    assert "Employment Background Screening" in out
-    assert "Whistleblowing System" in out
+    assert "Background Check" in out
+    assert "Whistleblowing Hotline" in out
 
 
 def test_real_abandonment_trigger_phrases_returns_list():
@@ -142,10 +142,10 @@ def test_real_abandonment_acknowledgment_renders():
 def test_real_shared_paragraphs_render_en():
     p2 = t(
         "ooc.midflow.p2_standard_with_field", "en",
-        active_service_label="Whistleblowing System (WBS)",
+        active_service_label="Whistleblowing Hotline (WBS)",
         current_field_label="Number of Case Handlers",
     )
-    assert "Whistleblowing System (WBS)" in p2
+    assert "Whistleblowing Hotline (WBS)" in p2
     assert "Number of Case Handlers" in p2
 
     p3 = t("ooc.midflow.p3_repose", "en", last_question="How many handlers?")
@@ -177,7 +177,7 @@ def test_real_escalation_handover_renders_en():
 def test_glossary_service_label_en():
     from modules.i18n import _get_registry
     reg = _get_registry()
-    assert reg.service_label("wbs", "en") == "Whistleblowing System (WBS)"
+    assert reg.service_label("wbs", "en") == "Whistleblowing Hotline (WBS)"
 
 
 def test_glossary_service_label_id_bilingual():
@@ -190,7 +190,7 @@ def test_glossary_service_label_unknown_lang_falls_back_to_en():
     from modules.i18n import _get_registry
     reg = _get_registry()
     # 'ja' not in Phase 2a glossary — should fall back to en per spec §4.9
-    assert reg.service_label("wbs", "ja") == "Whistleblowing System (WBS)"
+    assert reg.service_label("wbs", "ja") == "Whistleblowing Hotline (WBS)"
 
 
 def test_glossary_service_label_unknown_id_returns_none():
@@ -204,9 +204,9 @@ def test_glossary_all_15_service_lines_present_en():
     reg = _get_registry()
     expected = {
         "wbs", "ebs", "due_diligence", "kyc", "abms_elearning",
-        "mystery_shopping", "market_survey",
-        "corporate_fraud_investigation", "insurance_claim_investigation",
-        "asset_tracing", "skip_tracing",
+        "mystery_shopping", "market_research",
+        "compliance_audit", "claim_review",
+        "asset_verification", "contact_verification",
         "non_use_investigation", "anti_counterfeit_investigation",
         "parallel_trading_investigation", "trademark_investigation",
     }

@@ -11,7 +11,7 @@ from modules.service_agent.sa_policies import (
 )
 
 # NOTE:
-# - related_services dari SD biasanya berupa label (contoh: "Skip Tracing", "Due Diligence", dst)
+# - related_services dari SD biasanya berupa label (contoh: "Contact Verification", "Due Diligence", dst)
 # - Kita map -> value_code (snake-ish) -> flow_code (EBS/DDC/...)
 # - Kalau len==1: direct start flow
 # - Kalau len>1: required picker (choices = related_services saja)
@@ -22,7 +22,7 @@ class SAHandoffDecision:
     mode: str  # "none" | "direct" | "confirm"
     # direct:
     service_label: Optional[str] = None
-    service_value: Optional[str] = None         # e.g. "skip_tracing"
+    service_value: Optional[str] = None         # e.g. "contact_verification"
     flow_code: Optional[str] = None             # e.g. "SKT"
     # confirm:
     choices: Optional[List[Dict[str, Any]]] = None  # [{"label":..., "value":...}, ...]

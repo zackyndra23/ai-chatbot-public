@@ -103,35 +103,35 @@ def build_quotation_footer(language_code: Optional[str]) -> str:
             "Setelah kami menerima detail kebutuhan Anda, kami akan menyiapkan "
             "quotation terperinci dan mengirimkannya kepada Anda dalam waktu dekat. "
             "Untuk mempercepat proses, Anda juga dapat menghubungi tim sales kami "
-            "di +62 21–769 8277 atau email info@integrity-asia.com."
+            "di +1 (555) 010-0100 atau email info@acmeservices.example.com."
         )
     if lang.startswith("ms"):
         return (
             "Sebaik sahaja kami menerima butiran keperluan anda, kami akan menyediakan "
             "sebut harga terperinci dan mengirimkannya kepada anda dalam masa terdekat. "
             "Untuk mempercepat proses, anda juga boleh menghubungi pasukan jualan kami "
-            "di +60 3–7931 1323 atau info@integrity-malaysia.com."
+            "di +1 (555) 010-0101 atau info@acmeservices.example.com."
         )
     if lang.startswith("fr"):
         return (
             "Dès que nous aurons reçu le détail de vos besoins, nous préparerons "
             "un devis détaillé et vous l’enverrons dans les plus brefs délais. "
             "Pour toute demande urgente, vous pouvez également contacter notre équipe commerciale "
-            "par e-mail à info@integrity-asia.com."
+            "par e-mail à info@acmeservices.example.com."
         )
     if lang.startswith("de"):
         return (
             "Sobald wir Ihre Anforderungen im Detail erhalten haben, erstellen wir "
             "ein detailliertes Angebot und senden es Ihnen in Kürze zu. "
             "Bei dringenden Anfragen können Sie sich auch direkt an unser Vertriebsteam "
-            "unter info@integrity-asia.com wenden."
+            "unter info@acmeservices.example.com wenden."
         )
     if lang.startswith("it"):
         return (
             "Non appena riceveremo i dettagli delle vostre esigenze, prepareremo "
             "un preventivo dettagliato e ve lo invieremo a breve. "
             "Per richieste urgenti potete anche contattare il nostro team commerciale "
-            "all’indirizzo info@integrity-asia.com."
+            "all’indirizzo info@acmeservices.example.com."
         )
     if lang.startswith("rm"):
         return (
@@ -139,39 +139,39 @@ def build_quotation_footer(language_code: Optional[str]) -> str:
             "pretensiuns, vegnain nus a preparar in preventiv detaglià "
             "e trametter quel a Vus en curt temp. Per dumondas urgentas "
             "pudais Vus era contactar nossa squadra da vendita via "
-            "info@integrity-asia.com."
+            "info@acmeservices.example.com."
         )
     if lang.startswith("ru"):
         return (
             "Как только мы получим подробное описание ваших потребностей, "
             "мы подготовим детальное коммерческое предложение и направим его вам "
             "в ближайшее время. По срочным вопросам вы также можете связаться с нашей "
-            "командой продаж по адресу info@integrity-asia.com."
+            "командой продаж по адресу info@acmeservices.example.com."
         )
     if lang.startswith("th"):
         return (
             "เมื่อเราได้รับรายละเอียดความต้องการของคุณแล้ว เราจะจัดทำใบเสนอราคาอย่างละเอียด "
             "และส่งให้คุณในเร็ว ๆ นี้ เพื่อความรวดเร็ว คุณสามารถติดต่อทีมขายของเราได้ที่ "
-            "info@integrity-asia.com."
+            "info@acmeservices.example.com."
         )
     if lang.startswith("es"):
         return (
             "En cuanto recibamos el detalle de sus necesidades, prepararemos "
             "una cotización detallada y se la enviaremos en breve. "
             "Para solicitudes urgentes también puede contactar a nuestro equipo comercial "
-            "en info@integrity-asia.com."
+            "en info@acmeservices.example.com."
         )
     if lang.startswith("pt"):
         return (
             "Assim que recebermos os detalhes das suas necessidades, prepararemos "
             "um orçamento detalhado e o enviaremos em breve. "
             "Para pedidos urgentes, também pode contactar a nossa equipa comercial em "
-            "info@integrity-asia.com."
+            "info@acmeservices.example.com."
         )
 
     # default (EN)
     return (
         "Once we receive your detailed requirements, we will prepare a detailed "
         "quotation and send it to you shortly. For urgent requests, you can also "
-        "contact our sales team at info@integrity-asia.com."
+        "contact our sales team at info@acmeservices.example.com."
     )

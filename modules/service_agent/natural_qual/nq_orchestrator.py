@@ -50,7 +50,7 @@ def _retrieve_rag_context(
     """
     try:
         from modules.system_detection import sd_service as svc
-        rag_query = f"{service_label}. {user_message}".strip() or service_label or "Integrity service"
+        rag_query = f"{service_label}. {user_message}".strip() or service_label or "Acme Services service"
         filtered, ctx_str, _related = svc._prepare_rag_context(
             rag_query,
             sa_service_label=service_label,

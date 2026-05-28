@@ -1,3 +1,10 @@
+# GitLab CI/CD pipeline used by the original production deployment.
+# Public mirror lives on GitHub, so this file is here as documentation
+# only — rename to `.gitlab-ci.yml` (drop `.example`) when re-hosting on
+# GitLab. Required CI variables: CI_REGISTRY, CI_REGISTRY_USER,
+# CI_REGISTRY_PASSWORD, CI_REGISTRY_IMAGE, SSH_PRIVATE_KEY, SSH_PORT,
+# SSH_USER, SSH_HOST, DEPLOY_DIR, REGISTRY_PASSWORD, RAG_FLAVOR (opt).
+
 stages:
   - build
   - deploy
@@ -29,7 +36,7 @@ lock-deps-cuda:
   only:
     - Production
     - /^task\/.*$/
-  tags: [10.30.40.155, Alpine, Docker, Ubuntu]
+  tags: [Alpine, Docker, Ubuntu]
 
 
 deps-image-cuda:
@@ -58,7 +65,7 @@ deps-image-cuda:
   only:
     - Production
     - /^task\/.*$/
-  tags: [10.30.40.155, Alpine, Docker, Ubuntu]
+  tags: [Alpine, Docker, Ubuntu]
 
 
 app-image-cuda:
@@ -86,7 +93,7 @@ app-image-cuda:
   only:
     - Production
     - /^task\/.*$/
-  tags: [10.30.40.155, Alpine, Docker, Ubuntu]
+  tags: [Alpine, Docker, Ubuntu]
 
 deploy-to-server:
   stage: deploy
@@ -120,4 +127,4 @@ deploy-to-server:
         "
 
   only: [Production]
-  tags: [10.30.40.155, Shell, Ubuntu]
+  tags: [Shell, Ubuntu]

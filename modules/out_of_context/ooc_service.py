@@ -31,16 +31,16 @@ log = logging.getLogger(__name__)
 # `OOCService(routing_assets=...)` injection. Defaults centralized here so
 # all OOC paths use identical contact information.
 ROUTING_ASSETS: dict[str, str] = {
-    "indo_email": "contact@integrity-asia.com",
-    "indo_phone": "+62 21 7822 3691",
-    "my_sg_email": "my-sg@integrity-asia.com",
-    "my_sg_phone": "+60 3 1234 5678",
-    "th_vn_email": "th-vn@integrity-asia.com",
+    "indo_email": "contact@acmeservices.example.com",
+    "indo_phone": "+1 (555) 010-0100",
+    "my_sg_email": "my-sg@acmeservices.example.com",
+    "my_sg_phone": "+1 (555) 010-0101",
+    "th_vn_email": "th-vn@acmeservices.example.com",
     "th_vn_phone": "+66 2 1234 5678",
     "business_hours": "Mon-Fri 09:00-18:00 WIB",
-    "mystery_shopper_url": "https://integrity-asia.com/mystery-shopper",
-    "careers_url": "https://integrity-asia.com/careers",
-    "company_profile_url": "https://integrity-asia.com/",
+    "mystery_shopper_url": "https://acmeservices.example.com/mystery-shopper",
+    "careers_url": "https://acmeservices.example.com/careers",
+    "company_profile_url": "https://acmeservices.example.com/",
 }
 
 def _no(reason: str = "no_match") -> OOCDecision:

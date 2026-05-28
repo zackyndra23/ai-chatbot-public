@@ -81,7 +81,7 @@ picker.switch_label:
 
 # Meeting surfaces (Task 18 lift from sd_meeting.py)
 meeting.footer:
-  text: "Per fissare un incontro con il nostro team, può contattarci direttamente all'indirizzo e-mail info@integrity-asia.com o al numero +62 21–769 8277. Indichi le sue disponibilità e i servizi di cui desidera parlare, così il nostro team commerciale potrà proporre e confermare uno slot adatto."
+  text: "Per fissare un incontro con il nostro team, può contattarci direttamente all'indirizzo e-mail info@acmeservices.example.com o al numero +1 (555) 010-0100. Indichi le sue disponibilità e i servizi di cui desidera parlare, così il nostro team commerciale potrà proporre e confermare uno slot adatto."
   status: draft
   reviewer: null
   reviewed_date: null

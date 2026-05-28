@@ -850,7 +850,7 @@ def test_dt1_cold_start_ooc_no_sa_state_mutation(captured_audit_rows, mock_langu
     mock_language("en", "English", 0.95)
     mock_ooc_handle(result=_make_ooc_result(category="OOC-PARTNERSHIP", shape="cold_start"))
 
-    response = process_user_message_with_ooc(text="I want to partner with Integrity", state=state)
+    response = process_user_message_with_ooc(text="I want to partner with Acme Services", state=state)
 
     # Response from the (mocked) handler
     assert response == "<rendered:OOC-PARTNERSHIP:cold_start>"
@@ -897,7 +897,7 @@ def test_dt3_mid_flow_high_stakes_shape(captured_audit_rows, mock_language, mock
     from modules.system_detection.sd_orchestrator import process_user_message_with_ooc
 
     state = _state(
-        service_code="corporate_fraud_investigation",
+        service_code="compliance_audit",
         question_id="case_summary",
         answers={"prior": "data"},
         session_fallback_language="en",
@@ -909,7 +909,7 @@ def test_dt3_mid_flow_high_stakes_shape(captured_audit_rows, mock_language, mock
 
     response = process_user_message_with_ooc(text="I want to partner", state=state)
 
-    assert state.service_code == "corporate_fraud_investigation"
+    assert state.service_code == "compliance_audit"
     # OOC turn — counter +1
     assert state.ooc_excursion_count == 1
 
@@ -922,7 +922,7 @@ def test_dt4_pre_data_overrides_high_stakes_in_context(monkeypatch, captured_aud
     from modules.system_detection.sd_orchestrator import process_user_message_with_ooc
 
     state = _state(
-        service_code="corporate_fraud_investigation",  # high_stakes service
+        service_code="compliance_audit",  # high_stakes service
         question_id="case_summary",
         answers={},  # pre_data = True
         session_fallback_language="en",
@@ -1781,7 +1781,7 @@ def test_ooc_context_construction_high_stakes_from_env(monkeypatch, mock_languag
     from modules.system_detection.sd_orchestrator import process_user_message_with_ooc
 
     state = _state(
-        service_code="corporate_fraud_investigation",  # in default OOC_HIGH_STAKES_SERVICES
+        service_code="compliance_audit",  # in default OOC_HIGH_STAKES_SERVICES
         question_id="case_summary",
         answers={"prior": "data"},
     )

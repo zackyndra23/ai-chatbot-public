@@ -11,7 +11,7 @@
 
 ooc.OOC-PARTNERSHIP.cold_start:
   text: |
-    Terima kasih atas minat Anda untuk bermitra dengan Integrity — kolaborasi seperti ini berada di luar lingkup kualifikasi kami, namun kami dengan senang hati akan mengarahkan Anda ke tim yang tepat.
+    Terima kasih atas minat Anda untuk bermitra dengan Acme Services — kolaborasi seperti ini berada di luar lingkup kualifikasi kami, namun kami dengan senang hati akan mengarahkan Anda ke tim yang tepat.
 
     Silakan lengkapi formulir aplikasi kemitraan di {partnership_url} agar kami dapat mengenal organisasi Anda. Setelah dikirim, tim Kemitraan kami akan menindaklanjutinya secara langsung.
 
@@ -49,7 +49,7 @@ ooc.OOC-MYSTERY-SHOPPER-APPLY.cold_start:
 
 ooc.OOC-CAREERS.cold_start:
   text: |
-    Terima kasih atas minat Anda untuk bergabung dengan Integrity! Lowongan penuh waktu dan magang dikelola di luar lingkup saya.
+    Terima kasih atas minat Anda untuk bergabung dengan Acme Services! Lowongan penuh waktu dan magang dikelola di luar lingkup saya.
 
     Anda dapat melihat lowongan saat ini di {careers_url} dan melamar langsung ke posisi yang sesuai dengan latar belakang Anda. Tim kami meninjau setiap aplikasi.
 
@@ -61,7 +61,7 @@ ooc.OOC-CAREERS.cold_start:
 
 ooc.OOC-ADJACENT-SERVICE.cold_start:
   text: |
-    Terima kasih atas pertanyaan Anda. {mentioned_service} berada di luar portofolio layanan Integrity saat ini — kami berfokus pada layanan compliance, risiko, dan investigasi untuk organisasi.
+    Terima kasih atas pertanyaan Anda. {mentioned_service} berada di luar portofolio layanan Acme Services saat ini — kami berfokus pada layanan compliance, risiko, dan investigasi untuk organisasi.
 
     Kami mendukung pertanyaan terkait empat pilar layanan kami:
 
@@ -75,7 +75,7 @@ ooc.OOC-ADJACENT-SERVICE.cold_start:
 
 ooc.OOC-ADJACENT-ISO.cold_start:
   text: |
-    Integrity tidak menerbitkan sertifikasi ISO — sertifikasi tersebut harus berasal dari badan sertifikasi terakreditasi.
+    Acme Services tidak menerbitkan sertifikasi ISO — sertifikasi tersebut harus berasal dari badan sertifikasi terakreditasi.
 
     Yang kami tawarkan adalah modul ABMS E-Learning, yang menyiapkan tim Anda untuk sertifikasi ISO 37001 (Anti-Bribery Management System) dengan cakupan komprehensif dari kesadaran hingga praktik terbaik. Organisasi biasanya menggunakannya bersamaan dengan siklus audit dari badan terakreditasi.
 
@@ -119,7 +119,7 @@ ooc.OOC-COMPLAINT.cold_start:
 
 ooc.OOC-PERSONAL-ADVICE.cold_start:
   text: |
-    Hal tersebut di luar yang dapat saya bantu — saya berfokus pada layanan compliance dan investigasi organisasi Integrity, bukan urusan pribadi seperti hukum, keuangan, atau kesehatan. Untuk nasihat pribadi, silakan berkonsultasi dengan profesional yang berkualifikasi di bidang tersebut.
+    Hal tersebut di luar yang dapat saya bantu — saya berfokus pada layanan compliance dan investigasi organisasi Acme Services, bukan urusan pribadi seperti hukum, keuangan, atau kesehatan. Untuk nasihat pribadi, silakan berkonsultasi dengan profesional yang berkualifikasi di bidang tersebut.
 
     Jika ada hal terkait organisasi yang dapat saya bantu — misalnya pemeriksaan latar belakang karyawan atau investigasi fraud untuk perusahaan — saya dengan senang hati akan memandu Anda.
   status: draft
@@ -129,7 +129,7 @@ ooc.OOC-PERSONAL-ADVICE.cold_start:
 
 ooc.OOC-CHITCHAT.cold_start:
   text: |
-    Hal tersebut sedikit di luar fungsi saya — saya di sini untuk membantu dengan layanan compliance, risiko, dan investigasi dari Integrity.
+    Hal tersebut sedikit di luar fungsi saya — saya di sini untuk membantu dengan layanan compliance, risiko, dan investigasi dari Acme Services.
 
     Saya mendukung pertanyaan terkait empat pilar layanan kami:
 
@@ -164,7 +164,7 @@ ooc.OOC-CATCHALL.cold_start:
     • Thailand / Vietnam: {th_vn_phone}  |  {th_vn_email}
     • Jam kerja: {business_hours}
 
-    Jika ada layanan Integrity yang dapat saya bantu kualifikasinya, silakan beri tahu saya.
+    Jika ada layanan Acme Services yang dapat saya bantu kualifikasinya, silakan beri tahu saya.
   status: draft
   reviewer: "@indonesia-team"
   reviewed_date: null
@@ -203,14 +203,14 @@ ooc.OOC-CAREERS.midflow.p1:
   ai_assisted: true
 
 ooc.OOC-ADJACENT-SERVICE.midflow.p1:
-  text: "Terima kasih — {mentioned_service} berada di luar portofolio Integrity saat ini. Kami berfokus pada layanan compliance, risiko, dan investigasi yang mencakup empat pilar kami (Pencegahan, Deteksi, Mitigasi, Perlindungan Merek). Jika ada yang sesuai dengan kebutuhan Anda, saya dapat mengarahkan Anda. Untuk rujukan atau opsi terkait, silakan hubungi tim kami di {indo_email} atau {indo_phone}."
+  text: "Terima kasih — {mentioned_service} berada di luar portofolio Acme Services saat ini. Kami berfokus pada layanan compliance, risiko, dan investigasi yang mencakup empat pilar kami (Pencegahan, Deteksi, Mitigasi, Perlindungan Merek). Jika ada yang sesuai dengan kebutuhan Anda, saya dapat mengarahkan Anda. Untuk rujukan atau opsi terkait, silakan hubungi tim kami di {indo_email} atau {indo_phone}."
   status: draft
   reviewer: "@indonesia-team"
   reviewed_date: null
   ai_assisted: true
 
 ooc.OOC-ADJACENT-ISO.midflow.p1:
-  text: "Integrity tidak menerbitkan sertifikasi ISO — sertifikasi tersebut berasal dari badan sertifikasi terakreditasi. Yang kami tawarkan adalah modul ABMS E-Learning yang menyiapkan tim Anda untuk sertifikasi ISO 37001 melalui konten interaktif. Organisasi biasanya memasangkannya dengan audit dari badan terakreditasi. Apakah Anda ingin saya jelaskan apakah ABMS E-Learning sesuai, atau menghubungkan Anda ke Sales di {indo_email} atau {indo_phone}?"
+  text: "Acme Services tidak menerbitkan sertifikasi ISO — sertifikasi tersebut berasal dari badan sertifikasi terakreditasi. Yang kami tawarkan adalah modul ABMS E-Learning yang menyiapkan tim Anda untuk sertifikasi ISO 37001 melalui konten interaktif. Organisasi biasanya memasangkannya dengan audit dari badan terakreditasi. Apakah Anda ingin saya jelaskan apakah ABMS E-Learning sesuai, atau menghubungkan Anda ke Sales di {indo_email} atau {indo_phone}?"
   status: draft
   reviewer: "@indonesia-team"
   reviewed_date: null
@@ -238,14 +238,14 @@ ooc.OOC-COMPLAINT.midflow.p1:
   ai_assisted: true
 
 ooc.OOC-PERSONAL-ADVICE.midflow.p1:
-  text: "Hal tersebut di luar yang dapat saya bantu — saya berfokus pada layanan compliance dan investigasi organisasi Integrity, bukan urusan pribadi hukum, keuangan, atau kesehatan. Untuk nasihat pribadi, silakan berkonsultasi dengan profesional yang berkualifikasi di bidang tersebut."
+  text: "Hal tersebut di luar yang dapat saya bantu — saya berfokus pada layanan compliance dan investigasi organisasi Acme Services, bukan urusan pribadi hukum, keuangan, atau kesehatan. Untuk nasihat pribadi, silakan berkonsultasi dengan profesional yang berkualifikasi di bidang tersebut."
   status: draft
   reviewer: "@indonesia-team"
   reviewed_date: null
   ai_assisted: true
 
 ooc.OOC-CHITCHAT.midflow.p1:
-  text: "Hal tersebut sedikit di luar fungsi saya — saya di sini untuk membantu dengan layanan compliance, risiko, dan investigasi dari Integrity."
+  text: "Hal tersebut sedikit di luar fungsi saya — saya di sini untuk membantu dengan layanan compliance, risiko, dan investigasi dari Acme Services."
   status: draft
   reviewer: "@indonesia-team"
   reviewed_date: null
@@ -350,9 +350,9 @@ ooc.escalation.resume_offer:
 
 ooc.service.taxonomy.pillar_block:
   text: |
-    • Pencegahan (Prevention) — Employment Background Screening (EBS), Due Diligence, Know Your Customer, ABMS E-Learning
-    • Deteksi (Detection) — Whistleblowing System (WBS), Mystery Shopping, Market Survey
-    • Mitigasi (Mitigation) — Corporate Fraud Investigation, Insurance Claim Investigation, Asset Tracing, Skip Tracing
+    • Pencegahan (Prevention) — Background Check (EBS), Due Diligence, Know Your Customer, ABMS E-Learning
+    • Deteksi (Detection) — Whistleblowing Hotline (WBS), Mystery Shopping, Market Research
+    • Mitigasi (Mitigation) — Compliance Audit, Claim Review, Asset Verification, Contact Verification
     • Perlindungan Merek (Brand Protection) — Non-Use Investigation, Anti-Counterfeit Investigation, Parallel Trading Investigation, Trademark Investigation
   status: draft
   reviewer: "@indonesia-team"
@@ -491,7 +491,7 @@ picker.switch_label:
 
 # Meeting surfaces (Task 18 lift from sd_meeting.py)
 meeting.footer:
-  text: "Untuk menjadwalkan pertemuan dengan tim kami, Anda dapat langsung menghubungi tim Sales di +62 21–769 8277 atau email info@integrity-asia.com. Sampaikan layanan yang ingin didiskusikan serta waktu yang Anda inginkan, dan tim kami akan menghubungi Anda kembali untuk mengonfirmasi jadwal."
+  text: "Untuk menjadwalkan pertemuan dengan tim kami, Anda dapat langsung menghubungi tim Sales di +1 (555) 010-0100 atau email info@acmeservices.example.com. Sampaikan layanan yang ingin didiskusikan serta waktu yang Anda inginkan, dan tim kami akan menghubungi Anda kembali untuk mengonfirmasi jadwal."
   status: verified
   reviewer: "@design"
   reviewed_date: "2026-05-13"

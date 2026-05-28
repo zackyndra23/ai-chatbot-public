@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 # ===== make_service_id =====
 def test_make_service_id_simple_alnum():
     from modules.faq_automation.faq_pipelines import make_service_id
-    assert make_service_id("Whistleblowing System") == "whistleblowing-system"
+    assert make_service_id("Whistleblowing Hotline") == "whistleblowing-system"
 
 
 def test_make_service_id_special_chars_collapse():
@@ -62,27 +62,27 @@ def test_make_service_id_mixed_case():
     from modules.faq_automation.faq_pipelines import make_service_id
     assert make_service_id("Market SURVEY") == "market-survey"
     assert make_service_id("MARKET SURVEY") == "market-survey"
-    assert make_service_id("market survey") == "market-survey"
+    assert make_service_id("market research") == "market-survey"
 
 
 # ===== _check_collisions =====
 def test_check_collisions_no_collision():
     from modules.faq_automation.faq_pipelines import _check_collisions
     # All distinct slugs — no raise
-    _check_collisions([("market-survey", "Market Survey"),
-                       ("whistleblowing-system", "Whistleblowing System")])
+    _check_collisions([("market-survey", "Market Research"),
+                       ("whistleblowing-system", "Whistleblowing Hotline")])
 
 
 def test_check_collisions_detects_duplicate():
     from modules.faq_automation.faq_pipelines import _check_collisions
     try:
         _check_collisions([
-            ("market-survey", "Market Survey"),
-            ("market-survey", "market survey"),
+            ("market-survey", "Market Research"),
+            ("market-survey", "market research"),
         ])
     except ValueError as e:
         assert "market-survey" in str(e)
-        assert "Market Survey" in str(e) or "market survey" in str(e)
+        assert "Market Research" in str(e) or "market research" in str(e)
         return
     raise AssertionError("expected ValueError on collision")
 
@@ -107,11 +107,11 @@ def test_check_collisions_multiple_groups():
 def test_to_txt_single_service_basic():
     from modules.faq_automation.faq_pipelines import _to_txt_single_service
     out = _to_txt_single_service(
-        sheet_name="Market Survey",
+        sheet_name="Market Research",
         qa_pairs=[("What is X?", "X is Y."), ("Cost?", "Variable.")],
         wrap_width=0,
     )
-    assert "S: Market Survey" in out
+    assert "S: Market Research" in out
     assert "Q: What is X?" in out
     assert "A: X is Y." in out
     assert "Q: Cost?" in out
@@ -292,15 +292,15 @@ def test_faq_mongo_repo_upsert_inserts_new_doc():
     repo, coll = _make_faq_repo_with_fake()
     res = repo.upsert_service(
         service_id="market-survey",
-        service_name="Market Survey",
-        text="S: Market Survey\nQ: x\nA: y",
-        chunks=[{"chunk_index": 0, "service": "Market Survey", "text": "S:..."}],
+        service_name="Market Research",
+        text="S: Market Research\nQ: x\nA: y",
+        chunks=[{"chunk_index": 0, "service": "Market Research", "text": "S:..."}],
         source_sheet_id="sheet-abc",
     )
     assert len(coll.docs) == 1
     d = coll.docs[0]
     assert d["service_id"] == "market-survey"
-    assert d["service_name"] == "Market Survey"
+    assert d["service_name"] == "Market Research"
     assert d["chunks_count"] == 1
     assert d["service_aliases"] == []
     assert d["source_sheet_id"] == "sheet-abc"
@@ -429,8 +429,8 @@ def test_build_service_bundles_from_mocked_sheet():
 
     # Monkey-patch _get_gspread_client and _read_sheet to inject fake data
     fake_data = [
-        ("Market Survey", [("What is X?", "X is Y."), ("Cost?", "Variable.")]),
-        ("Whistleblowing System", [("How report?", "Use the form.")]),
+        ("Market Research", [("What is X?", "X is Y."), ("Cost?", "Variable.")]),
+        ("Whistleblowing Hotline", [("How report?", "Use the form.")]),
     ]
 
     orig_get_client = fp._get_gspread_client
@@ -450,13 +450,13 @@ def test_build_service_bundles_from_mocked_sheet():
         assert len(bundles) == 2
 
         b0 = next(b for b in bundles if b.service_id == "market-survey")
-        assert b0.service_name == "Market Survey"
+        assert b0.service_name == "Market Research"
         assert "Q: What is X?" in b0.text
         assert len(b0.chunks) == 2
-        assert all(ch["service"] == "Market Survey" for ch in b0.chunks)
+        assert all(ch["service"] == "Market Research" for ch in b0.chunks)
 
         b1 = next(b for b in bundles if b.service_id == "whistleblowing-system")
-        assert b1.service_name == "Whistleblowing System"
+        assert b1.service_name == "Whistleblowing Hotline"
         assert len(b1.chunks) == 1
     finally:
         fp._get_gspread_client = orig_get_client
@@ -581,9 +581,9 @@ def test_migrate_real_splits_and_deletes_legacy():
         "_id": "legacy-1",
         "marker": "latest",
         "chunks": [
-            {"chunk_index": 0, "service": "Market Survey", "text": "S: Market Survey\nQ: q\nA: a"},
-            {"chunk_index": 1, "service": "Market Survey", "text": "S: Market Survey\nQ: q2\nA: a2"},
-            {"chunk_index": 0, "service": "Whistleblowing System", "text": "S: WS\nQ: q\nA: a"},
+            {"chunk_index": 0, "service": "Market Research", "text": "S: Market Research\nQ: q\nA: a"},
+            {"chunk_index": 1, "service": "Market Research", "text": "S: Market Research\nQ: q2\nA: a2"},
+            {"chunk_index": 0, "service": "Whistleblowing Hotline", "text": "S: WS\nQ: q\nA: a"},
         ],
     })
     res = mig._migrate_with_collection(fake, dry_run=False, sheet_id="sheet-test")

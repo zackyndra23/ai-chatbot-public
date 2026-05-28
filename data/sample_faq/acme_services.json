@@ -1,0 +1,158 @@
+{
+  "_meta": {
+    "company": "Acme Services (fictional)",
+    "purpose": "Synthetic FAQ dataset for the public portfolio demo. Not real customer or product information.",
+    "schema_version": 1,
+    "license": "MIT (sample data — free to reuse for demo purposes)"
+  },
+  "services": [
+    {
+      "service_id": "whistleblowing_hotline",
+      "service_name": "Whistleblowing Hotline",
+      "aliases": ["whistleblowing", "speak-up channel"],
+      "chunks": [
+        {
+          "service": "Whistleblowing Hotline",
+          "q": "What is the Whistleblowing Hotline service?",
+          "a": "Whistleblowing Hotline is a confidential reporting channel that lets employees and stakeholders report ethics or compliance concerns. Acme Services operates the intake, triage, and case-management workflow.",
+          "text": "S: Whistleblowing Hotline\nQ: What is the Whistleblowing Hotline service?\nA: Whistleblowing Hotline is a confidential reporting channel that lets employees and stakeholders report ethics or compliance concerns. Acme Services operates the intake, triage, and case-management workflow."
+        },
+        {
+          "service": "Whistleblowing Hotline",
+          "q": "How is reporter identity protected?",
+          "a": "Reports can be submitted anonymously or with attribution. Reporter identity, when shared, is held within a restricted case-management system separate from the client organization's HR systems.",
+          "text": "S: Whistleblowing Hotline\nQ: How is reporter identity protected?\nA: Reports can be submitted anonymously or with attribution. Reporter identity, when shared, is held within a restricted case-management system separate from the client organization's HR systems."
+        }
+      ]
+    },
+    {
+      "service_id": "due_diligence",
+      "service_name": "Due Diligence",
+      "aliases": ["DD", "vendor due diligence"],
+      "chunks": [
+        {
+          "service": "Due Diligence",
+          "q": "What is the Due Diligence service?",
+          "a": "Due Diligence is a structured review of a counterparty's background, ownership, regulatory record, and reputational signals. Common use cases include vendor onboarding, M&A targets, and partnership screening.",
+          "text": "S: Due Diligence\nQ: What is the Due Diligence service?\nA: Due Diligence is a structured review of a counterparty's background, ownership, regulatory record, and reputational signals. Common use cases include vendor onboarding, M&A targets, and partnership screening."
+        }
+      ]
+    },
+    {
+      "service_id": "mystery_shopping",
+      "service_name": "Mystery Shopping",
+      "aliases": ["secret shopper", "service quality audit"],
+      "chunks": [
+        {
+          "service": "Mystery Shopping",
+          "q": "What is the Mystery Shopping service?",
+          "a": "Mystery Shopping deploys trained evaluators who experience a service as ordinary customers and report on quality, SOP adherence, and brand consistency. Useful for retail, hospitality, and contact-centre programs.",
+          "text": "S: Mystery Shopping\nQ: What is the Mystery Shopping service?\nA: Mystery Shopping deploys trained evaluators who experience a service as ordinary customers and report on quality, SOP adherence, and brand consistency. Useful for retail, hospitality, and contact-centre programs."
+        }
+      ]
+    },
+    {
+      "service_id": "background_check",
+      "service_name": "Background Check",
+      "aliases": ["employment screening", "EBS"],
+      "chunks": [
+        {
+          "service": "Background Check",
+          "q": "What is the Background Check service?",
+          "a": "Background Check verifies education credentials, employment history, criminal records, and reference statements for candidates and active employees. Scope is configurable per role tier.",
+          "text": "S: Background Check\nQ: What is the Background Check service?\nA: Background Check verifies education credentials, employment history, criminal records, and reference statements for candidates and active employees. Scope is configurable per role tier."
+        }
+      ]
+    },
+    {
+      "service_id": "market_research",
+      "service_name": "Market Research",
+      "aliases": ["market survey", "industry research"],
+      "chunks": [
+        {
+          "service": "Market Research",
+          "q": "What is the Market Research service?",
+          "a": "Market Research delivers primary-data studies (interviews, surveys, mystery-visit panels) and secondary-source synthesis to inform product, pricing, and go-to-market decisions.",
+          "text": "S: Market Research\nQ: What is the Market Research service?\nA: Market Research delivers primary-data studies (interviews, surveys, mystery-visit panels) and secondary-source synthesis to inform product, pricing, and go-to-market decisions."
+        }
+      ]
+    },
+    {
+      "service_id": "asset_verification",
+      "service_name": "Asset Verification",
+      "aliases": ["asset tracing"],
+      "chunks": [
+        {
+          "service": "Asset Verification",
+          "q": "What is the Asset Verification service?",
+          "a": "Asset Verification confirms the existence, ownership, and condition of physical or corporate assets. Used by lenders, insurers, and counterparties before entering large transactions.",
+          "text": "S: Asset Verification\nQ: What is the Asset Verification service?\nA: Asset Verification confirms the existence, ownership, and condition of physical or corporate assets. Used by lenders, insurers, and counterparties before entering large transactions."
+        }
+      ]
+    },
+    {
+      "service_id": "contact_verification",
+      "service_name": "Contact Verification",
+      "aliases": ["skip tracing", "address verification"],
+      "chunks": [
+        {
+          "service": "Contact Verification",
+          "q": "What is the Contact Verification service?",
+          "a": "Contact Verification re-establishes current contact details (address, employer, phone) for individuals whose details have become stale — typically commissioned by lenders, insurers, and HR functions.",
+          "text": "S: Contact Verification\nQ: What is the Contact Verification service?\nA: Contact Verification re-establishes current contact details (address, employer, phone) for individuals whose details have become stale — typically commissioned by lenders, insurers, and HR functions."
+        }
+      ]
+    },
+    {
+      "service_id": "compliance_audit",
+      "service_name": "Compliance Audit",
+      "aliases": ["risk audit"],
+      "chunks": [
+        {
+          "service": "Compliance Audit",
+          "q": "What is the Compliance Audit service?",
+          "a": "Compliance Audit reviews a client's policies, transaction records, and operating practices against a specified regulatory or contractual standard, producing a gap report and remediation roadmap.",
+          "text": "S: Compliance Audit\nQ: What is the Compliance Audit service?\nA: Compliance Audit reviews a client's policies, transaction records, and operating practices against a specified regulatory or contractual standard, producing a gap report and remediation roadmap."
+        },
+        {
+          "service": "Compliance Audit",
+          "q": "How long does a typical Compliance Audit engagement take?",
+          "a": "Engagements range from two to twelve weeks depending on scope, document volume, and the number of business units involved. A scoping call is needed before quoting.",
+          "text": "S: Compliance Audit\nQ: How long does a typical Compliance Audit engagement take?\nA: Engagements range from two to twelve weeks depending on scope, document volume, and the number of business units involved. A scoping call is needed before quoting."
+        }
+      ]
+    },
+    {
+      "service_id": "claim_review",
+      "service_name": "Claim Review",
+      "aliases": ["insurance claim review"],
+      "chunks": [
+        {
+          "service": "Claim Review",
+          "q": "What is the Claim Review service?",
+          "a": "Claim Review independently assesses insurance or warranty claims for accuracy, supporting documentation, and policy alignment, helping carriers manage payout risk and recover overpayments where appropriate.",
+          "text": "S: Claim Review\nQ: What is the Claim Review service?\nA: Claim Review independently assesses insurance or warranty claims for accuracy, supporting documentation, and policy alignment, helping carriers manage payout risk and recover overpayments where appropriate."
+        }
+      ]
+    },
+    {
+      "service_id": "general",
+      "service_name": "General",
+      "aliases": ["company", "about"],
+      "chunks": [
+        {
+          "service": "General",
+          "q": "What services does Acme Services offer?",
+          "a": "Acme Services offers nine consulting services: Whistleblowing Hotline, Due Diligence, Mystery Shopping, Background Check, Market Research, Asset Verification, Contact Verification, Compliance Audit, and Claim Review. Each is delivered by a dedicated practice team and can be combined for multi-track engagements.",
+          "text": "S: General\nQ: What services does Acme Services offer?\nA: Acme Services offers nine consulting services: Whistleblowing Hotline, Due Diligence, Mystery Shopping, Background Check, Market Research, Asset Verification, Contact Verification, Compliance Audit, and Claim Review. Each is delivered by a dedicated practice team and can be combined for multi-track engagements."
+        },
+        {
+          "service": "General",
+          "q": "How can I contact Acme Services?",
+          "a": "You can reach Acme Services at info@acmeservices.example.com or +1 (555) 010-0100. Our team responds within one business day.",
+          "text": "S: General\nQ: How can I contact Acme Services?\nA: You can reach Acme Services at info@acmeservices.example.com or +1 (555) 010-0100. Our team responds within one business day."
+        }
+      ]
+    }
+  ]
+}

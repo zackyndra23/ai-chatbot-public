@@ -62,7 +62,7 @@ def test_multi_collection_merge_by_distance():
 def test_dedupe_by_content():
     """Two collections both contain a doc with identical page_content; only one returned."""
     from modules.system_detection import sd_vector_repo as svr
-    same_text = "Integrity has offices in ID/TH/MY"
+    same_text = "Acme Services has offices in ID/TH/MY"
     coll_a = _FakeChroma([(_doc(same_text, "wbs"), 0.10), (_doc("A2", "wbs"), 0.30)])
     coll_b = _FakeChroma([(_doc(same_text, "general"), 0.12), (_doc("B2", "general"), 0.20)])
     with patch.object(svr, "_vectorstores", {"wbs": coll_a, "general": coll_b}):

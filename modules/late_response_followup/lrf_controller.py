@@ -13,7 +13,7 @@ late_response_followup_bp = Blueprint(
 )
 
 
-@late_response_followup_bp.post("/aitegrity-core/chatbot/late-response-followup/run")
+@late_response_followup_bp.post("/rag-assistant/chatbot/late-response-followup/run")
 def run_late_response_followup():
     header_name = cfg.API_HEADER_NAME
     expected = cfg.API_KEY

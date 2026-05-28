@@ -85,7 +85,7 @@ db.query_recording.aggregate([
 
 ### 5. Constraint #4 false-positive monitoring — per `active_service` OOC rate
 
-Use to prioritize Phase 1 in-scope keyword bank expansion for the 7 services without explicit banks (`kyc`, `abms_elearning`, `market_survey`, `non_use_investigation`, `anti_counterfeit_investigation`, `parallel_trading_investigation`, `trademark_investigation`).
+Use to prioritize Phase 1 in-scope keyword bank expansion for the 7 services without explicit banks (`kyc`, `abms_elearning`, `market_research`, `non_use_investigation`, `anti_counterfeit_investigation`, `parallel_trading_investigation`, `trademark_investigation`).
 
 ```js
 db.query_recording.aggregate([

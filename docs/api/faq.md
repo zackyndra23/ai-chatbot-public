@@ -3,7 +3,7 @@
 Exposed by `modules/faq_automation/faq_controller.py`, mounted on the FastAPI
 app in `main.py` (not the Flask chatbot).
 
-## `POST /aitegrity-core/faq-automation`
+## `POST /rag-assistant/faq-automation`
 
 Triggers end-to-end FAQ ingestion: reads Google Sheets → chunks → writes to
 Mongo → rebuilds the Chroma KB and atomically swaps `vector_data/current/`.
@@ -22,8 +22,8 @@ Header `x-api-key: <API_KEY>` (name from `API_HEADER_NAME`, default `x-api-key`)
 **Body:** plain text, must equal `TRIGGER_TRUE_VALUE` (default `true`).
 
 ```http
-POST /aitegrity-core/faq-automation HTTP/1.1
-x-api-key: 4743f227-0b8c-4a22-827d-16d5eb18fb56
+POST /rag-assistant/faq-automation HTTP/1.1
+x-api-key: <your-api-key>
 Content-Type: text/plain
 
 true
@@ -43,14 +43,14 @@ true
   "per_service": [
     {
       "service_id": "whistleblowing-system",
-      "service_name": "Whistleblowing System",
+      "service_name": "Whistleblowing Hotline",
       "doc_id": "<uuid4>",
       "chunks_count": 38,
       "updated_at": "2026-05-07T14:30:00.000+07:00",
       "created": false
     }
   ],
-  "source": "https://api.integrity-asia.com:2303/aitegrity-core/faq-automation",
+  "source": "https://api.acmeservices.example.com:2303/rag-assistant/faq-automation",
   "kb_rebuilt": false,
   "kb_current": "/app/vector_data/current",
   "kb_docs": null,
@@ -108,7 +108,7 @@ See [`../ops/env_reference.md`](../ops/env_reference.md).
 
 ---
 
-## `POST /aitegrity-core/knowledgebase-rebuild`
+## `POST /rag-assistant/knowledgebase-rebuild`
 
 Rebuilds the Chroma knowledgebase from whatever is currently in Mongo (the
 `MONGO_FAQ_UPDATE` collection). **Always forced** — bypasses the checksum gate
@@ -132,8 +132,8 @@ Header `x-api-key: <API_KEY>` (name from `API_HEADER_NAME`, default `x-api-key`)
 **Body:** plain text, must equal `TRIGGER_TRUE_VALUE` (default `true`).
 
 ```http
-POST /aitegrity-core/knowledgebase-rebuild HTTP/1.1
-x-api-key: 4743f227-0b8c-4a22-827d-16d5eb18fb56
+POST /rag-assistant/knowledgebase-rebuild HTTP/1.1
+x-api-key: <your-api-key>
 Content-Type: text/plain
 
 true
@@ -165,19 +165,19 @@ true
   the OLD Chroma index in memory. Restart the chatbot to reload
   `vector_data/current/`.
 - This endpoint is implemented inline in `app.py` (not in the FAQ router) —
-  consistent with the `/aitegrity-core/sales-slots-update` pattern.
+  consistent with the `/rag-assistant/sales-slots-update` pattern.
 - Reuses `modules/vector_build/vb_service.build_and_swap(force=True)`.
 
 ---
 
-## `POST /aitegrity-core/knowledgebase-rebuild/<service_id>`
+## `POST /rag-assistant/knowledgebase-rebuild/<service_id>`
 
 **Stage 3A (2026-05-07).** Force rebuild ONE service's Chroma collection. Useful
 for hot-fix without rebuilding the whole KB. Requires `KB_BACKEND` in `{split, dual}`.
 
 ### Auth / Request
 
-Same as `/aitegrity-core/knowledgebase-rebuild`: `x-api-key` header, `Content-Type: text/plain`,
+Same as `/rag-assistant/knowledgebase-rebuild`: `x-api-key` header, `Content-Type: text/plain`,
 body equal to `TRIGGER_TRUE_VALUE`.
 
 ### Response (200)

@@ -5,7 +5,7 @@ Two endpoints issued by the standalone `token_generate` Flask service
 
 Both endpoints accept data flexibly: JSON body, form-encoded, or query string.
 
-## `POST /aitegrity-core/user-id-generate`
+## `POST /rag-assistant/user-id-generate`
 
 Issues a new `userId` record for a website, associating it with an `api_key`.
 
@@ -22,22 +22,22 @@ Any of:
 
 ```json
 {
-  "websiteId": "integrity-asia.com",
-  "api_key":  "4743f227-…",
-  "name":     "Zaky"
+  "websiteId": "acmeservices.example.com",
+  "api_key":  "<your-api-key>",
+  "name":     "Demo User"
 }
 ```
 
 **2. Form-encoded:**
 
 ```
-websiteId=integrity-asia.com&api_key=4743f227-…&name=Zaky
+websiteId=acmeservices.example.com&api_key=<your-api-key>&name=Demo+User
 ```
 
 **3. Query string:**
 
 ```
-POST /aitegrity-core/user-id-generate?websiteId=integrity-asia.com&api_key=…&name=Zaky
+POST /rag-assistant/user-id-generate?websiteId=acmeservices.example.com&api_key=…&name=Zaky
 ```
 
 ### Fields
@@ -53,7 +53,7 @@ POST /aitegrity-core/user-id-generate?websiteId=integrity-asia.com&api_key=…&n
 ```json
 {
   "status": "ok",
-  "websiteId": "integrity-asia.com",
+  "websiteId": "acmeservices.example.com",
   "api_key":   "…",
   "name":      "Zaky",
   "userId":    "uid-…",
@@ -70,7 +70,7 @@ POST /aitegrity-core/user-id-generate?websiteId=integrity-asia.com&api_key=…&n
 
 ---
 
-## `POST /aitegrity-core/session-id-generate`
+## `POST /rag-assistant/session-id-generate`
 
 Issues a new session token for an existing API key.
 

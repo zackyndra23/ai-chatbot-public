@@ -6,7 +6,7 @@ which is what `Dockerfile.prod` and `modal_app.py` actually serve. The FastAPI
 
 ## Main chatbot
 
-### `POST /aitegrity-core/chatbot/claude4sonnet`
+### `POST /rag-assistant/chatbot/claude4sonnet`
 
 Primary chatbot entrypoint. Handles intent classification (FAQ vs meeting vs
 service-agent vs OOC), retrieval, LLM call, and persistence.
@@ -65,9 +65,9 @@ Exact shape depends on `route` (FAQ reply, meeting picker, OOC redirect, etc.).
 
 ## Service agent
 
-### `POST /aitegrity-core/chatbot/claude4sonnet/service-agent`
+### `POST /rag-assistant/chatbot/claude4sonnet/service-agent`
 
-Structured flows — EBS (Employment Background Screening), quotation, handoff.
+Structured flows — EBS (Background Check), quotation, handoff.
 Entered via picker values (e.g. `PICKER_Employment_Background_Screening`) or
 free-text continuations.
 
@@ -102,7 +102,7 @@ Varies by flow step. Typically includes the next picker/string payload from
 
 ## Out-of-context classifier test
 
-### `POST /aitegrity-core/chatbot/ooc-agent/test`
+### `POST /rag-assistant/chatbot/ooc-agent/test`
 
 Returns classification for a user utterance — useful for tuning OOC rules.
 
@@ -129,7 +129,7 @@ Pydantic v1 `.dict()` of the OOC classification result.
 
 ## Late-response follow-up
 
-### `POST /aitegrity-core/chatbot/late-response-followup/run`
+### `POST /rag-assistant/chatbot/late-response-followup/run`
 
 Manual trigger for the late-response scanner.
 
@@ -155,23 +155,23 @@ processed and follow-ups sent.
 Mounted by `modules/chat_testing_ui/ctu_controller.py`. These are for QA, not
 for real clients.
 
-### `GET /aitegrity-core/chatbot/claude4sonnet/ui_testing/<name>`
+### `GET /rag-assistant/chatbot/claude4sonnet/ui_testing/<name>`
 
 Renders the testing UI for a named user account (from Mongo `api_keys` or
 crisp_sessions collection).
 
-### `POST /aitegrity-core/chatbot/claude4sonnet/ui_testing_proxy/<name>`
+### `POST /rag-assistant/chatbot/claude4sonnet/ui_testing_proxy/<name>`
 
 Proxies a question to the main chatbot endpoint using the user's stored
 session + token.
 
 **Body:** `{ "question": "<text>" }` → returns whatever the chatbot returned.
 
-### `POST /aitegrity-core/chatbot/claude4sonnet/ui_testing_activate/<name>`
+### `POST /rag-assistant/chatbot/claude4sonnet/ui_testing_activate/<name>`
 
 Activates (issues) a session for the named user.
 
-### `POST /aitegrity-core/chatbot/claude4sonnet/ui_testing_shutdown/<name>`
+### `POST /rag-assistant/chatbot/claude4sonnet/ui_testing_shutdown/<name>`
 
 Deactivates the user's active token.
 

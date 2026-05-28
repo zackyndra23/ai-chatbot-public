@@ -91,9 +91,9 @@ class Config:
     CRON_MINUTE: int = int(os.getenv("CRON_MINUTE", "30"))
 
     # === API Trigger ===
-    API_KEY: str = _clean(os.getenv("API_KEY", "4743f227-0b8c-4a22-827d-16d5eb18fb56"))
+    API_KEY: str = _clean(os.getenv("API_KEY", ""))
     API_HEADER_NAME: str = os.getenv("API_HEADER_NAME", "x-api-key")
-    SERVICE_AGENT_API_KEY: str = _clean(os.getenv("SERVICE_AGENT_API_KEY", "0569b455-be95-431d-bf65-331bbe2ec2da"))
+    SERVICE_AGENT_API_KEY: str = _clean(os.getenv("SERVICE_AGENT_API_KEY", ""))
     SERVICE_AGENT_API_HEADER_NAME: str = os.getenv("SERVICE_AGENT_API_HEADER_NAME", "x-service-agent-api-key")
     TRIGGER_TRUE_VALUE: str = os.getenv("TRIGGER_TRUE_VALUE", "true").strip().lower()
     WEBSITE_ID_HEADER_NAME: str = os.getenv("WEBSITE_ID_HEADER_NAME", "off")
@@ -105,7 +105,7 @@ class Config:
     # retrieval is governed by RETRIEVAL_K (sd_policies.py) and
     # CTX_DOCS_SAME_SERVICE / CTX_DOCS_OTHER_SERVICE below.
 
-    PUBLIC_BASE_URL: str | None = os.getenv("PUBLIC_BASE_URL")  # contoh: https://10.30.112.70:2303
+    PUBLIC_BASE_URL: str | None = os.getenv("PUBLIC_BASE_URL")  # contoh: https://chatbot.example.com
 
     # === Session & Token Generate ===
     MONGO_SESSION: str = os.getenv("MONGO_SESSION", "api_keys")
@@ -215,7 +215,7 @@ class Config:
     FAQ_VERIFICATOR: str = os.getenv("FAQ_VERIFICATOR", "on").strip().lower()
 
     # Sales slots monitoring and knowledge base
-    DB_CHATBOT: str = os.getenv("DB_CHATBOT", "integrity_chatbot").strip()
+    DB_CHATBOT: str = os.getenv("DB_CHATBOT", "rag_assistant_chatbot").strip()
     PAYLOAD_CALENDAR_COL: str = os.getenv("PAYLOAD_CALENDAR_COL", "calendar_payload").strip()
     SALES_SHEET_ID: str = os.getenv("SALES_SHEET_ID", "1Kz7WIVaNBHmVEX-LeKm_EtKl9vCffkiu-U-7_YSc3XI").strip()
     SALES_SHEET_NAME: str = os.getenv("SALES_SHEET_NAME", "Sales_Slots2").strip()
@@ -226,8 +226,8 @@ class Config:
     INDV_INDEX_TTL_SEC: int = int(os.getenv("INDV_INDEX_TTL_SEC", "60"))
     # Safety throttle antar request actual API (ketika cache refresh)
     SHEETS_MIN_INTERVAL: float = float(os.getenv("SHEETS_MIN_INTERVAL", "0.25"))
-    BOOKED_PATH_API: str = os.getenv("BOOKED_PATH_API", "http://10.30.112.16:3030/api/calendar/event").strip()
-    BEARER_TOKEN_CALENDAR_API: str = os.getenv("BEARER_TOKEN_CALENDAR_API", "kmzWa8wa").strip()
+    BOOKED_PATH_API: str = os.getenv("BOOKED_PATH_API", "").strip()
+    BEARER_TOKEN_CALENDAR_API: str = os.getenv("BEARER_TOKEN_CALENDAR_API", "").strip()
 
     # === Vector/KB paths (standarisasi) ===
     VECTOR_DATA_DIR: str = os.getenv("VECTOR_DATA_DIR", os.getenv("VECTORDB_PATH", "./vector_data"))
@@ -244,7 +244,7 @@ class Config:
 
     BOARD_ID = os.getenv("BOARD_ID", "").strip()
     TOPICS = os.getenv("TOPICS", "").strip()  # bisa CSV / string
-    MONDAY_PATH: str = os.getenv("MONDAY_PATH", "https://n8n.integrity-asia.com/webhook/0f474b33-9e8d-46dd-adac-0996747643cb").strip()
+    MONDAY_PATH: str = os.getenv("MONDAY_PATH", "").strip()
     MONDAY_KEY = os.getenv("MONDAY_KEY", "").strip()  
     MONDAY_VALUE = os.getenv("MONDAY_VALUE", "").strip()
 
@@ -288,12 +288,12 @@ class Config:
     OOC_LANG_DETECTION_FLOOR: float = float(os.getenv("OOC_LANG_DETECTION_FLOOR", "0.85"))
     OOC_MIN_KEYWORD_HITS: int = int(os.getenv("OOC_MIN_KEYWORD_HITS", "1"))
     OOC_MIN_TEXT_LEN: int = int(os.getenv("OOC_MIN_TEXT_LEN", "3"))
-    OOC_FREELANCER_URL: str = os.getenv("OOC_FREELANCER_URL", "https://www.integrity-indonesia.com/freelancer/").strip()
-    OOC_PARTNER_URL: str = os.getenv("OOC_PARTNER_URL", "https://www.integrity-indonesia.com/partner/").strip()
+    OOC_FREELANCER_URL: str = os.getenv("OOC_FREELANCER_URL", "https://www.acmeservices.example.com/freelancer/").strip()
+    OOC_PARTNER_URL: str = os.getenv("OOC_PARTNER_URL", "https://www.acmeservices.example.com/partner/").strip()
     OOC_HIGH_STAKES_SERVICES: tuple[str, ...] = tuple(
         s.strip() for s in os.getenv(
             "OOC_HIGH_STAKES_SERVICES",
-            "corporate_fraud_investigation,insurance_claim_investigation,asset_tracing,skip_tracing"
+            "compliance_audit,claim_review,asset_verification,contact_verification"
         ).split(",") if s.strip()
     )
     OOC_ALLOWED_LOCALES: tuple[str, ...] = tuple(

@@ -16,7 +16,7 @@ not be confused.
 | Entrypoint | Framework | Purpose | Run by |
 |---|---|---|---|
 | `main.py` → `app` | FastAPI | FAQ ingestion endpoint + SSU scheduler + `/health` + chat_testing_ui mount | local dev (`uvicorn main:app`) |
-| `modules/system_detection/chatbot.py` → `app` | Flask | The actual user-facing chatbot (`/aitegrity-core/chatbot/claude4sonnet`) + SSU blueprint + scheduler | Docker `prod`, Modal, `python -m modules.system_detection.chatbot` |
+| `modules/system_detection/chatbot.py` → `app` | Flask | The actual user-facing chatbot (`/rag-assistant/chatbot/claude4sonnet`) + SSU blueprint + scheduler | Docker `prod`, Modal, `python -m modules.system_detection.chatbot` |
 
 `Dockerfile.prod` and `modal_app.py` both launch the Flask chatbot. `main.py` is
 primarily a dev/admin surface for FAQ + SSU manual triggers.
@@ -54,7 +54,7 @@ modules/
 ```
  Client (website / Crisp)
       │
-      │ POST /aitegrity-core/chatbot/claude4sonnet
+      │ POST /rag-assistant/chatbot/claude4sonnet
       │ Headers: x-api-key, x-website-id (optional), x-token-id (optional)
       │ Body:    { session_id, question, utilizer?, token_id? }
       ▼
@@ -86,7 +86,7 @@ modules/
 
 Cross-cutting:
 
-- **FAQ updates** come via `POST /aitegrity-core/faq-automation` → `FAQService.run_pipeline` → rebuilds Chroma via `vector_build.build_and_swap` (checksum-gated).
+- **FAQ updates** come via `POST /rag-assistant/faq-automation` → `FAQService.run_pipeline` → rebuilds Chroma via `vector_build.build_and_swap` (checksum-gated).
 - **Token lifecycle:** issued by `token_generate`, validated by `sd_repo.lookup_session_by_token`, auto-deactivated by APScheduler rules (idle-with-history / no-activity TTL).
 - **SSU** runs on an interval scheduler inside both `main.py` and `modules/system_detection/chatbot.py`.
 
@@ -150,7 +150,7 @@ See `docs/modules/out_of_context.md`:
 ## Deployment topology
 
 - **Dev:** `docker-compose up` (single service `rag_chatbot`) or direct `uvicorn main:app`.
-- **Prod:** GitLab CI builds a CUDA image via `Dockerfile.prod` (`runtime_cuda` stage), pushes to registry, SSH deploys to `10.30.40.155`-style hosts with `docker compose pull && up -d`.
+- **Prod:** GitLab CI builds a CUDA image via `Dockerfile.prod` (`runtime_cuda` stage), pushes to the container registry, then SSH-deploys to a tagged runner host with `docker compose pull && up -d`.
 - **Modal (optional):** `modal_app.py` wraps the Flask chatbot in a Modal WSGI function on an L4 GPU.
 
 See [`ops/deployment.md`](ops/deployment.md) for the full deploy flow.

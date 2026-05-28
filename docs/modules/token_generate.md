@@ -24,8 +24,8 @@ Two responsibilities:
 
 ## HTTP
 
-- `POST /aitegrity-core/user-id-generate` — see [`../api/token.md`](../api/token.md).
-- `POST /aitegrity-core/session-id-generate` — see [`../api/token.md`](../api/token.md).
+- `POST /rag-assistant/user-id-generate` — see [`../api/token.md`](../api/token.md).
+- `POST /rag-assistant/session-id-generate` — see [`../api/token.md`](../api/token.md).
 
 ## Standalone run
 
@@ -39,7 +39,7 @@ project `.env`.
 ## Data flow (session-id)
 
 ```
-POST /aitegrity-core/session-id-generate
+POST /rag-assistant/session-id-generate
     (x-api-key header, body="true")
     ↓
 TokenService.generate_session_id
@@ -67,7 +67,7 @@ Logs `Deactivated session token for key=... reason=...` per deactivation.
 | Key | Default | Purpose |
 |---|---|---|
 | `PORT_TG` | `2303` | Flask port. |
-| `API_KEY` | `4743f227-…` | Default API key when body doesn't provide one. |
+| `API_KEY` | *(empty — required)* | Default API key when body doesn't provide one. |
 | `API_HEADER_NAME` | `x-api-key` | Header name for session-id endpoint. |
 | `TRIGGER_TRUE_VALUE` | `true` | Required plain-text body value. |
 | `MONGO_URI`, `MONGO_DB`, `MONGO_SESSION` | *(required)* | User/token storage. |

@@ -8,7 +8,7 @@ cfg = Config()
 
 ooc_bp = Blueprint("ooc_agent", __name__)
 
-@ooc_bp.route("/aitegrity-core/chatbot/ooc-agent/test", methods=["POST"])
+@ooc_bp.route("/rag-assistant/chatbot/ooc-agent/test", methods=["POST"])
 def ooc_test():
     """
     Body:

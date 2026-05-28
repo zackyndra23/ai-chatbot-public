@@ -33,14 +33,14 @@ def _force_env_from_secrets():
 def load_ui_config() -> UiConfig:
     _force_env_from_secrets()  # pastikan sebelum baca os.getenv(*)
     return UiConfig(
-        backend_origin=os.getenv("TESTING_BACKEND_ORIGIN", "http://10.30.112.70:2303"),
-        base_path=os.getenv("TESTING_BASE_PATH", "/aitegrity-core/chatbot/claude4sonnet"),
-        mongo_uri=os.getenv("MONGO_URI", "mongodb://chatbot_user:BukanSandiNegaraTapiSandiMongoDB2025!@10.30.40.123:27776,10.30.40.123:27777,10.30.40.123:27778/integrity_chatbot?replicaSet=rs0&authSource=integrity_chatbot"),
-        mongo_db=os.getenv("MONGO_DB", "integrity_chatbot"),
+        backend_origin=os.getenv("TESTING_BACKEND_ORIGIN", ""),
+        base_path=os.getenv("TESTING_BASE_PATH", "/rag-assistant/chatbot/claude4sonnet"),
+        mongo_uri=os.getenv("MONGO_URI", ""),
+        mongo_db=os.getenv("MONGO_DB", "chatbot"),
         mongo_coll=os.getenv("MONGO_SESSION", os.getenv("API_KEYS_COLLECTION", "crisp_sessions")),
         token_svc_origin=os.getenv("TOKEN_SVC_ORIGIN", "http://localhost:2303"),
-        token_generate_path=os.getenv("TOKEN_GENERATE_PATH", "/aitegrity-core/session-id-generate"),
-        token_deactivate_path=os.getenv("TOKEN_DEACTIVATE_PATH", "/aitegrity-core/token-deactivate-append"),
+        token_generate_path=os.getenv("TOKEN_GENERATE_PATH", "/rag-assistant/session-id-generate"),
+        token_deactivate_path=os.getenv("TOKEN_DEACTIVATE_PATH", "/rag-assistant/token-deactivate-append"),
         api_header_name=os.getenv("API_HEADER_NAME", "x-api-key"),
     )
 

@@ -3,11 +3,11 @@
 This file is read at session start. It tells Claude the non-obvious rules of this
 repository that can't be inferred from code alone.
 
-## Git / GitLab
+## Git
 
-Do not commit, push, tag, open MRs, or otherwise write to git history or to
-GitLab unless the user explicitly asks in the current turn. Edits in the working
-tree are fine; the user reviews and commits manually.
+Do not commit, push, tag, open PRs/MRs, or otherwise write to git history
+unless the user explicitly asks in the current turn. Edits in the working tree
+are fine; the user reviews and commits manually.
 
 ## Documentation freshness
 
@@ -20,7 +20,7 @@ matching doc in the same turn:
 - Change / add an env key (in `core/app_config.py`, `.env.example`, or anywhere
   `os.getenv(...)` is added) → update `docs/ops/env_reference.md`
 - Add / change an APScheduler job → update `docs/ops/schedulers.md`
-- Change Dockerfile, docker-compose.yml, modal_app.py, or .gitlab-ci.yml →
+- Change Dockerfile, docker-compose.yml, modal_app.py, or CI config →
   update `docs/ops/deployment.md`
 - Change `core/gpu_config.py` or GPU behavior → update `docs/ops/gpu_setup.md`
 - Change `core/app_config.py` architecture-wise (not just adding a key) →

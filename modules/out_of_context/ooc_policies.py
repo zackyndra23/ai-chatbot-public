@@ -15,11 +15,11 @@ class OOCPolicies:
 
     allowed_locales_csv: str = os.getenv("OOC_ALLOWED_LOCALES", "").strip()
 
-    freelancer_url: str = os.getenv("OOC_FREELANCER_URL", "https://www.integrity-indonesia.com/freelancer/").strip()
+    freelancer_url: str = os.getenv("OOC_FREELANCER_URL", "https://www.acmeservices.example.com/freelancer/").strip()
     # NOTE: partner_url previously defaulted to the freelancer page (bug).
     # Set OOC_PARTNER_URL in .env to override with the actual partnership
     # landing page for your region.
-    partner_url: str = os.getenv("OOC_PARTNER_URL", "https://www.integrity-indonesia.com/partner/").strip()
+    partner_url: str = os.getenv("OOC_PARTNER_URL", "https://www.acmeservices.example.com/partner/").strip()
 
 # =========================
 # Keyword banks (punyamu sudah OK, cukup pastikan 10+ per bahasa)
@@ -99,7 +99,7 @@ FREELANCE_INTENT_PHRASES: tuple[str, ...] = (
     "work as freelance", "want to be freelance", "want to freelance",
     "hire me as freelancer", "register as freelancer",
     # EN — 2026-05-19 expansion per Intent_Signal_Examples
-    "freelance work for integrity", "freelance work for",
+    "freelance work for acme services", "freelance work for",
     "do freelance work", "independent investigator",
     "i'm an independent investigator", "as a contractor",
     "as a freelancer", "as freelancer", "as freelance",
@@ -113,7 +113,7 @@ FREELANCE_INTENT_PHRASES: tuple[str, ...] = (
     "lamar sebagai freelancer", "jadi pekerja lepas", "menjadi pekerja lepas",
     "daftar pekerja lepas", "gabung pekerja lepas",
     # ID — 2026-05-19 expansion
-    "kerja freelance untuk integrity", "investigator independen",
+    "kerja freelance untuk acme services", "investigator independen",
     "investigator lepas", "saya investigator independen",
     "sebagai kontraktor", "gabung sebagai kontraktor",
     "punya pengalaman lapangan", "pengalaman riset lapangan",
@@ -145,7 +145,7 @@ FREELANCE_INTENT_PHRASES: tuple[str, ...] = (
 PARTNERSHIP_INTENT_PHRASES: tuple[str, ...] = (
     # EN — explicit intent (legacy)
     "become a partner", "be a partner", "become partners", "be partners",
-    "join as partner", "join as a partner", "partner with integrity",
+    "join as partner", "join as a partner", "partner with acme services",
     "partner with you", "reseller program", "affiliate program",
     "partnership program", "referral program", "become reseller",
     "become an affiliate", "business partnership", "strategic partnership",
@@ -204,28 +204,28 @@ PARTNERSHIP_INTENT_PHRASES: tuple[str, ...] = (
 # =========================
 REPLIES = {
     "freelance": {
-        "en": "Thank you for your interest to join Integrity as a freelancer. Please visit this link ({url}) for detailed information.",
-        "id": "Terima kasih atas ketertarikan Anda untuk bergabung sebagai freelancer di Integrity. Silakan kunjungi tautan ini ({url}) untuk informasi lebih lanjut.",
-        "ms": "Terima kasih atas minat anda untuk menyertai Integrity sebagai freelancer. Sila lawati pautan ini ({url}) untuk maklumat lanjut.",
-        "th": "ขอบคุณที่สนใจเข้าร่วม Integrity ในฐานะฟรีแลนซ์ โปรดเยี่ยมชมลิงก์นี้ ({url}) สำหรับข้อมูลเพิ่มเติม",
-        "de": "Vielen Dank für Ihr Interesse, als Freelancer bei Integrity mitzuarbeiten. Bitte besuchen Sie diesen Link ({url}) für weitere Informationen.",
-        "fr": "Merci pour votre intérêt à rejoindre Integrity en tant que freelance. Veuillez consulter ce lien ({url}) pour plus d’informations.",
-        "ro": "Vă mulțumim pentru interesul de a vă alătura Integrity ca freelancer. Vă rugăm să accesați acest link ({url}) pentru mai multe informații.",
-        "it": "Grazie per il tuo interesse a collaborare con Integrity come freelance. Visita questo link ({url}) per maggiori informazioni.",
-        "ru": "Спасибо за интерес к сотрудничеству с Integrity в качестве фрилансера. Пожалуйста, перейдите по ссылке ({url}) для подробной информации.",
+        "en": "Thank you for your interest to join Acme Services as a freelancer. Please visit this link ({url}) for detailed information.",
+        "id": "Terima kasih atas ketertarikan Anda untuk bergabung sebagai freelancer di Acme Services. Silakan kunjungi tautan ini ({url}) untuk informasi lebih lanjut.",
+        "ms": "Terima kasih atas minat anda untuk menyertai Acme Services sebagai freelancer. Sila lawati pautan ini ({url}) untuk maklumat lanjut.",
+        "th": "ขอบคุณที่สนใจเข้าร่วม Acme Services ในฐานะฟรีแลนซ์ โปรดเยี่ยมชมลิงก์นี้ ({url}) สำหรับข้อมูลเพิ่มเติม",
+        "de": "Vielen Dank für Ihr Interesse, als Freelancer bei Acme Services mitzuarbeiten. Bitte besuchen Sie diesen Link ({url}) für weitere Informationen.",
+        "fr": "Merci pour votre intérêt à rejoindre Acme Services en tant que freelance. Veuillez consulter ce lien ({url}) pour plus d’informations.",
+        "ro": "Vă mulțumim pentru interesul de a vă alătura Acme Services ca freelancer. Vă rugăm să accesați acest link ({url}) pentru mai multe informații.",
+        "it": "Grazie per il tuo interesse a collaborare con Acme Services come freelance. Visita questo link ({url}) per maggiori informazioni.",
+        "ru": "Спасибо за интерес к сотрудничеству с Acme Services в качестве фрилансера. Пожалуйста, перейдите по ссылке ({url}) для подробной информации.",
         "ja": "Integrityでフリーランスとして参加をご検討いただきありがとうございます。詳細は以下のリンク（{url}）をご確認ください。",
         "zh": "感谢您有兴趣以自由职业者身份加入Integrity。请访问此链接（{url}）了解更多信息。",
     },
     "partnership": {
-        "en": "Thank you for your interest to become Integrity's partner. Please visit this link ({url}) for detailed information.",
-        "id": "Terima kasih atas ketertarikan Anda untuk menjadi mitra Integrity. Silakan kunjungi tautan ini ({url}) untuk informasi lebih lanjut.",
-        "ms": "Terima kasih atas minat anda untuk menjadi rakan kongsi Integrity. Sila lawati pautan ini ({url}) untuk maklumat lanjut.",
-        "th": "ขอบคุณที่สนใจเป็นพันธมิตรกับ Integrity โปรดเยี่ยมชมลิงก์นี้ ({url}) สำหรับข้อมูลเพิ่มเติม",
-        "de": "Vielen Dank für Ihr Interesse an einer Partnerschaft mit Integrity. Bitte besuchen Sie diesen Link ({url}) für weitere Informationen.",
-        "fr": "Merci pour votre intérêt à devenir partenaire d’Integrity. Veuillez consulter ce lien ({url}) pour plus d’informations.",
-        "ro": "Vă mulțumim pentru interesul de a deveni partener Integrity. Vă rugăm să accesați acest link ({url}) pentru mai multe informații.",
-        "it": "Grazie per il tuo interesse a diventare partner di Integrity. Visita questo link ({url}) per maggiori informazioni.",
-        "ru": "Спасибо за интерес к партнерству с Integrity. Пожалуйста, перейдите по ссылке ({url}) для подробной информации.",
+        "en": "Thank you for your interest to become Acme Services's partner. Please visit this link ({url}) for detailed information.",
+        "id": "Terima kasih atas ketertarikan Anda untuk menjadi mitra Acme Services. Silakan kunjungi tautan ini ({url}) untuk informasi lebih lanjut.",
+        "ms": "Terima kasih atas minat anda untuk menjadi rakan kongsi Acme Services. Sila lawati pautan ini ({url}) untuk maklumat lanjut.",
+        "th": "ขอบคุณที่สนใจเป็นพันธมิตรกับ Acme Services โปรดเยี่ยมชมลิงก์นี้ ({url}) สำหรับข้อมูลเพิ่มเติม",
+        "de": "Vielen Dank für Ihr Interesse an einer Partnerschaft mit Acme Services. Bitte besuchen Sie diesen Link ({url}) für weitere Informationen.",
+        "fr": "Merci pour votre intérêt à devenir partenaire d’Acme Services. Veuillez consulter ce lien ({url}) pour plus d’informations.",
+        "ro": "Vă mulțumim pentru interesul de a deveni partener Acme Services. Vă rugăm să accesați acest link ({url}) pentru mai multe informații.",
+        "it": "Grazie per il tuo interesse a diventare partner di Acme Services. Visita questo link ({url}) per maggiori informazioni.",
+        "ru": "Спасибо за интерес к партнерству с Acme Services. Пожалуйста, перейдите по ссылке ({url}) для подробной информации.",
         "ja": "Integrityとのパートナー提携にご関心をお寄せいただきありがとうございます。詳細は以下のリンク（{url}）をご確認ください。",
         "zh": "感谢您有兴趣成为Integrity的合作伙伴。请访问此链接（{url}）了解更多信息。",
     },
@@ -485,7 +485,7 @@ VENDOR_SUPPLIER_KEYWORDS: dict[str, list[str]] = {
         "vendor introduction", "wholesale", "procurement opportunity",
         # 2026-05-19 expansion per Intent_Signal_Examples
         "sell you", "sell you software", "sell software",
-        "want to sell", "selling to integrity",
+        "want to sell", "selling to acme services",
         "office services", "we offer office",
         "vendor onboarding", "we are vendors",
         "vendor for", "be your vendor", "be your supplier",
@@ -644,7 +644,7 @@ IN_SCOPE_SERVICE_TERMS: dict[str, dict[str, list[str]]] = {
             "case handler", "case manager", "whistleblower",
             "reporting channel", "investigation timeline",
             "anonymity", "anonymous reporting", "retaliation",
-            "wbs platform", "wbs implementation", "whistleblowing system",
+            "wbs platform", "wbs implementation", "whistleblowing hotline",
         ],
         "id": [
             "penanggung jawab kasus", "case handler",
@@ -693,7 +693,7 @@ IN_SCOPE_SERVICE_TERMS: dict[str, dict[str, list[str]]] = {
             "cakupan outlet",
         ],
     },
-    "corporate_fraud_investigation": {
+    "compliance_audit": {
         "en": [
             "fraud investigation", "internal fraud",
             "embezzlement", "asset misappropriation",
@@ -707,7 +707,7 @@ IN_SCOPE_SERVICE_TERMS: dict[str, dict[str, list[str]]] = {
             "pengumpulan bukti",
         ],
     },
-    "insurance_claim_investigation": {
+    "claim_review": {
         "en": [
             "claim verification", "claim investigation",
             "policy holder", "insurance fraud",
@@ -722,7 +722,7 @@ IN_SCOPE_SERVICE_TERMS: dict[str, dict[str, list[str]]] = {
             "penilaian klaim", "dokumentasi klaim",
         ],
     },
-    "asset_tracing": {
+    "asset_verification": {
         "en": [
             "asset recovery", "trace assets", "hidden assets",
             "beneficial ownership", "financial investigation",
@@ -736,7 +736,7 @@ IN_SCOPE_SERVICE_TERMS: dict[str, dict[str, list[str]]] = {
             "aset luar negeri",
         ],
     },
-    "skip_tracing": {
+    "contact_verification": {
         "en": [
             "locate person", "locate debtor", "missing person",
             "contact information", "residence verification",
@@ -759,7 +759,7 @@ IN_SCOPE_SERVICE_TERMS: dict[str, dict[str, list[str]]] = {
     #
     #   kyc                            (Prevention)
     #   abms_elearning                 (Prevention)
-    #   market_survey                  (Detection)
+    #   market_research                  (Detection)
     #   non_use_investigation          (Brand Protection)
     #   anti_counterfeit_investigation (Brand Protection)
     #   parallel_trading_investigation (Brand Protection)

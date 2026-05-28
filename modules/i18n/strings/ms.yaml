@@ -82,7 +82,7 @@ picker.switch_label:
 
 # Meeting surfaces (Task 18 lift from sd_meeting.py)
 meeting.footer:
-  text: "Untuk mengatur pertemuan dengan pasukan kami, anda boleh menghubungi pasukan jualan di +60 3–7931 1323 atau e-mel info@integrity-malaysia.com. Sila maklumkan jenis perkhidmatan dan masa yang anda inginkan supaya kami boleh mengesahkan jadual dengan anda."
+  text: "Untuk mengatur pertemuan dengan pasukan kami, anda boleh menghubungi pasukan jualan di +1 (555) 010-0101 atau e-mel info@acmeservices.example.com. Sila maklumkan jenis perkhidmatan dan masa yang anda inginkan supaya kami boleh mengesahkan jadual dengan anda."
   status: draft
   reviewer: null
   reviewed_date: null

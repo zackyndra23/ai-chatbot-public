@@ -31,7 +31,7 @@ def render_meeting_start_note_prompt(language_code: str, start_hour: int, end_ho
 
 # --- di ma_prompts.py ---
 
-meeting_start_prompt_applied = """You are an AI Helpfull Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services.
+meeting_start_prompt_applied = """You are an AI Helpfull Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services.
 Target language: {language_name}.
 
 The user wants to arrange a meeting. Reply briefly (2–4 sentences) in the SAME language.
@@ -340,7 +340,7 @@ def render_recap_3040_prompt(language_code: str, summary_block: str) -> str:
     """
     Recap 30–40 kata:
     - Tulis DALAM bahasa {language_code} (paksa, jangan deteksi otomatis).
-    - Sorot layanan/produk Integrity yang dibahas, poin teknis/pengetahuan yang sudah dijawab,
+    - Sorot layanan/produk Acme Services yang dibahas, poin teknis/pengetahuan yang sudah dijawab,
       tujuan/keingintahuan user, dan potensi manfaat/peningkatan bisnis.
     - 1 kalimat, tanpa heading/markdown/kutipan.
     - Reformulasi; jangan menyalin "Chat Summarization:".
@@ -351,7 +351,7 @@ You are a professional meeting summarizer.
 Write ONE sentence of 30–40 words in {lang}.
 
 Focus on:
-- Main Integrity service(s) discussed,
+- Main Acme Services service(s) discussed,
 - Key technical/informational points provided,
 - The user's goal/curiosity and the potential business/operational improvement.
 
@@ -389,7 +389,7 @@ def render_meeting_simple_prompt_agile(
     """
 
     prompt = f"""
-You are an AI Helpful Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services.
+You are an AI Helpful Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services.
 Target language: {language_name}.
 
 The user wants to arrange a meeting. Reply briefly (1–2 sentences) in the SAME language.

@@ -26,7 +26,7 @@ def send_turn(
     Returns the parsed JSON response dict, with an added '__wallclock_ms' field
     measuring the HTTP round-trip duration.
     """
-    url = f"{base_url.rstrip('/')}/aitegrity-core/chatbot/claude4sonnet"
+    url = f"{base_url.rstrip('/')}/rag-assistant/chatbot/claude4sonnet"
     headers = {
         os.getenv("API_HEADER_NAME", "x-api-key"): _api_key(),
         "Content-Type": "application/json",

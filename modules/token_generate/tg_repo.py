@@ -12,7 +12,7 @@ from .tg_utils import getenv_str, now_local, iso_local, slugify_name
 class TokenRepo:
     def __init__(self) -> None:
         mongo_uri = getenv_str("MONGO_URI", "mongodb://localhost:27017")
-        mongo_db = getenv_str("MONGO_DB", "integrity_chatbot")
+        mongo_db = getenv_str("MONGO_DB", "rag_assistant_chatbot")
         self.collection_name = getenv_str("MONGO_SESSION", "api_keys")
         self.api_header_name = getenv_str("API_HEADER_NAME", "X-APIKey")
 

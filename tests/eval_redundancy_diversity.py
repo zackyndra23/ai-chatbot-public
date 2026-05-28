@@ -19,15 +19,15 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 # 10 hand-labeled questions with expected service label that should appear
 # at least once in top-4.
 EVAL_QUESTIONS = [
-    ("apa itu whistleblowing", "Whistleblowing System"),
-    ("bagaimana mencegah fraud", "Whistleblowing System"),
+    ("apa itu whistleblowing", "Whistleblowing Hotline"),
+    ("bagaimana mencegah fraud", "Whistleblowing Hotline"),
     ("berapa biaya layanan due diligence", "Due Diligence"),
     ("apa itu mystery shopping", "Mystery Shopping"),
-    ("market survey untuk produk baru", "Market Survey"),
-    ("background screening karyawan", "Employment Background Screening"),
+    ("market research untuk produk baru", "Market Research"),
+    ("background screening karyawan", "Background Check"),
     ("anti-bribery management system", "Anti-Bribery Management System"),
     ("ISO 37001 sertifikasi", "Anti-Bribery Management System"),
-    ("audit kepatuhan perusahaan", "Whistleblowing System"),
+    ("audit kepatuhan perusahaan", "Whistleblowing Hotline"),
     ("layanan apa saja yang tersedia", "General"),
 ]
 

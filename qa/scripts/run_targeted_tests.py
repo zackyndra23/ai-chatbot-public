@@ -24,12 +24,12 @@ from qa.scripts.lib import http_client, mongo_helpers
 
 # FAQ-RAG-routed queries verified during Step 0 dry-run:
 T1_TURNS = [
-    "apa saja layanan yang ditawarkan Aitegrity?",
-    "tolong sebutkan jenis layanan dari Aitegrity",
-    "apa portfolio layanan yang dimiliki Aitegrity?",
+    "apa saja layanan yang ditawarkan RAG Assistant?",
+    "tolong sebutkan jenis layanan dari RAG Assistant",
+    "apa portfolio layanan yang dimiliki RAG Assistant?",
 ]
-T2_QUERY = "apa saja layanan yang ditawarkan Aitegrity?"
-T3_PRE = "apa saja layanan yang ditawarkan Aitegrity?"
+T2_QUERY = "apa saja layanan yang ditawarkan RAG Assistant?"
+T3_PRE = "apa saja layanan yang ditawarkan RAG Assistant?"
 T3_RECAP = "tolong ulangi penjelasan tadi"
 
 

@@ -28,8 +28,8 @@ def test_map_short_label_parallel_trading_resolves():
 def test_map_canonical_label_still_works():
     """Sanity: canonical long-form labels still resolve."""
     from modules.system_detection.sd_service import _map_related_service_to_value_code
-    vc, lbl = _map_related_service_to_value_code("Whistleblowing System")
-    assert vc == "whistleblowing_system", f"got {vc!r}"
+    vc, lbl = _map_related_service_to_value_code("Whistleblowing Hotline")
+    assert vc == "whistleblowing_hotline", f"got {vc!r}"
 
 
 def test_map_unknown_label_returns_empty():
@@ -150,7 +150,7 @@ def test_preferred_service_first_in_batch_0():
     # First two should be WBS + Mystery Shopping
     first_value = actual[0]["value"]
     second_value = actual[1]["value"]
-    assert "whistleblowing_system" in first_value, f"first should be WBS, got {first_value}"
+    assert "whistleblowing_hotline" in first_value, f"first should be WBS, got {first_value}"
     assert "mystery_shopping" in second_value, f"second should be MS, got {second_value}"
 
 

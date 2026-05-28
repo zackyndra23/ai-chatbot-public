@@ -85,18 +85,18 @@ def create_app() -> FastAPI:
     # ====================================================
 
     # Router FAQ (sudah ada)
-    app.include_router(faq_router)  # endpoint: /aitegrity-core/faq-automation
+    app.include_router(faq_router)  # endpoint: /rag-assistant/faq-automation
     # (ini persis pola yang sudah kamu pakai) :contentReference[oaicite:1]{index=1}
 
     # ----------------- Endpoint manual KB rebuild -----------------
-    @app.post("/aitegrity-core/knowledgebase-rebuild")
+    @app.post("/rag-assistant/knowledgebase-rebuild")
     async def kb_rebuild_trigger(request: Request, x_api_key: str = Header(None)):
         """
         Manual rebuild of the Chroma knowledgebase from the current Mongo FAQ
         chunks. Bypasses the checksum gate (always rebuilds). Does NOT re-fetch
         from Google Sheets and does NOT touch Mongo.
 
-        Trigger shape matches /aitegrity-core/faq-automation:
+        Trigger shape matches /rag-assistant/faq-automation:
           Header: x-api-key: <cfg.API_KEY>
           Content-Type: text/plain
           Body: cfg.TRIGGER_TRUE_VALUE   (default "true")
@@ -123,7 +123,7 @@ def create_app() -> FastAPI:
     # ---------------------------------------------------------------
 
     # ----------------- Per-service manual rebuild (Stage 3A) -----------------
-    @app.post("/aitegrity-core/knowledgebase-rebuild/{service_id}")
+    @app.post("/rag-assistant/knowledgebase-rebuild/{service_id}")
     async def kb_rebuild_one_service(
         service_id: str,
         request: Request,
@@ -194,7 +194,7 @@ def create_app() -> FastAPI:
     # -----------------------------------------------------------------------
 
     # ----------------- Endpoint manual SSU -----------------
-    @app.post("/aitegrity-core/sales-slots-update")
+    @app.post("/rag-assistant/sales-slots-update")
     def ssu_trigger(payload: str = "", x_api_key: str = Header(None)):
         """
         Manual trigger ala FAQ. Wajib header: x-api-key

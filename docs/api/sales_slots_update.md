@@ -6,7 +6,7 @@ Manual triggers for the SSU job (which normally runs on a scheduler — see
 Two flavors exist because SSU is registered in both the Flask chatbot and the
 FastAPI admin app:
 
-## `POST /aitegrity-core/sales-slots-update`  *(FastAPI — `main.py`)*
+## `POST /rag-assistant/sales-slots-update`  *(FastAPI — `main.py`)*
 
 ### Auth
 
@@ -16,7 +16,7 @@ Header `x-api-key` against any of `X_API_KEY`, `API_KEY`, or `SSU_API_KEY`
 ### Request
 
 ```http
-POST /aitegrity-core/sales-slots-update HTTP/1.1
+POST /rag-assistant/sales-slots-update HTTP/1.1
 x-api-key: <key>
 ```
 
@@ -45,7 +45,7 @@ Body is ignored.
 
 ---
 
-## `GET /aitegrity-core/ssu/run`  or  `POST /aitegrity-core/ssu/run`  *(Flask blueprint)*
+## `GET /rag-assistant/ssu/run`  or  `POST /rag-assistant/ssu/run`  *(Flask blueprint)*
 
 Registered by `modules/sales_slots_update/ssu_controller.py` as `ssu_bp` —
 mounted in the Flask chatbot (`modules/system_detection/chatbot.py`).

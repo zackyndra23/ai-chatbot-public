@@ -39,7 +39,7 @@ def test_handle_cold_start_partnership_returns_cold_start_shape():
     # DT-1
     svc = OOCService()
     ctx = OOCContext(
-        user_text="I want to partner with Integrity",
+        user_text="I want to partner with Acme Services",
         user_detected_language="en",
         raw_detected_language="en",
         raw_detection_confidence=0.95,
@@ -52,7 +52,7 @@ def test_handle_cold_start_partnership_returns_cold_start_shape():
     assert result.streak_classification == "user_ooc"
     assert result.set_escalation_suppression is False
     # Routing assets substituted in message
-    assert "contact@integrity-asia.com" in result.message or "@" in result.message
+    assert "contact@acmeservices.example.com" in result.message or "@" in result.message
     # No unsubstituted placeholders
     assert "{" not in result.message
 
@@ -66,7 +66,7 @@ def test_handle_mid_flow_standard_returns_3_paragraph_composite():
     # DT-2
     svc = OOCService()
     ctx = OOCContext(
-        user_text="I want to partner with Integrity",
+        user_text="I want to partner with Acme Services",
         user_detected_language="en",
         raw_detected_language="en",
         raw_detection_confidence=0.95,
@@ -80,7 +80,7 @@ def test_handle_mid_flow_standard_returns_3_paragraph_composite():
     assert result is not None
     assert result.shape_used == "mid_flow_standard"
     # P1 + P2 (re-anchor) + P3 (re-pose)
-    assert "Whistleblowing System (WBS)" in result.message
+    assert "Whistleblowing Hotline (WBS)" in result.message
     assert "How many case handlers do you have?" in result.message
 
 
@@ -88,11 +88,11 @@ def test_handle_mid_flow_high_stakes_returns_4_paragraph_composite():
     # DT-3
     svc = OOCService()
     ctx = OOCContext(
-        user_text="I want to partner with Integrity",
+        user_text="I want to partner with Acme Services",
         user_detected_language="en",
         raw_detected_language="en",
         raw_detection_confidence=0.95,
-        active_service="corporate_fraud_investigation",
+        active_service="compliance_audit",
         current_field_id="case_summary",
         pre_data=False,
         high_stakes_intake=True,
@@ -107,11 +107,11 @@ def test_handle_pre_data_overrides_high_stakes():
     # DT-4 — spec Q#3 refinement: pre_data wins over high_stakes
     svc = OOCService()
     ctx = OOCContext(
-        user_text="I want to partner with Integrity",
+        user_text="I want to partner with Acme Services",
         user_detected_language="en",
         raw_detected_language="en",
         raw_detection_confidence=0.95,
-        active_service="corporate_fraud_investigation",
+        active_service="compliance_audit",
         pre_data=True,
         high_stakes_intake=True,
     )
@@ -130,7 +130,7 @@ def test_handle_escalation_fires_when_threshold_reached():
     # DT-5 — 3rd consecutive OOC triggers escalation_handover
     svc = OOCService()
     ctx = OOCContext(
-        user_text="I want to partner with Integrity",
+        user_text="I want to partner with Acme Services",
         user_detected_language="en",
         raw_detected_language="en",
         raw_detection_confidence=0.95,
@@ -151,7 +151,7 @@ def test_handle_escalation_fires_when_threshold_reached():
 def test_handle_below_threshold_does_NOT_escalate():
     svc = OOCService()
     ctx = OOCContext(
-        user_text="I want to partner with Integrity",
+        user_text="I want to partner with Acme Services",
         user_detected_language="en",
         raw_detected_language="en",
         raw_detection_confidence=0.95,
@@ -191,7 +191,7 @@ def test_handle_in_scope_question_returns_none():
 def test_handle_returns_typed_audit_metadata():
     svc = OOCService()
     ctx = OOCContext(
-        user_text="I want to partner with Integrity",
+        user_text="I want to partner with Acme Services",
         user_detected_language="en",
         raw_detected_language="en",
         raw_detection_confidence=0.95,
@@ -208,7 +208,7 @@ def test_handle_returns_typed_audit_metadata():
 def test_handle_audit_metadata_serializes_to_dict_for_mongo():
     svc = OOCService()
     ctx = OOCContext(
-        user_text="I want to partner with Integrity",
+        user_text="I want to partner with Acme Services",
         user_detected_language="en",
         raw_detected_language="en",
         raw_detection_confidence=0.95,
@@ -234,7 +234,7 @@ def test_handle_audit_metadata_serializes_to_dict_for_mongo():
 def test_handle_in_ar_sets_bidi_wrap_applied():
     svc = OOCService()
     ctx = OOCContext(
-        user_text="I want to partner with Integrity",
+        user_text="I want to partner with Acme Services",
         user_detected_language="ar",
         raw_detected_language="ar",
         raw_detection_confidence=0.95,
@@ -247,7 +247,7 @@ def test_handle_in_ar_sets_bidi_wrap_applied():
 def test_handle_in_en_does_not_set_bidi_wrap_applied():
     svc = OOCService()
     ctx = OOCContext(
-        user_text="I want to partner with Integrity",
+        user_text="I want to partner with Acme Services",
         user_detected_language="en",
         raw_detected_language="en",
         raw_detection_confidence=0.95,

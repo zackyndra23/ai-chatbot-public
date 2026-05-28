@@ -6,7 +6,7 @@ docs → trigger KB rebuild.
 ## Purpose
 
 Keep the FAQ knowledge base in sync with a source Google Sheet. Triggered by
-`POST /aitegrity-core/faq-automation` (see [`../api/faq.md`](../api/faq.md)),
+`POST /rag-assistant/faq-automation` (see [`../api/faq.md`](../api/faq.md)),
 this module reads the sheet, splits per-tab into `ServiceBundle`s, reconciles
 deleted tabs, upserts N per-service docs into Mongo `MONGO_FAQ_UPDATE`, then
 asks `vector_build.build_and_swap` to rebuild the Chroma index.
@@ -21,7 +21,7 @@ for design rationale.
 
 | Symbol | File | Purpose |
 |---|---|---|
-| `router` | `faq_controller.py` | FastAPI `APIRouter` — exposes `POST /aitegrity-core/faq-automation`. |
+| `router` | `faq_controller.py` | FastAPI `APIRouter` — exposes `POST /rag-assistant/faq-automation`. |
 | `FAQService(cfg, repo, pipelines)` | `faq_service.py` | Orchestration. Key method: `run_pipeline(source)` (per-service flow). Also `debug_sheets()`. |
 | `build_service_bundles(cfg)` | `faq_pipelines.py` | Read Sheet → list of `ServiceBundle` (one per tab). Detects slug collisions before any downstream work. |
 | `make_service_id(name)` | `faq_pipelines.py` | URL-safe slug from raw tab title. ASCII-fold + lowercase + non-alnum→"-". Raises `ValueError` if empty. |
@@ -43,11 +43,11 @@ emits `DeprecationWarning`.
 {
   "marker": "latest",                                       // upsert key (compound with service_id)
   "service_id": "whistleblowing-system",                    // slug; stable across runs
-  "service_name": "Whistleblowing System",                  // raw tab title from Sheet (immutable: don't mutate)
+  "service_name": "Whistleblowing Hotline",                  // raw tab title from Sheet (immutable: don't mutate)
   "service_aliases": [],                                     // list[str]; empty on insert; preserved across upserts
-  "text": "S: Whistleblowing System\nQ: ...\nA: ...",        // S/Q/A blob, this service only
+  "text": "S: Whistleblowing Hotline\nQ: ...\nA: ...",        // S/Q/A blob, this service only
   "chunks": [
-    {"chunk_index": 0, "service": "Whistleblowing System", "text": "S: ...\nQ: ...\nA: ..."}
+    {"chunk_index": 0, "service": "Whistleblowing Hotline", "text": "S: ...\nQ: ...\nA: ..."}
   ],
   "chunks_count": 38,
   "doc_id": "<uuid4>",                                       // refreshed each upsert
@@ -65,7 +65,7 @@ emits `DeprecationWarning`.
 ## Data flow
 
 ```
-POST /aitegrity-core/faq-automation (text/plain "true")
+POST /rag-assistant/faq-automation (text/plain "true")
         │
         ▼
 FAQService.run_pipeline(source=...)
@@ -132,7 +132,7 @@ FAQService.run_pipeline(source=...)
   python -m modules.faq_automation.migrate_split_latest             # apply
   ```
   Idempotent — safe to run multiple times. Detects the legacy doc by absence of the `service_id` field. After migration, the legacy doc is deleted.
-- **Slug stability after Sheet rename**: renaming a tab in the Sheet (e.g. `"Whistleblowing System"` → `"WBS"`) changes the slug → old doc appears in `services_deleted`, new doc gets created. **Manual edits to `service_aliases` on the old doc are lost.** Operator can use `service_aliases` for rename equivalence (intended use) or accept the trade-off.
+- **Slug stability after Sheet rename**: renaming a tab in the Sheet (e.g. `"Whistleblowing Hotline"` → `"WBS"`) changes the slug → old doc appears in `services_deleted`, new doc gets created. **Manual edits to `service_aliases` on the old doc are lost.** Operator can use `service_aliases` for rename equivalence (intended use) or accept the trade-off.
 - If `build_and_swap` returns while Chroma files are still locked (Windows), it falls back to copytree — slower but works. See [`../ops/troubleshooting.md`](../ops/troubleshooting.md).
 
 ## Extension notes

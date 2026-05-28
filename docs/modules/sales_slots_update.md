@@ -17,7 +17,7 @@ cleared and rewritten on each run (idempotent).
 
 | Symbol | File | Purpose |
 |---|---|---|
-| `ssu_bp` | `ssu_controller.py` | Flask blueprint — exposes `GET/POST /aitegrity-core/ssu/run`. |
+| `ssu_bp` | `ssu_controller.py` | Flask blueprint — exposes `GET/POST /rag-assistant/ssu/run`. |
 | `SalesSlotsUpdateService()` | `ssu_service.py` | Main orchestration. Key methods: `run_once()`, `compute_window()`, `build_matrix()`, `write_matrix_to_sheet()`, `write_individual_matrix_to_sheet()`. |
 | `register_ssu_scheduler(app)` | `ssu_pipelines.py` | Register the APScheduler interval job against the host app/scheduler. |
 | `SalesSlotsRepo` | `ssu_repo.py` | Mongo access: `build_matrix_counts`, `build_individual_matrix`, `log_upsert_last`, `log_append`. |
@@ -27,8 +27,8 @@ cleared and rewritten on each run (idempotent).
 
 ## HTTP
 
-- `POST /aitegrity-core/ssu/run` (Flask, no auth) — see [`../api/sales_slots_update.md`](../api/sales_slots_update.md).
-- `POST /aitegrity-core/sales-slots-update` (FastAPI, in `main.py`, API-key auth).
+- `POST /rag-assistant/ssu/run` (Flask, no auth) — see [`../api/sales_slots_update.md`](../api/sales_slots_update.md).
+- `POST /rag-assistant/sales-slots-update` (FastAPI, in `main.py`, API-key auth).
 
 ## Data flow
 

@@ -5,7 +5,7 @@
 
 # Meeting surfaces (Task 18 lift from sd_meeting.py)
 meeting.footer:
-  text: "Per fixar in inscunter cun nossa squadra, pudais Vus scriver a info@integrity-asia.com u telefonar al +62 21–769 8277. Inditgai Vossas disponibilitads e ils servetschs che Vus vulais discutir, uschia che nossa squadra da vendita po confermar in termin adattà."
+  text: "Per fixar in inscunter cun nossa squadra, pudais Vus scriver a info@acmeservices.example.com u telefonar al +1 (555) 010-0100. Inditgai Vossas disponibilitads e ils servetschs che Vus vulais discutir, uschia che nossa squadra da vendita po confermar in termin adattà."
   status: draft
   reviewer: null
   reviewed_date: null

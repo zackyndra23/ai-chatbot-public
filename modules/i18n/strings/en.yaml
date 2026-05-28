@@ -8,7 +8,7 @@
 
 ooc.OOC-PARTNERSHIP.cold_start:
   text: |
-    Thanks for considering a partnership with Integrity — collaborations like this are outside our qualification scope, but we'd be glad to route you to the right team.
+    Thanks for considering a partnership with Acme Services — collaborations like this are outside our qualification scope, but we'd be glad to route you to the right team.
 
     Please complete the partnership application at {partnership_url} so we can learn about your organization. Once submitted, our Partnerships team will follow up directly.
 
@@ -46,7 +46,7 @@ ooc.OOC-MYSTERY-SHOPPER-APPLY.cold_start:
 
 ooc.OOC-CAREERS.cold_start:
   text: |
-    Thanks for your interest in joining Integrity! Full-time openings and internships are managed outside my scope.
+    Thanks for your interest in joining Acme Services! Full-time openings and internships are managed outside my scope.
 
     You can explore current openings at {careers_url} and apply directly to any role that matches your background. Our team reviews every application.
 
@@ -58,7 +58,7 @@ ooc.OOC-CAREERS.cold_start:
 
 ooc.OOC-ADJACENT-SERVICE.cold_start:
   text: |
-    Thanks for the question. {mentioned_service} sits outside Integrity's current service portfolio — we focus on compliance, risk, and investigation services for organizations.
+    Thanks for the question. {mentioned_service} sits outside Acme Services's current service portfolio — we focus on compliance, risk, and investigation services for organizations.
 
     We support inquiries across our four service pillars:
 
@@ -72,7 +72,7 @@ ooc.OOC-ADJACENT-SERVICE.cold_start:
 
 ooc.OOC-ADJACENT-ISO.cold_start:
   text: |
-    Integrity doesn't issue ISO certifications — those must come from an accredited certification body.
+    Acme Services doesn't issue ISO certifications — those must come from an accredited certification body.
 
     What we do offer is the ABMS E-Learning module, which prepares your team for ISO 37001 (Anti-Bribery Management System) certification with comprehensive coverage from awareness through best practices. Organizations typically use it alongside an accredited body's audit cycle.
 
@@ -116,7 +116,7 @@ ooc.OOC-COMPLAINT.cold_start:
 
 ooc.OOC-PERSONAL-ADVICE.cold_start:
   text: |
-    That's outside what I can help with — I'm focused on Integrity's organizational compliance and investigation services rather than personal legal, financial, or health matters. For personal advice, please consult a qualified professional in that field.
+    That's outside what I can help with — I'm focused on Acme Services's organizational compliance and investigation services rather than personal legal, financial, or health matters. For personal advice, please consult a qualified professional in that field.
 
     If there's anything organizational I can help with — for example, employment screening or fraud investigation for a company — I'd be glad to walk you through it.
   status: verified
@@ -126,7 +126,7 @@ ooc.OOC-PERSONAL-ADVICE.cold_start:
 
 ooc.OOC-CHITCHAT.cold_start:
   text: |
-    That's a bit outside what I'm built for — I'm here to help with Integrity's compliance, risk, and investigation services.
+    That's a bit outside what I'm built for — I'm here to help with Acme Services's compliance, risk, and investigation services.
 
     I support inquiries across our four service pillars:
 
@@ -161,7 +161,7 @@ ooc.OOC-CATCHALL.cold_start:
     • Thailand / Vietnam: {th_vn_phone}  |  {th_vn_email}
     • Business hours: {business_hours}
 
-    If there's an Integrity service I can help you qualify for instead, just let me know.
+    If there's an Acme Services service I can help you qualify for instead, just let me know.
   status: verified
   reviewer: "@design"
   reviewed_date: "2026-05-13"
@@ -200,14 +200,14 @@ ooc.OOC-CAREERS.midflow.p1:
   ai_assisted: false
 
 ooc.OOC-ADJACENT-SERVICE.midflow.p1:
-  text: "Thanks — {mentioned_service} sits outside Integrity's current portfolio. We focus on compliance, risk, and investigation services across our four pillars (Prevention, Detection, Mitigation, Brand Protection). If any matches what you actually need, I can route you. For a referral or adjacent options, reach our team at {indo_email} or {indo_phone}."
+  text: "Thanks — {mentioned_service} sits outside Acme Services's current portfolio. We focus on compliance, risk, and investigation services across our four pillars (Prevention, Detection, Mitigation, Brand Protection). If any matches what you actually need, I can route you. For a referral or adjacent options, reach our team at {indo_email} or {indo_phone}."
   status: verified
   reviewer: "@design"
   reviewed_date: "2026-05-13"
   ai_assisted: false
 
 ooc.OOC-ADJACENT-ISO.midflow.p1:
-  text: "Integrity doesn't issue ISO certifications — that comes from an accredited certification body. We do offer the ABMS E-Learning module, which prepares your team for ISO 37001 certification through interactive content. Organizations typically pair it with an accredited body's audit. Want me to walk through whether ABMS E-Learning fits your needs, or connect you to Sales at {indo_email} or {indo_phone}?"
+  text: "Acme Services doesn't issue ISO certifications — that comes from an accredited certification body. We do offer the ABMS E-Learning module, which prepares your team for ISO 37001 certification through interactive content. Organizations typically pair it with an accredited body's audit. Want me to walk through whether ABMS E-Learning fits your needs, or connect you to Sales at {indo_email} or {indo_phone}?"
   status: verified
   reviewer: "@design"
   reviewed_date: "2026-05-13"
@@ -235,14 +235,14 @@ ooc.OOC-COMPLAINT.midflow.p1:
   ai_assisted: false
 
 ooc.OOC-PERSONAL-ADVICE.midflow.p1:
-  text: "That's outside what I can help with — I'm focused on Integrity's organizational compliance and investigation services, not personal legal, financial, or health matters. For personal advice, please consult a qualified professional in that field."
+  text: "That's outside what I can help with — I'm focused on Acme Services's organizational compliance and investigation services, not personal legal, financial, or health matters. For personal advice, please consult a qualified professional in that field."
   status: verified
   reviewer: "@design"
   reviewed_date: "2026-05-13"
   ai_assisted: false
 
 ooc.OOC-CHITCHAT.midflow.p1:
-  text: "That's a bit outside what I'm built for — I'm here to help with Integrity's compliance, risk, and investigation services."
+  text: "That's a bit outside what I'm built for — I'm here to help with Acme Services's compliance, risk, and investigation services."
   status: verified
   reviewer: "@design"
   reviewed_date: "2026-05-13"
@@ -347,9 +347,9 @@ ooc.escalation.resume_offer:
 
 ooc.service.taxonomy.pillar_block:
   text: |
-    • Prevention — Employment Background Screening (EBS), Due Diligence, Know Your Customer, ABMS E-Learning
-    • Detection — Whistleblowing System (WBS), Mystery Shopping, Market Survey
-    • Mitigation — Corporate Fraud Investigation, Insurance Claim Investigation, Asset Tracing, Skip Tracing
+    • Prevention — Background Check (EBS), Due Diligence, Know Your Customer, ABMS E-Learning
+    • Detection — Whistleblowing Hotline (WBS), Mystery Shopping, Market Research
+    • Mitigation — Compliance Audit, Claim Review, Asset Verification, Contact Verification
     • Brand Protection — Non-Use Investigation, Anti-Counterfeit Investigation, Parallel Trading Investigation, Trademark Investigation
   status: verified
   reviewer: "@design"
@@ -472,7 +472,7 @@ picker.switch_label:
 
 # Meeting surfaces (Task 18 lift from sd_meeting.py)
 meeting.footer:
-  text: "If you would like to schedule a meeting with our team, please contact our sales team at +62 21–769 8277 or email info@integrity-asia.com. Share your availability and the services you wish to discuss, and we will propose and confirm a suitable slot."
+  text: "If you would like to schedule a meeting with our team, please contact our sales team at +1 (555) 010-0100 or email info@acmeservices.example.com. Share your availability and the services you wish to discuss, and we will propose and confirm a suitable slot."
   status: verified
   reviewer: "@design"
   reviewed_date: "2026-05-13"

@@ -1,6 +1,6 @@
 # Module — `service_agent`
 
-Structured multi-step service flows — Employment Background Screening (EBS),
+Structured multi-step service flows — Background Check (EBS),
 quotation, handoff. The "form-wizard" side of the chatbot.
 
 > ⚠️ **This module is large** (`sa_flows.py` is ~132 KB, `sa_prompts.py` is
@@ -19,7 +19,7 @@ handoff to human agents.
 
 | Symbol | File | Purpose |
 |---|---|---|
-| `sa_bp` | `sa_controller.py` | Flask blueprint — exposes `POST /aitegrity-core/chatbot/claude4sonnet/service-agent`. |
+| `sa_bp` | `sa_controller.py` | Flask blueprint — exposes `POST /rag-assistant/chatbot/claude4sonnet/service-agent`. |
 | `INTAgentService(repo)` | `sa_service.py` | Orchestration. Key method: `handle_from_question(session_id, raw_question)`. |
 | `ServiceAgentRepo(mongo_client)` | `sa_repo.py` | Mongo access. |
 | `*` | `sa_flows.py` | Flow definitions. `FLOW_REGISTRY` has **15 service codes** (2026-05-18): `EBS, DDC, MSG, AST, WBS, FRI, MSY, SKT, CMI, NUI, ACI, PTI, ABMS, KYC, CLI`. Each is built by a `build_<svc>_flow()` function returning `dict[str, QuestionStep]`. Service-code semantics in this file are authoritative — note that `CMI` is **Trademark Investigation** (`service_label="Trademark Investigation"`), `ACI` is **Anti-Counterfeiting**, `CLI` is **Claim Investigation** (FAQ pipeline metadata tag is `"Insurance Investigation"` — see `_DB_ALIAS_OVERRIDES` in `sd_service.py`). Each flow has 15 active questions traversed via `default_next` chain; 3 categories are intentionally commented out (Y/N Context Confirmation gate, Budget question, Contact details — handled by orchestrator classifier and CRISP form respectively). |
@@ -238,7 +238,7 @@ See [`../superpowers/specs/2026-05-11-stage-3b-v0-cross-service-bridge-design.md
 
 ## HTTP
 
-- `POST /aitegrity-core/chatbot/claude4sonnet/service-agent` — see [`../api/chat.md`](../api/chat.md#service-agent).
+- `POST /rag-assistant/chatbot/claude4sonnet/service-agent` — see [`../api/chat.md`](../api/chat.md#service-agent).
 
 Auth: `x-service-agent-api-key` (different from the main chatbot's key).
 

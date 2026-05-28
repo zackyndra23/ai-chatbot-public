@@ -24,7 +24,7 @@ def _ok(payload: dict) -> Tuple[Response, Literal[200]]:
 
 def _check_api_key() -> Optional[Tuple[Response, Literal[401]]]:
     api_header = getattr(cfg, "API_HEADER_NAME", "x-api-key")
-    expected = getattr(cfg, "API_KEY", "4743f227-0b8c-4a22-827d-16d5eb18fb56")
+    expected = getattr(cfg, "API_KEY", "")
 
     # pastikan API_KEY wajib ada
     if not expected or not str(expected).strip():
@@ -90,7 +90,7 @@ def _persist_best_effort(session_id: str, token_id: Optional[str], question: str
 
 # ---------- Route (low complexity) ----------
 
-@sd_bp.post("/aitegrity-core/chatbot/claude4sonnet")
+@sd_bp.post("/rag-assistant/chatbot/claude4sonnet")
 def chat_entrypoint() -> (
     Tuple[Response, Literal[401]]
     | Tuple[Response, Literal[400]]

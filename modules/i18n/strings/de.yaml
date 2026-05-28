@@ -81,7 +81,7 @@ picker.switch_label:
 
 # Meeting surfaces (Task 18 lift from sd_meeting.py)
 meeting.footer:
-  text: "Um einen Termin mit unserem Team zu vereinbaren, können Sie uns direkt unter info@integrity-asia.com oder telefonisch unter +62 21–769 8277 kontaktieren. Teilen Sie uns bitte Ihre Verfügbarkeit und Ihr Anliegen mit, damit unser Vertriebsteam einen passenden Termin bestätigen kann."
+  text: "Um einen Termin mit unserem Team zu vereinbaren, können Sie uns direkt unter info@acmeservices.example.com oder telefonisch unter +1 (555) 010-0100 kontaktieren. Teilen Sie uns bitte Ihre Verfügbarkeit und Ihr Anliegen mit, damit unser Vertriebsteam einen passenden Termin bestätigen kann."
   status: draft
   reviewer: null
   reviewed_date: null

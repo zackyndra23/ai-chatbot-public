@@ -18,9 +18,9 @@ renames (or copytrees on Windows fallback) to `current/`.
 
 HTTP surfaces:
 
-- `POST /aitegrity-core/faq-automation` calls `build_and_swap(force=False)`
+- `POST /rag-assistant/faq-automation` calls `build_and_swap(force=False)`
   after each ingest (checksum-gated).
-- `POST /aitegrity-core/knowledgebase-rebuild` calls `build_and_swap(force=True)`
+- `POST /rag-assistant/knowledgebase-rebuild` calls `build_and_swap(force=True)`
   directly — use when the source content in Mongo hasn't changed but you need
   the KB rebuilt anyway (e.g. after changing embedding model or reproducing a
   corrupted `vector_data/current/`). See `docs/api/faq.md`.

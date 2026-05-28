@@ -5,12 +5,12 @@
 module_b_within_turn_diversity:
   - id: B01
     question: "apa itu whistleblowing"
-    expected_service: "Whistleblowing System"
+    expected_service: "Whistleblowing Hotline"
     language: id
     tags: [critical, asean]
   - id: B02
     question: "bagaimana mencegah fraud"
-    expected_service: "Whistleblowing System"
+    expected_service: "Whistleblowing Hotline"
     language: id
     tags: [critical]
   - id: B03
@@ -24,13 +24,13 @@ module_b_within_turn_diversity:
     language: id
     tags: [normal]
   - id: B05
-    question: "market survey untuk produk baru"
-    expected_service: "Market Survey"
+    question: "market research untuk produk baru"
+    expected_service: "Market Research"
     language: id
     tags: [normal]
   - id: B06
     question: "background screening karyawan"
-    expected_service: "Employment Background Screening"
+    expected_service: "Background Check"
     language: id
     tags: [normal]
 
@@ -39,7 +39,7 @@ module_c_across_turn:
     language: id
     tags: [critical]
     turns:
-      - "apa itu whistleblowing system?"
+      - "apa itu whistleblowing hotline?"
       - "ceritakan lagi tentang whistleblowing"
       - "wbs itu apa ya?"
   - id: C02
@@ -53,17 +53,17 @@ module_c_across_turn:
 module_d_recap_bypass:
   - id: D01
     language: id
-    pre_turn: "apa itu whistleblowing system"
+    pre_turn: "apa itu whistleblowing hotline"
     recap_turn: "tolong ulangi penjelasan tadi"
     tags: [critical]
   - id: D02
     language: en
-    pre_turn: "what is whistleblowing system"
+    pre_turn: "what is whistleblowing hotline"
     recap_turn: "can you say that again please"
     tags: [critical]
   - id: D03
     language: ms
-    pre_turn: "apakah whistleblowing system"
+    pre_turn: "apakah whistleblowing hotline"
     recap_turn: "boleh ulang semula?"
     tags: [normal, asean]
   - id: D04
@@ -74,9 +74,9 @@ module_d_recap_bypass:
 
 module_e_hallucination_guard:
   # Observed actual refusal patterns from smoke run 20260511-164939:
-  # E01 (ID): "...di luar cakupan layanan kami. Integrity berfokus pada layanan
+  # E01 (ID): "...di luar cakupan layanan kami. Acme Services berfokus pada layanan
   #           konsultasi bisnis...layanan mana yang ingin Anda eksplorasi..."
-  # E02 (EN): "...outside my scope. I specialize in Integrity's professional
+  # E02 (EN): "...outside my scope. I specialize in Acme Services's professional
   #           services...which service are you exploring..."
   # Forbidden substrings target FABRICATED FACTUAL CONTENT only (price values,
   # weather data) — NOT topic-name echoes (bot legitimately repeats the topic
@@ -85,13 +85,13 @@ module_e_hallucination_guard:
   - id: E01
     question: "berapa harga BBM pertamax minggu depan?"
     forbidden_substrings: ["Rp ", "IDR ", " rupiah", " ribu ", " juta ", "USD", "$"]
-    expected_substrings_any: ["di luar cakupan", "konsultasi bisnis", "Integrity berfokus", "layanan mana"]
+    expected_substrings_any: ["di luar cakupan", "konsultasi bisnis", "Acme Services berfokus", "layanan mana"]
     language: id
     tags: [critical]
   - id: E02
     question: "what is the weather forecast for Jakarta next week?"
     forbidden_substrings: ["°C", "°F", "celsius", "fahrenheit", " mm ", " mph"]
-    expected_substrings_any: ["outside my scope", "professional services", "which service", "specialize in Integrity"]
+    expected_substrings_any: ["outside my scope", "professional services", "which service", "specialize in Acme Services"]
     language: en
     tags: [normal]
 
@@ -99,11 +99,11 @@ module_g_cross_service:
   - id: G01
     language: id
     tags: [normal]
-    handoff_value: "SA_SELECT_whistleblowing_system"
+    handoff_value: "SA_SELECT_whistleblowing_hotline"
     q1_answer: "Indonesia"
-    cross_service_question: "saya juga butuh employment background screening, bisa dijelaskan?"
+    cross_service_question: "saya juga butuh background check, bisa dijelaskan?"
     target_short_label: "EBS"
-    target_full_label: "Employment Background Screening"
+    target_full_label: "Background Check"
 
 module_f_method_switch:
   - id: F01

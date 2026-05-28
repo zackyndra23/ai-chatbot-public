@@ -57,7 +57,7 @@ Both runtime stages run:
 CMD ["gunicorn", "--bind", "0.0.0.0:2300", "modules.system_detection.chatbot:app"]
 ```
 
-So the container serves the **Flask chatbot app**, not the FastAPI `main.py`. Keep this in mind when debugging "why isn't `/aitegrity-core/faq-automation` working in prod?" — it isn't exposed in the prod container.
+So the container serves the **Flask chatbot app**, not the FastAPI `main.py`. Keep this in mind when debugging "why isn't `/rag-assistant/faq-automation` working in prod?" — it isn't exposed in the prod container.
 
 `Dockerfile.dev` is simpler (single-stage `python:3.12-slim`) and runs `python main.py` on port 2300 — used when you want the FastAPI admin surface in a container.
 
@@ -133,8 +133,8 @@ host:
 
 ### Runner tags
 
-All build jobs require runners with tags `[10.30.40.155, Alpine, Docker, Ubuntu]`.
-Deploy uses `[10.30.40.155, Shell, Ubuntu]`.
+All build jobs require runners with tags `[Alpine, Docker, Ubuntu]`.
+Deploy uses `[Shell, Ubuntu]`.
 
 ## Modal serverless (optional)
 
@@ -144,7 +144,7 @@ Deploy uses `[10.30.40.155, Shell, Ubuntu]`.
 @app.function(
     image=image,
     gpu=modal.gpu.L4(),
-    secrets=[modal.Secret.from_name("rag-conflict-fixed-secrets")],
+    secrets=[modal.Secret.from_name("rag-assistant-secrets")],
     timeout=60 * 30,
 )
 @modal.wsgi_app()
@@ -159,7 +159,7 @@ Deploy:
 modal deploy modal_app.py
 ```
 
-Secrets live in a Modal secret named `rag-conflict-fixed-secrets`.
+Secrets live in a Modal secret named `rag-assistant-secrets`.
 
 ## Secrets
 
@@ -188,7 +188,7 @@ Rollback at any phase: flip `KB_BACKEND` back to previous value (`dual` → `leg
 
 If first dual-mode start shows divergence (rare — happens only when Mongo state
 has services not in legacy collection or vice versa), run
-`POST /aitegrity-core/knowledgebase-rebuild` once to re-sync.
+`POST /rag-assistant/knowledgebase-rebuild` once to re-sync.
 
 ## Data persistence
 
@@ -226,15 +226,15 @@ Boot scenario matrix:
 | Fresh container, fresh volume | bootstrap → empty count → auto-rebuild → re-bootstrap → ready |
 | Restart, healthy volume | bootstrap → loaded count > 0 → log `kb_loaded_from_volume` → fast start |
 | Restart, corrupt volume | bootstrap → empty count → auto-rebuild → ready |
-| Mongo unreachable at startup | bootstrap → empty count → auto-rebuild fails → log warning, continue with empty KB. Operator retries via `POST /aitegrity-core/knowledgebase-rebuild` after fixing connectivity. |
-| FAQ source updated mid-deploy | Auto-rebuild only on EMPTY Chroma. To pick up content updates: trigger `POST /aitegrity-core/faq-automation` (Sheet → Mongo → KB) or `/knowledgebase-rebuild` (Mongo → KB only). |
+| Mongo unreachable at startup | bootstrap → empty count → auto-rebuild fails → log warning, continue with empty KB. Operator retries via `POST /rag-assistant/knowledgebase-rebuild` after fixing connectivity. |
+| FAQ source updated mid-deploy | Auto-rebuild only on EMPTY Chroma. To pick up content updates: trigger `POST /rag-assistant/faq-automation` (Sheet → Mongo → KB) or `/knowledgebase-rebuild` (Mongo → KB only). |
 
 ### Manual rebuild endpoints (FastAPI side)
 
-- `POST /aitegrity-core/faq-automation` — full pipeline: Google Sheet → Mongo
+- `POST /rag-assistant/faq-automation` — full pipeline: Google Sheet → Mongo
   → KB. Skips KB build if checksum unchanged. Use after editing the FAQ
   Sheet.
-- `POST /aitegrity-core/knowledgebase-rebuild` — KB-only, force=True. Use
+- `POST /rag-assistant/knowledgebase-rebuild` — KB-only, force=True. Use
   when Mongo source is fine but Chroma state is corrupt (e.g. mid-deploy
   recovery).
 
@@ -262,7 +262,7 @@ the running chatbot. To pick up rebuild output:
 
 - `GET /health` exists on the FastAPI `main.py` (returns `{"status": "ok"}`).
 - No dedicated health endpoint on the Flask chatbot — use the existing
-  `/aitegrity-core/chatbot/claude4sonnet` endpoint with a throwaway API key to
+  `/rag-assistant/chatbot/claude4sonnet` endpoint with a throwaway API key to
   get a 401, which proves the app is up.
 
 ## Rollback

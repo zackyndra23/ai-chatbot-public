@@ -32,7 +32,7 @@ The rest of the chatbot modules are specialist helpers called from here.
 
 | Symbol | File | Purpose |
 |---|---|---|
-| `sd_bp` | `sd_controller.py` | Flask blueprint — `POST /aitegrity-core/chatbot/claude4sonnet`. |
+| `sd_bp` | `sd_controller.py` | Flask blueprint — `POST /rag-assistant/chatbot/claude4sonnet`. |
 | `create_app()` | `chatbot.py` | Flask app factory. Registers `sd_bp` + `ssu_bp`, boots vector store, starts SSU scheduler. This is the **production** entrypoint (used by Dockerfile.prod and modal). |
 | `create_app()` | `chatbot_cpu.py` | CPU-only variant of the above. |
 | `handle_chat(session_id, question, token_id)` | `sd_service.py` | Main orchestrator. **TODO: document branches as touched.** |
@@ -49,7 +49,7 @@ The rest of the chatbot modules are specialist helpers called from here.
 
 ## HTTP
 
-- `POST /aitegrity-core/chatbot/claude4sonnet` — the chatbot endpoint. See [`../../api/chat.md`](../../api/chat.md).
+- `POST /rag-assistant/chatbot/claude4sonnet` — the chatbot endpoint. See [`../../api/chat.md`](../../api/chat.md).
 
 ## Controller flow
 

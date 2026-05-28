@@ -326,7 +326,7 @@ def test_task18_romansh_yaml_created():
     assert rm_footer is not None
     assert rm_label is not None
     # Romansh content verifiable
-    assert "inscunter" in rm_footer.text or "info@integrity-asia.com" in rm_footer.text
+    assert "inscunter" in rm_footer.text or "info@acmeservices.example.com" in rm_footer.text
 
 
 def test_task18_meeting_picker_preamble_deferred_to_phase1():

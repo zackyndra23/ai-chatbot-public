@@ -61,10 +61,10 @@ def test_ooc_min_text_len_default():
 def test_ooc_high_stakes_services_contains_four_default_entries():
     cfg = Config()
     assert isinstance(cfg.OOC_HIGH_STAKES_SERVICES, tuple)
-    assert "corporate_fraud_investigation" in cfg.OOC_HIGH_STAKES_SERVICES
-    assert "insurance_claim_investigation" in cfg.OOC_HIGH_STAKES_SERVICES
-    assert "asset_tracing" in cfg.OOC_HIGH_STAKES_SERVICES
-    assert "skip_tracing" in cfg.OOC_HIGH_STAKES_SERVICES
+    assert "compliance_audit" in cfg.OOC_HIGH_STAKES_SERVICES
+    assert "claim_review" in cfg.OOC_HIGH_STAKES_SERVICES
+    assert "asset_verification" in cfg.OOC_HIGH_STAKES_SERVICES
+    assert "contact_verification" in cfg.OOC_HIGH_STAKES_SERVICES
     assert len(cfg.OOC_HIGH_STAKES_SERVICES) == 4
 
 
@@ -96,12 +96,12 @@ def test_ooc_high_stakes_services_is_tuple_not_list():
 
 def test_ooc_freelancer_url_default():
     cfg = Config()
-    assert cfg.OOC_FREELANCER_URL == "https://www.integrity-indonesia.com/freelancer/"
+    assert cfg.OOC_FREELANCER_URL == "https://www.acmeservices.example.com/freelancer/"
 
 
 def test_ooc_partner_url_default():
     cfg = Config()
-    assert cfg.OOC_PARTNER_URL == "https://www.integrity-indonesia.com/partner/"
+    assert cfg.OOC_PARTNER_URL == "https://www.acmeservices.example.com/partner/"
 
 
 def test_full_ooc_knob_set_count_matches_spec():

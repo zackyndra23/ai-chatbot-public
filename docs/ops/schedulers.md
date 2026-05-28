@@ -62,9 +62,9 @@ subsequent ticks are coalesced into one.
 
 Some scheduled work also has HTTP endpoints for manual triggering:
 
-- `POST /aitegrity-core/ssu/run` — SSU via Flask blueprint.
-- `POST /aitegrity-core/sales-slots-update` — SSU via FastAPI route in `main.py` (requires `x-api-key`).
-- `POST /aitegrity-core/chatbot/late-response-followup/run` — late-response scan, passing `{"limit": 100}`.
+- `POST /rag-assistant/ssu/run` — SSU via Flask blueprint.
+- `POST /rag-assistant/sales-slots-update` — SSU via FastAPI route in `main.py` (requires `x-api-key`).
+- `POST /rag-assistant/chatbot/late-response-followup/run` — late-response scan, passing `{"limit": 100}`.
 
 See [`../api/sales_slots_update.md`](../api/sales_slots_update.md) and
 [`../api/chat.md`](../api/chat.md).

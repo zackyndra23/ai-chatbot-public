@@ -60,7 +60,7 @@ picker.switch_label:
 
 # Meeting surfaces (Task 18 lift from sd_meeting.py)
 meeting.footer:
-  text: "Si desea concertar una reunión con nuestro equipo, puede ponerse en contacto directamente con nosotros en info@integrity-asia.com o llamar al +62 21–769 8277. Indíquenos sus horarios disponibles y los servicios que desea tratar para que nuestro equipo comercial pueda proponer y confirmar una franja adecuada."
+  text: "Si desea concertar una reunión con nuestro equipo, puede ponerse en contacto directamente con nosotros en info@acmeservices.example.com o llamar al +1 (555) 010-0100. Indíquenos sus horarios disponibles y los servicios que desea tratar para que nuestro equipo comercial pueda proponer y confirmar una franja adecuada."
   status: draft
   reviewer: null
   reviewed_date: null

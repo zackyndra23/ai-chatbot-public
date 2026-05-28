@@ -34,13 +34,13 @@ _ROUTING_KWARGS = {
     "mystery_shopper_url": "https://example.com/mystery",
     "careers_url": "https://example.com/careers",
     "indo_email": "contact@example.com",
-    "indo_phone": "+62 21 1234 5678",
+    "indo_phone": "+1 (555) 010-0100",
     "my_sg_email": "mysg@example.com",
-    "my_sg_phone": "+60 3 1234 5678",
+    "my_sg_phone": "+1 (555) 010-0101",
     "th_vn_email": "thvn@example.com",
     "th_vn_phone": "+66 2 1234 5678",
     "business_hours": "Mon-Fri 09:00-18:00 WIB",
-    "active_service_label": "Whistleblowing System (WBS)",
+    "active_service_label": "Whistleblowing Hotline (WBS)",
     "current_field_label": "Number of Case Handlers",
     "last_question": "How many case handlers do you have?",
     "user_field_hint": "[Your Field]",
@@ -171,7 +171,7 @@ def test_mid_flow_standard_3_paragraphs_en(renderer):
     # P1 + P2 + P3 (some templates internally have \n\n so length ≥ 3)
     assert len(parts) >= 3
     # P2 should re-anchor
-    assert "Whistleblowing System (WBS)" in msg
+    assert "Whistleblowing Hotline (WBS)" in msg
     # P3 should re-pose
     assert "How many case handlers" in msg
 
@@ -181,7 +181,7 @@ def test_mid_flow_high_stakes_4_paragraphs_en(renderer):
         category="OOC-COMPLAINT",
         shape="mid_flow_high_stakes",
         lang="en",
-        template_vars={**_ROUTING_KWARGS, "active_service_label": "Corporate Fraud Investigation"},
+        template_vars={**_ROUTING_KWARGS, "active_service_label": "Compliance Audit"},
     )
     parts = msg.strip().split("\n\n")
     # 4 paragraphs — P1 + P2 + P3 + P4
@@ -214,7 +214,7 @@ def test_escalation_handover_3_paragraphs(renderer):
     parts = msg.strip().split("\n\n")
     assert len(parts) >= 3
     # Resume offer references the service
-    assert "Whistleblowing System (WBS)" in msg
+    assert "Whistleblowing Hotline (WBS)" in msg
     # Handover contacts include all 3 regions
     assert "Indonesia" in msg
 
@@ -236,7 +236,7 @@ def test_bidi_wrap_routing_assets_in_ar_flow(renderer):
     )
     # Inputs that should have been wrapped:
     assert f"{LRI}contact@example.com{PDI}" in msg
-    assert f"{LRI}+62 21 1234 5678{PDI}" in msg
+    assert f"{LRI}+1 (555) 010-0100{PDI}" in msg
     assert f"{LRI}https://example.com/partners{PDI}" in msg
 
 

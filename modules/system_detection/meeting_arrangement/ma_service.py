@@ -69,8 +69,8 @@ def _slug_service_label(label: str) -> str:
 
 # fallback map kalau sa_policies yang terbaca ternyata singkatan
 _ABBR_TO_LABEL = {
-    "EBS": "Employment Background Screening",
-    "WBS": "Whistleblowing System",
+    "EBS": "Background Check",
+    "WBS": "Whistleblowing Hotline",
     "DD": "Due Diligence",
     "GENERAL": "General Service",
     "GENERAL SERVICE": "General Service",

@@ -116,7 +116,7 @@ class TestIsExplicitRecap(unittest.TestCase):
     # Negative cases: words that contain matching roots but mean something else.
     NEGATIVE_CASES = [
         ("id", "saya merasa berulang kali tertarik"),  # 'berulang' contains 'ulang' but root form
-        ("id", "apa itu whistleblowing system"),
+        ("id", "apa itu whistleblowing hotline"),
         ("en", "tell me about your services"),
         ("en", "again is not what I want here"),  # word boundary edge
         ("fr", "bonjour"),

@@ -2,7 +2,7 @@
 ssu_controller.py — HTTP controller (Flask Blueprint) for manual execution.
 
 Defines a lightweight REST endpoint:
-    /aitegrity-core/ssu/run
+    /rag-assistant/ssu/run
 
 Purpose:
     - Allow manual triggering of the Sales Slots Update process.
@@ -16,7 +16,7 @@ Response includes:
 from flask import Blueprint, jsonify
 from .ssu_service import SalesSlotsUpdateService
 
-ssu_bp = Blueprint("sales_slots_update", __name__, url_prefix="/aitegrity-core/ssu")
+ssu_bp = Blueprint("sales_slots_update", __name__, url_prefix="/rag-assistant/ssu")
 
 @ssu_bp.route("/run", methods=["POST", "GET"])
 def run_now():

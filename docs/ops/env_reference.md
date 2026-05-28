@@ -69,12 +69,12 @@ Format per key: `KEY` — default — description.
 | `CTX_DOCS_FLOOR` | `4` | Phase 1 (no `sa_service_label`): minimum FAQ docs in the main-prompt context when no service has been picked yet. Grader filters; short-falls are backfilled with top-ranked retrieved candidates. Consumed by the generic `_prepare_rag_context` in `sd_service.py`. |
 | `CTX_DOCS_SAME_SERVICE` | `4` | Phase 2 (after `SA_SELECT_*` picker click): this many docs are retrieved with `metadata.service == sa_service_label` filter. Default `4` to keep the main-prompt context at exactly 4 same-service docs. |
 | `CTX_DOCS_OTHER_SERVICE` | `0` | Added on top of `CTX_DOCS_SAME_SERVICE` in Phase 2 (service-biased path): this many best-pick docs from other services are appended for cross-reference. Default `0` keeps Phase 2 reply context purely same-service. Total context floor when service is known = `CTX_DOCS_SAME_SERVICE + CTX_DOCS_OTHER_SERVICE` (default 4 + 0 = 4). Helper: `sd_vector_repo.retrieve_service_biased`. |
-| `CTX_INFER_SERVICE_FROM_QUERY` | `on` | When `on`, the generic retrieval path (`_prepare_rag_context`) runs a typo-tolerant fuzzy match of service-name tokens against the user's query **before** calling the retriever. If a service is inferred (e.g. "Merket survey" → "Market Survey"), the biased retrieval is used. Set `off` to force plain top-N retrieval regardless of query content. |
+| `CTX_INFER_SERVICE_FROM_QUERY` | `on` | When `on`, the generic retrieval path (`_prepare_rag_context`) runs a typo-tolerant fuzzy match of service-name tokens against the user's query **before** calling the retriever. If a service is inferred (e.g. "Merket survey" → "Market Research"), the biased retrieval is used. Set `off` to force plain top-N retrieval regardless of query content. |
 | `CTX_INFER_FUZZY_RATIO` | `0.82` | Minimum `difflib.SequenceMatcher.ratio()` for a typo-tolerant word match. Lower values catch more typos but risk false-positives. Examples at 0.82: "merket"≈"market" (0.83, passes), "mysterie"≈"mystery" (0.80, fails). |
 | `CTX_PIN_SERVICE_DEFINITION` | `on` | When `on` AND a service is inferred AND the query has explanation intent (e.g. "Tolong jelaskan tentang X", "What is X", "apa itu X"), the canonical "What is X service?" definitional FAQ is pinned to position 0 of the retrieved context — regardless of raw embedding similarity or grader outcome. This guards against cross-lingual queries where the definitional FAQ embeds weakly. Implemented via a targeted `similarity_search` with `filter={"service": X}` and `k=1`. |
 | `MONGO_SESSION` | `api_keys` | Collection for issued user tokens + active sessions. |
 | `QUERY_RECORDING_COLL` | `query_recording` | Query-audit collection. |
-| `DB_CHATBOT` | `integrity_chatbot` | Secondary DB used by calendar/sales features. |
+| `DB_CHATBOT` | `rag_assistant_chatbot` | Secondary DB used by calendar/sales features. |
 | `PAYLOAD_CALENDAR_COL` | `calendar_payload` | Calendar payloads read by SSU. |
 | `MA_CONFIRMATION_COLL` | `ma_confirmation` | Meeting-arrangement confirmation log. |
 | `LATE_RESPONDS_COLL` | `late_response_followups` | Late-response follow-up records. |
@@ -97,9 +97,9 @@ Format per key: `KEY` — default — description.
 
 | Key | Default | Purpose |
 |---|---|---|
-| `API_KEY` | `4743f227-…` | Public chatbot API key. |
+| `API_KEY` | *(empty — required)* | Public chatbot API key. Generate a UUID with `generate_api_key.py`. |
 | `API_HEADER_NAME` | `x-api-key` | Header name for `API_KEY`. |
-| `SERVICE_AGENT_API_KEY` | `0569b455-…` | Internal service-agent API key. |
+| `SERVICE_AGENT_API_KEY` | *(empty — required)* | Internal service-agent API key. Generate a UUID with `generate_api_key.py`. |
 | `SERVICE_AGENT_API_HEADER_NAME` | `x-service-agent-api-key` | Header for above. |
 | `WEBSITE_ID_HEADER_NAME` | `off` | Header name for website ID; `off` disables the requirement. |
 | `TRIGGER_TRUE_VALUE` | `true` | Plain-text body required by trigger endpoints (FAQ ingest, session-id gen). |
@@ -163,8 +163,8 @@ Format per key: `KEY` — default — description.
 | `DAYS_PROPOSAL` | `7` | How many days ahead to propose. |
 | `INDV_SHEET_TTL_SEC` / `INDV_INDEX_TTL_SEC` | `60` | Cache TTLs for individual sheet. |
 | `SHEETS_MIN_INTERVAL` | `0.25` | Throttle between Sheets API calls. |
-| `BOOKED_PATH_API` | `http://10.30.112.16:3030/api/calendar/event` | Calendar booking endpoint. |
-| `BEARER_TOKEN_CALENDAR_API` | `kmzWa8wa` | Bearer token for calendar API. |
+| `BOOKED_PATH_API` | *(empty)* | Calendar booking endpoint URL. |
+| `BEARER_TOKEN_CALENDAR_API` | *(empty)* | Bearer token for calendar API. |
 | `SALES_EMAIL_API_BASE_URL` | *(empty)* | Sales coverage API base. |
 | `SALES_COVERAGE_PATH` | *(empty)* | Path suffix. Auto-prefixed with `/`. |
 | `SALES_EMAIL_API_BEARER_TOKEN` | *(empty)* | Auth bearer. |
@@ -210,7 +210,7 @@ Format per key: `KEY` — default — description.
 |---|---|---|
 | `BOARD_ID` | *(empty)* | Monday board ID. |
 | `TOPICS` | *(empty)* | Topic filter (CSV or string). |
-| `MONDAY_PATH` | `https://n8n.integrity-asia.com/webhook/0f474b33-…` | n8n webhook URL. |
+| `MONDAY_PATH` | *(empty)* | External webhook URL (e.g. n8n) for CRM bridging. |
 | `MONDAY_KEY` | *(empty)* | Header key. |
 | `MONDAY_VALUE` | *(empty)* | Header value. |
 
@@ -267,7 +267,7 @@ for the full algorithm.
 
 | Key | Default | Purpose |
 |---|---|---|
-| `SOURCE_FILE` | `/app/data/text/FAQ_for_Vertex_AI_Metabot.txt` | Text source for RAG (legacy / optional). |
+| `SOURCE_FILE` | `/app/data/faq/sample_acme_faq.json` | Text source for RAG (legacy / optional — primary source is the Mongo `faq_update_doc` collection). |
 | `WEBSITE_ID` | *(empty)* | Optional fixed website ID for single-tenant deploys. |
 
 ## Logging
@@ -299,9 +299,9 @@ See `docs/superpowers/specs/2026-05-13-ooc-response-engine-design.md` §6.3 for 
 | `OOC_CATCHALL_FLOOR` | float | `0.7` | 0.5-0.95 | Higher bar for CATCHALL specifically (misclassifying on-topic as CATCHALL is worse UX than UNCLEAR fallthrough). |
 | `OOC_KEYWORD_CONFIDENCE` | float | `0.95` | 0.8-1.0 | Confidence assigned to strict keyword-bank matches. |
 | `OOC_LANG_DETECTION_FLOOR` | float | `0.85` | 0.7-0.95 | Below this language-detection confidence, fall back to `session_fallback_language` (state-persisted). |
-| `OOC_FREELANCER_URL` | str | `https://www.integrity-indonesia.com/freelancer/` | URL | Routing URL inserted into OOC-FREELANCE cold-start / mid-flow templates as `{freelancer_url}` placeholder. Pre-Stage-0 knob, mirrored into `Config` per spec §6.3. |
-| `OOC_PARTNER_URL` | str | `https://www.integrity-indonesia.com/partner/` | URL | Routing URL inserted into OOC-PARTNERSHIP cold-start / mid-flow templates as `{partnership_url}` placeholder. Pre-Stage-0 knob, mirrored into `Config` per spec §6.3. |
-| `OOC_HIGH_STAKES_SERVICES` | CSV tuple | `corporate_fraud_investigation,insurance_claim_investigation,asset_tracing,skip_tracing` | CSV of service IDs | Triggers `mid_flow_high_stakes` shape (adds P4 escalation paragraph with senior contact / urgent routing). |
+| `OOC_FREELANCER_URL` | str | `https://www.acmeservices.example.com/freelancer/` | URL | Routing URL inserted into OOC-FREELANCE cold-start / mid-flow templates as `{freelancer_url}` placeholder. Pre-Stage-0 knob, mirrored into `Config` per spec §6.3. |
+| `OOC_PARTNER_URL` | str | `https://www.acmeservices.example.com/partner/` | URL | Routing URL inserted into OOC-PARTNERSHIP cold-start / mid-flow templates as `{partnership_url}` placeholder. Pre-Stage-0 knob, mirrored into `Config` per spec §6.3. |
+| `OOC_HIGH_STAKES_SERVICES` | CSV tuple | `compliance_audit,claim_review,asset_verification,contact_verification` | CSV of service IDs | Triggers `mid_flow_high_stakes` shape (adds P4 escalation paragraph with senior contact / urgent routing). |
 | `OOC_ALLOWED_LOCALES` | CSV tuple | `()` (empty = all) | CSV of lang codes | Restricts effective_language to listed langs. Empty = all 17 canonical allowed. |
 | `OOC_POSTHOC_CLASSIFIER_ENABLED` | bool | `false` | true/false | Refinement #3. When enabled, samples suppression-fallthrough turns to log "would have classified" data for Phase 1 tuning. |
 | `OOC_POSTHOC_CLASSIFIER_SAMPLE_RATE` | float | `0.1` | 0.0-1.0 | Fraction of suppression-fallthrough turns sampled when enabled. |

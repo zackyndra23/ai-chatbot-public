@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>AItegrity Chatbot — UI Testing</title>
+  <title>RAG Assistant Chatbot — UI Testing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <style>
     :root {
@@ -115,7 +115,7 @@
 </head>
 <body>
   <div class="wrap">
-    <h1 class="title">AItegrity Chatbot 🤖</h1>
+    <h1 class="title">RAG Assistant Chatbot 🤖</h1>
     <h3 class="subtitle">(RAG - Claude 4 Sonnet)</h3>
 
     <div class="panel">
@@ -137,7 +137,7 @@
       <div id="busy">⏳ The assistant is thinking…</div>
 
       <div class="composer">
-        <input id="input" type="text" placeholder="Ask me anything about Integrity..." />
+        <input id="input" type="text" placeholder="Ask me anything about Acme Services..." />
         <button id="send">Ask</button>
       </div>
       <div class="note">
@@ -167,9 +167,9 @@
     let   SESSION    = BOOT.token ?? null;          
 
     // Endpoints yang digunakan UI
-    const PROXY  = `/aitegrity-core/chatbot/claude4sonnet/ui_testing_proxy/${encodeURIComponent(NAME ?? "")}`;
-    const ACT_EP = `/aitegrity-core/chatbot/claude4sonnet/ui_testing_activate/${encodeURIComponent(NAME ?? "")}`;
-    const SHD_EP = `/aitegrity-core/chatbot/claude4sonnet/ui_testing_shutdown/${encodeURIComponent(NAME ?? "")}`;
+    const PROXY  = `/rag-assistant/chatbot/claude4sonnet/ui_testing_proxy/${encodeURIComponent(NAME ?? "")}`;
+    const ACT_EP = `/rag-assistant/chatbot/claude4sonnet/ui_testing_activate/${encodeURIComponent(NAME ?? "")}`;
+    const SHD_EP = `/rag-assistant/chatbot/claude4sonnet/ui_testing_shutdown/${encodeURIComponent(NAME ?? "")}`;
 
     let choiceRows = [];  // semua blok pilihan yang pernah dibuat
 

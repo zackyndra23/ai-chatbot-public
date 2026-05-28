@@ -33,7 +33,7 @@ def test_g_cross_service(fixtures_data, http, mongo, make_session, current_metho
     session_id = make_session_id(cid, run_uuid=run_uuid)
 
     # T1: trigger handoff via domain question
-    http(session_id=session_id, question="Saya tertarik dengan whistleblowing system")
+    http(session_id=session_id, question="Saya tertarik dengan whistleblowing hotline")
     # T2: click SA_SELECT picker value
     http(session_id=session_id, question=case["handoff_value"])
     # T3: answer Q1

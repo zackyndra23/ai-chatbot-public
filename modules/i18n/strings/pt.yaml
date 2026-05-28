@@ -60,7 +60,7 @@ picker.switch_label:
 
 # Meeting surfaces (Task 18 lift from sd_meeting.py)
 meeting.footer:
-  text: "Para marcar uma reunião com a nossa equipa, pode contactar-nos diretamente através do e-mail info@integrity-asia.com ou pelo telefone +62 21–769 8277. Indique a sua disponibilidade e os serviços que pretende discutir para que a nossa equipa comercial possa propor e confirmar um horário adequado."
+  text: "Para marcar uma reunião com a nossa equipa, pode contactar-nos diretamente através do e-mail info@acmeservices.example.com ou pelo telefone +1 (555) 010-0100. Indique a sua disponibilidade e os serviços que pretende discutir para que a nossa equipa comercial possa propor e confirmar um horário adequado."
   status: draft
   reviewer: null
   reviewed_date: null

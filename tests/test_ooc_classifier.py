@@ -67,14 +67,14 @@ def test_intent_phrase_freelance_id(cls):
 
 
 def test_intent_phrase_partnership_en(cls):
-    d = cls.classify("I want to partner with Integrity", "en", active_service=None)
+    d = cls.classify("I want to partner with Acme Services", "en", active_service=None)
     assert d.yes is True
     assert d.label == "OOC-PARTNERSHIP"
     assert d.confidence >= 0.95
 
 
 def test_intent_phrase_partnership_id(cls):
-    d = cls.classify("saya ingin jadi mitra bisnis Integrity", "id", active_service=None)
+    d = cls.classify("saya ingin jadi mitra bisnis Acme Services", "id", active_service=None)
     assert d.yes is True
     assert d.label == "OOC-PARTNERSHIP"
 
@@ -217,34 +217,34 @@ def test_in_scope_due_diligence_term_during_dd_flow(cls):
     assert d.yes is False
 
 
-def test_in_scope_insurance_claim_investigation_term(cls):
+def test_in_scope_claim_review_term(cls):
     """High_stakes service — parity coverage required."""
     d = cls.classify(
         "Tell me about your claim verification process",
         "en",
-        active_service="insurance_claim_investigation",
+        active_service="claim_review",
     )
     assert d.yes is False
     assert d.reason == "in_scope_protection"
 
 
-def test_in_scope_asset_tracing_term(cls):
+def test_in_scope_asset_verification_term(cls):
     """High_stakes service — parity coverage required."""
     d = cls.classify(
         "Can you help with asset recovery?",
         "en",
-        active_service="asset_tracing",
+        active_service="asset_verification",
     )
     assert d.yes is False
     assert d.reason == "in_scope_protection"
 
 
-def test_in_scope_skip_tracing_term(cls):
+def test_in_scope_contact_verification_term(cls):
     """High_stakes service — parity coverage required."""
     d = cls.classify(
         "I need contact information for a missing person",
         "en",
-        active_service="skip_tracing",
+        active_service="contact_verification",
     )
     assert d.yes is False
     assert d.reason == "in_scope_protection"

@@ -30,8 +30,8 @@ def build_language_detect_chain(llm):
         "Detect the language of the USER text precisely. "
         "For CODE-MIXED messages (multiple languages in one input), return the language that occupies the LARGEST PORTION of the SUBSTANTIVE content by word count — NOT the language of the opening greeting alone. "
         "Examples:\n"
-        "- 'Selamat sore, can you help me with market survey?' → 'en' (English) — the request is English; the greeting is just a politeness opener.\n"
-        "- 'Hi, mau tanya tentang layanan market survey nya' → 'id' (Indonesian) — the substantive question is Indonesian.\n"
+        "- 'Selamat sore, can you help me with market research?' → 'en' (English) — the request is English; the greeting is just a politeness opener.\n"
+        "- 'Hi, mau tanya tentang layanan market research nya' → 'id' (Indonesian) — the substantive question is Indonesian.\n"
         "- 'Halo' → 'id' (only 1 word, Indonesian).\n"
         "- 'Hi' → 'en' (only 1 word, English).\n"
         "Return a structured object with: code (BCP-47/ISO 639-1/2), name (endonym), confidence (0..1), and script (if relevant). "
@@ -244,7 +244,7 @@ def _salutation_rule(
             f"- FIRST message. Open EXACTLY with this greeting (or a close natural variant if grammar requires): '{picked}'.{nick_clause}\n"
             f"- Total opener ≤8 words, including the greeting.\n"
             f"- After the greeting, briefly transition into the substance — do NOT append day-wishes ('semoga hari Anda menyenangkan' style).\n"
-            f"- FORBIDDEN exact phrases (overused): 'Selamat datang, semoga hari Anda menyenangkan', 'Selamat datang di Integrity', 'Welcome, hope your day is going well'.\n"
+            f"- FORBIDDEN exact phrases (overused): 'Selamat datang, semoga hari Anda menyenangkan', 'Selamat datang di Acme Services', 'Welcome, hope your day is going well'.\n"
             f"- Keep tone human and natural in {language_name}; do NOT mix languages.\n"
         )
     return ("Salutation:\n- Not first message. No greeting; answer immediately.\n")
@@ -437,7 +437,7 @@ def _personalization_rule(language_name: str, language_code: str | None,
 # def build_greeting_chain(llm):
 #     template = ChatPromptTemplate.from_messages([
 #         ("system",
-#          "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services named the chatbot"
+#          "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services named the chatbot"
 #         #  "If the user's message is only a greeting/salutation, reply in the SAME language as the user's message. "
 #          "Target language: {language_name}. If the user's message is only a greeting/salutation, reply in the SAME language as the user's message."
 #          "You may use either the plain name (“{nickname}”) or the formal address (“{address_formal}”) according to the target language."
@@ -451,7 +451,7 @@ def _personalization_rule(language_name: str, language_code: str | None,
 # def build_prompts():
 #     incontext_prompt = PromptTemplate(
 #         template="""
-# You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services named the chatbot.
+# You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services named the chatbot.
 # Target language: {language_name}. Answer strictly using the provided context chunks. Be concise (4–6 sentences), synthesize points, avoid repetition.
 # You may use either the plain name (“{nickname}”) or the formal address (“{address_formal}”) according to the target language.
 
@@ -477,7 +477,7 @@ def _personalization_rule(language_name: str, language_code: str | None,
 
 #     outcontext_prompt = PromptTemplate(
 #         template="""
-# You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services named the chatbot.
+# You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services named the chatbot.
 # Target language: {language_name}. Very concise answer (3–4 sentences). If the context is limited or not directly answering,
 # acknowledge the limitation without inventing details and suggest the next step (e.g., provide more specifics or arrange a meeting).
 # You may use either the plain name (“{nickname}”) or the formal address (“{address_formal}”) according to the target language.
@@ -505,7 +505,7 @@ def _personalization_rule(language_name: str, language_code: str | None,
 def build_greeting_chain(llm):
     template = ChatPromptTemplate.from_messages([
         ("system",
-         "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services"
+         "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services"
         #  "If the user's message is only a greeting/salutation, reply in the SAME language as the user's message. "
          "Target language: {language_name}. If the user's message is only a greeting/salutation, reply in the SAME language as the user's message."
          "Keep it very short (2–3 sentences, <25 words). No lists, no markdown. "
@@ -518,7 +518,7 @@ def build_greeting_chain(llm):
 def build_prompts():
     incontext_prompt = PromptTemplate(
         template="""
-You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services.
+You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services.
 Target language: {language_name}. Answer strictly using the provided context chunks. Be concise (3 sentences), synthesize points, avoid repetition.
 
 Relevant services:
@@ -540,7 +540,7 @@ Guidelines:
 
     outcontext_prompt = PromptTemplate(
         template="""
-You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services.
+You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services.
 Target language: {language_name}. Very concise answer (3 sentences). If the context is limited or not directly answering,
 acknowledge the limitation without inventing details and suggest the next step (e.g., provide more specifics or arrange a meeting).
 
@@ -585,7 +585,7 @@ Closing:
 # {user_text}
 # """
 
-# outcontext_prompt_applied="""You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services named the chatbot.
+# outcontext_prompt_applied="""You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services named the chatbot.
 # Target language: {language_name}. Very concise answer (3–4 sentences). If the context is limited or not directly answering,
 # acknowledge the limitation without inventing details and suggest the next step (e.g., provide more specifics or arrange a meeting).
 # You may use either the plain name (“{nickname}”) or the formal address (“{address_formal}”) according to the target language.
@@ -606,7 +606,7 @@ Closing:
 #   (b) invites the user to schedule a meeting with our sales/specialist team regarding their needs.
 # """
 
-greeting_prompt_applied = """You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services.
+greeting_prompt_applied = """You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services.
 Target language: {language_name}. If the user's message is only a greeting/salutation, reply in the SAME language as the user's message.
 Keep it very short (1–2 sentences, <15 words). No lists, no markdown. Politely ask how you can help.
 
@@ -614,7 +614,7 @@ User Message:
 {user_text}
 """
 
-incontext_prompt_applied = """You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services.
+incontext_prompt_applied = """You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services.
 Target language: {language_name}. Answer strictly using the provided context chunks. Be concise (2–4 sentences), synthesize points, avoid repetition.
 
 Relevant services:
@@ -659,7 +659,7 @@ User Message:
 {user_text}
 """
 
-outcontext_prompt_applied="""You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services.
+outcontext_prompt_applied="""You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services.
 Target language: {language_name}. Very concise answer (3 sentences). If the context is limited or not directly answering,
 acknowledge the limitation without inventing details and suggest the next step (e.g., provide more specifics or arrange a meeting).
 
@@ -740,7 +740,7 @@ def render_intro_prompt(*, language_name: str, user_text: str,
 #     # 1) format bagian yang FIXED dulu (tanpa context)
 #     fixed_head = sal + "\n" + pers + "\n"
 #     body_wo_ctx = (
-#         "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services named the chatbot.\n"
+#         "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services named the chatbot.\n"
 #         f"Target language: {language_name}. Answer strictly using the provided context chunks. Be concise (4–6 sentences), synthesize points, avoid repetition.\n"
 #         f"You may use either the plain name (“{nick_plain or ''}”) or the formal address (“{addr_formal or ''}”) according to the target language.\n\n"
 #         f"Relevant services:\n{_format_related_services(related_services)}\n\n"
@@ -814,7 +814,7 @@ def render_incontext_prompt(*,
     # 1) header & body tanpa context
     fixed_head = sal + "\n" + pers + "\n"
     body_wo_ctx = (
-        "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services.\n"
+        "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services.\n"
         f"Target language: {language_name}. Answer strictly using the provided context chunks. Be concise (3 sentences), synthesize points, avoid repetition.\n\n"
         f"Relevant services:\n{_format_related_services(related_services)}\n\n"
         "Context:\n"  # <— context akan ditulis belakangan setelah diklip
@@ -915,7 +915,7 @@ def render_outcontext_prompt(*, language_name: str, related_services, context, q
         max_chars = DEFAULT_MAX
     return _clip(text, max_chars)
 
-meeting_start_prompt_applied = """You are an AI Helpfull Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services.
+meeting_start_prompt_applied = """You are an AI Helpfull Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services.
 Target language: {language_name}.
 The user wants to arrange a meeting. Reply briefly (2–3 sentences) in the SAME language
 Ask for: preferred day and time window.

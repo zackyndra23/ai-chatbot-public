@@ -15,10 +15,10 @@
 
 service_labels:
   wbs:
-    en: "Whistleblowing System (WBS)"
+    en: "Whistleblowing Hotline (WBS)"
     id: "Sistem Whistleblowing (WBS)"
   ebs:
-    en: "Employment Background Screening (EBS)"
+    en: "Background Check (EBS)"
     id: "Pemeriksaan Latar Belakang Karyawan (EBS)"
   due_diligence:
     en: "Due Diligence"
@@ -32,21 +32,21 @@ service_labels:
   mystery_shopping:
     en: "Mystery Shopping"
     id: "Mystery Shopping"
-  market_survey:
-    en: "Market Survey"
+  market_research:
+    en: "Market Research"
     id: "Survei Pasar"
-  corporate_fraud_investigation:
-    en: "Corporate Fraud Investigation"
+  compliance_audit:
+    en: "Compliance Audit"
     id: "Investigasi Fraud Korporasi"
-  insurance_claim_investigation:
-    en: "Insurance Claim Investigation"
+  claim_review:
+    en: "Claim Review"
     id: "Investigasi Klaim Asuransi"
-  asset_tracing:
-    en: "Asset Tracing"
+  asset_verification:
+    en: "Asset Verification"
     id: "Pelacakan Aset"
-  skip_tracing:
-    en: "Skip Tracing"
-    id: "Skip Tracing"
+  contact_verification:
+    en: "Contact Verification"
+    id: "Contact Verification"
   non_use_investigation:
     en: "Non-Use Investigation"
     id: "Investigasi Non-Use"

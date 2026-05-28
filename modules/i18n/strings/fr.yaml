@@ -82,7 +82,7 @@ picker.switch_label:
 
 # Meeting surfaces (Task 18 lift from sd_meeting.py)
 meeting.footer:
-  text: "Pour organiser une réunion avec notre équipe, vous pouvez nous contacter directement par e-mail à info@integrity-asia.com ou par téléphone au +62 21–769 8277. Indiquez vos disponibilités et vos besoins afin que notre équipe commerciale puisse vous proposer et confirmer un créneau adapté."
+  text: "Pour organiser une réunion avec notre équipe, vous pouvez nous contacter directement par e-mail à info@acmeservices.example.com ou par téléphone au +1 (555) 010-0100. Indiquez vos disponibilités et vos besoins afin que notre équipe commerciale puisse vous proposer et confirmer un créneau adapté."
   status: draft
   reviewer: null
   reviewed_date: null

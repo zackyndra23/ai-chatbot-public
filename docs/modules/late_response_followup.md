@@ -29,7 +29,7 @@ from .lrf_repo import LRFMongoRepo
 
 ## HTTP
 
-`POST /aitegrity-core/chatbot/late-response-followup/run` — manual trigger.
+`POST /rag-assistant/chatbot/late-response-followup/run` — manual trigger.
 Auth: `x-api-key`. Body: `{"limit": 100}`. See [`../api/chat.md`](../api/chat.md#late-response-follow-up).
 
 ## Data flow

@@ -105,6 +105,12 @@ docs/exports/*
 # Override per file with `git add -f` if a specific artifact should ship.
 docs/superpowers/
 docs/i18n/sample-translations-*.md
-qa/smoke/.env
+qa/smoke/
 .env.*
 *.env
+
+# --- Portfolio sanitization workflow (local-only) ---
+# The sanitization report documents what was changed and references the
+# original brand strings in its "Was" column. Keep it local so it doesn't
+# get pushed to the public mirror.
+SANITIZATION_REPORT.md

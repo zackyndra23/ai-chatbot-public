@@ -44,12 +44,12 @@ def test_phase1_no_sa_label_returns_4_cross_service():
     from modules.system_detection import sd_service as svc_mod
 
     candidates = [
-        _doc("S: A\nQ: q1\nA: a1", "Whistleblowing System"),
-        _doc("S: B\nQ: q2\nA: a2", "Market Survey"),
-        _doc("S: C\nQ: q3\nA: a3", "Whistleblowing System"),
+        _doc("S: A\nQ: q1\nA: a1", "Whistleblowing Hotline"),
+        _doc("S: B\nQ: q2\nA: a2", "Market Research"),
+        _doc("S: C\nQ: q3\nA: a3", "Whistleblowing Hotline"),
         _doc("S: D\nQ: q4\nA: a4", "Due Diligence"),
-        _doc("S: E\nQ: q5\nA: a5", "Market Survey"),
-        _doc("S: F\nQ: q6\nA: a6", "Whistleblowing System"),
+        _doc("S: E\nQ: q5\nA: a5", "Market Research"),
+        _doc("S: F\nQ: q6\nA: a6", "Whistleblowing Hotline"),
     ]
 
     fake_cfg = SimpleNamespace(
@@ -81,10 +81,10 @@ def test_phase2_with_sa_label_returns_4_same_service():
     from modules.system_detection import sd_service as svc_mod
 
     biased_docs = [
-        _doc("S: Market Survey\nQ: q1\nA: a1", "Market Survey"),
-        _doc("S: Market Survey\nQ: q2\nA: a2", "Market Survey"),
-        _doc("S: Market Survey\nQ: q3\nA: a3", "Market Survey"),
-        _doc("S: Market Survey\nQ: q4\nA: a4", "Market Survey"),
+        _doc("S: Market Research\nQ: q1\nA: a1", "Market Research"),
+        _doc("S: Market Research\nQ: q2\nA: a2", "Market Research"),
+        _doc("S: Market Research\nQ: q3\nA: a3", "Market Research"),
+        _doc("S: Market Research\nQ: q4\nA: a4", "Market Research"),
     ]
 
     captured = {}
@@ -113,12 +113,12 @@ def test_phase2_with_sa_label_returns_4_same_service():
          patch.object(svc_mod, "_fetch_service_definition_doc", lambda s: None):
         filtered, ctx_str, related = svc_mod._prepare_rag_context(
             "any question",
-            sa_service_label="Market Survey",
+            sa_service_label="Market Research",
         )
 
     assert len(filtered) == 4, f"expected 4 docs, got {len(filtered)}"
-    assert all(d.metadata["service"] == "Market Survey" for d in filtered), \
-        f"all docs must be Market Survey, got {[d.metadata.get('service') for d in filtered]}"
+    assert all(d.metadata["service"] == "Market Research" for d in filtered), \
+        f"all docs must be Market Research, got {[d.metadata.get('service') for d in filtered]}"
     assert captured["same_k"] == 4 and captured["other_k"] == 0, \
         f"biased call should pass same_k=4 / other_k=0, got {captured}"
 
@@ -129,9 +129,9 @@ def test_pad_to_floor_after_grader_rejection():
     from modules.system_detection import sd_service as svc_mod
 
     candidates = [
-        _doc("S: A\nQ: q1\nA: a1", "Whistleblowing System"),
-        _doc("S: B\nQ: q2\nA: a2", "Whistleblowing System"),
-        _doc("S: C\nQ: q3\nA: a3", "Market Survey"),
+        _doc("S: A\nQ: q1\nA: a1", "Whistleblowing Hotline"),
+        _doc("S: B\nQ: q2\nA: a2", "Whistleblowing Hotline"),
+        _doc("S: C\nQ: q3\nA: a3", "Market Research"),
         _doc("S: D\nQ: q4\nA: a4", "Due Diligence"),
     ]
 
@@ -167,12 +167,12 @@ def test_phase1_does_not_use_auto_infer_for_bias():
     from modules.system_detection import sd_service as svc_mod
 
     candidates = [
-        _doc("S: A\nQ: q1\nA: a1", "Market Survey"),
-        _doc("S: B\nQ: q2\nA: a2", "Whistleblowing System"),
+        _doc("S: A\nQ: q1\nA: a1", "Market Research"),
+        _doc("S: B\nQ: q2\nA: a2", "Whistleblowing Hotline"),
         _doc("S: C\nQ: q3\nA: a3", "Due Diligence"),
-        _doc("S: D\nQ: q4\nA: a4", "Market Survey"),
+        _doc("S: D\nQ: q4\nA: a4", "Market Research"),
     ]
-    def_doc = _doc("S: Market Survey\nQ: What is Market Survey?\nA: Definition...", "Market Survey")
+    def_doc = _doc("S: Market Research\nQ: What is Market Research?\nA: Definition...", "Market Research")
 
     fake_cfg = SimpleNamespace(
         CTX_DOCS_SAME_SERVICE=4,
@@ -188,10 +188,10 @@ def test_phase1_does_not_use_auto_infer_for_bias():
          patch.object(svc_mod, "retrieve_candidates", lambda r, q: candidates), \
          patch.object(svc_mod, "retrieve_service_biased", lambda *a, **kw: (_ for _ in ()).throw(AssertionError("Phase 1 must NOT call biased retrieval"))), \
          patch.object(svc_mod, "grade_and_filter_yes", _grader_pass_all), \
-         patch.object(svc_mod, "_infer_service_from_query", lambda q: "Market Survey"), \
+         patch.object(svc_mod, "_infer_service_from_query", lambda q: "Market Research"), \
          patch.object(svc_mod, "_is_explanation_intent", lambda q: True), \
          patch.object(svc_mod, "_fetch_service_definition_doc", lambda s: def_doc):
-        filtered, ctx_str, related = svc_mod._prepare_rag_context("apa itu market survey?")
+        filtered, ctx_str, related = svc_mod._prepare_rag_context("apa itu market research?")
 
     assert len(filtered) == 4, f"expected 4 docs, got {len(filtered)}"
     assert filtered[0].page_content == def_doc.page_content, \
@@ -238,9 +238,9 @@ def test_prepare_rag_context_normal_method_unchanged():
     from modules.system_detection import sd_service as svc_mod
 
     candidates = [
-        _doc("S: A\nQ: q1\nA: a1", "Whistleblowing System"),
-        _doc("S: B\nQ: q2\nA: a2", "Market Survey"),
-        _doc("S: C\nQ: q3\nA: a3", "Whistleblowing System"),
+        _doc("S: A\nQ: q1\nA: a1", "Whistleblowing Hotline"),
+        _doc("S: B\nQ: q2\nA: a2", "Market Research"),
+        _doc("S: C\nQ: q3\nA: a3", "Whistleblowing Hotline"),
         _doc("S: D\nQ: q4\nA: a4", "Due Diligence"),
     ]
     fake_cfg = SimpleNamespace(
@@ -267,8 +267,8 @@ def test_prepare_rag_context_mmr_method_uses_strategy():
     from modules.system_detection import sd_service as svc_mod
 
     mmr_docs = [
-        _doc("S: X\nQ: qx\nA: ax", "Whistleblowing System"),
-        _doc("S: Y\nQ: qy\nA: ay", "Market Survey"),
+        _doc("S: X\nQ: qx\nA: ax", "Whistleblowing Hotline"),
+        _doc("S: Y\nQ: qy\nA: ay", "Market Research"),
         _doc("S: Z\nQ: qz\nA: az", "Due Diligence"),
         _doc("S: W\nQ: qw\nA: aw", "Background Screening"),
     ]
@@ -287,7 +287,7 @@ def test_prepare_rag_context_mmr_method_uses_strategy():
         filtered, ctx_str, related = svc_mod._prepare_rag_context("q")
     # Strategy result flows through unchanged
     assert len(filtered) == 4
-    assert filtered[0].metadata["service"] == "Whistleblowing System"
+    assert filtered[0].metadata["service"] == "Whistleblowing Hotline"
 
 
 if __name__ == "__main__":

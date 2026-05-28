@@ -16,7 +16,7 @@ website integration.
 
 ## Public API
 
-HTTP endpoints (all prefixed per route, no `/aitegrity-core/ui` prefix — mounted under `/aitegrity-core/chatbot/claude4sonnet/ui_testing*`):
+HTTP endpoints (all prefixed per route, no `/rag-assistant/ui` prefix — mounted under `/rag-assistant/chatbot/claude4sonnet/ui_testing*`):
 
 | Method | Path | What it does |
 |---|---|---|
@@ -64,8 +64,8 @@ and base path from config.
   `userId`). The controller branches on `isinstance(doc.get("user"), dict)`.
 - Proxy timeout is hardcoded to 75s in `ctu_controller.py`. Long meeting flows
   may need this bumped.
-- A fallback API key is hardcoded inline (`4743f227-…`) for the case where
-  env is missing — remove before open-sourcing.
+- API key must come from `API_KEY` env var; the controller no longer carries
+  an inline fallback. Empty env → request will fail authentication.
 
 ## Extension notes
 

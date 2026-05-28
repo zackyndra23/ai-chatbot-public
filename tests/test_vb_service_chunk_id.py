@@ -19,8 +19,8 @@ def test_chunk_id_uses_id_and_index_when_present():
     fake_doc = {
         "_id": "whistleblowing-system",
         "chunks": [
-            {"text": "S: WBS\nQ: a\nA: 1", "service": "Whistleblowing System"},
-            {"text": "S: WBS\nQ: b\nA: 2", "service": "Whistleblowing System"},
+            {"text": "S: WBS\nQ: a\nA: 1", "service": "Whistleblowing Hotline"},
+            {"text": "S: WBS\nQ: b\nA: 2", "service": "Whistleblowing Hotline"},
         ],
     }
     fake_coll = MagicMock()

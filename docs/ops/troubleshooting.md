@@ -77,10 +77,10 @@ Checksum gate in `vector_build.build_and_swap` compares
 
 Skip-logic gotcha. `vb_service.build_and_swap` compares `kb_registry.checksum` to source checksum. If they match, returns `up-to-date` without verifying disk state. So if `vector_data/current/` is empty / corrupt / has the wrong build content (e.g. after copy-paste from sibling project dir), the skip path fires and FAQ won't fix it.
 
-**Fix:** call `POST /aitegrity-core/knowledgebase-rebuild` (force=True) instead. Curl example:
+**Fix:** call `POST /rag-assistant/knowledgebase-rebuild` (force=True) instead. Curl example:
 
 ```
-curl.exe -X POST "http://127.0.0.1:2303/aitegrity-core/knowledgebase-rebuild" \
+curl.exe -X POST "http://127.0.0.1:2303/rag-assistant/knowledgebase-rebuild" \
   -H "Content-Type: text/plain" \
   -H "x-api-key: <API_KEY>" \
   --data "true"
@@ -145,7 +145,7 @@ Root cause: `cfg.VECTOR_CURRENT_SYMLINK = "./vector_data/current"` di-resolve re
 ### `400 Bad Request` with `"reason": "service_id collisions detected"`
 
 Two tabs in the source Google Sheet produced the same `service_id` slug
-(e.g. `"Service"` + `"service"` → both `"service"`, or `"Market Survey"` + `"market survey"` → both `"market-survey"`). Ingestion aborts **before any Mongo writes** — partial state never created.
+(e.g. `"Service"` + `"service"` → both `"service"`, or `"Market Research"` + `"market research"` → both `"market-survey"`). Ingestion aborts **before any Mongo writes** — partial state never created.
 
 **Response body:**
 ```json
@@ -158,10 +158,10 @@ Two tabs in the source Google Sheet produced the same `service_id` slug
 
 **Fix:** rename one of the conflicting tabs in the Sheet UI to produce a distinct slug. Any non-letter difference works:
 - `"Service"` vs `"Services"`
-- `"Market Survey"` vs `"Market Surveys"`
+- `"Market Research"` vs `"Market Researchs"`
 - `"Service"` vs `"Service A"`
 
-Re-trigger `POST /aitegrity-core/faq-automation`. Should succeed.
+Re-trigger `POST /rag-assistant/faq-automation`. Should succeed.
 
 ### Service deleted unexpectedly from Mongo
 
@@ -172,7 +172,7 @@ App log will show:
 {"event": "faq_service_deleted", "service_id": "<slug>", "reason": "absent_in_sheet_at_ingest"}
 ```
 
-**Fix:** re-add the tab to the Sheet (or remove it from `INCLUDE_SHEETS` exclusion), re-trigger `POST /aitegrity-core/faq-automation`. The service will be re-created with new `created_at` timestamp and fresh `service_aliases: []`. **Manual aliases edited via Mongo CLI before deletion are lost** — that's the trade-off of hard-delete reconciliation.
+**Fix:** re-add the tab to the Sheet (or remove it from `INCLUDE_SHEETS` exclusion), re-trigger `POST /rag-assistant/faq-automation`. The service will be re-created with new `created_at` timestamp and fresh `service_aliases: []`. **Manual aliases edited via Mongo CLI before deletion are lost** — that's the trade-off of hard-delete reconciliation.
 
 ### Migration script reports `"status": "noop"` but you expect a split
 
@@ -190,13 +190,13 @@ db.faq_update_doc.countDocuments({"marker":"latest"})
 // Should be N (number of service tabs) after migration
 ```
 
-Re-trigger normal ingest via `POST /aitegrity-core/faq-automation` if you want a fresh sync from Sheet.
+Re-trigger normal ingest via `POST /rag-assistant/faq-automation` if you want a fresh sync from Sheet.
 
 ### Migration script reports `"status": "abort"` (legacy has no chunks)
 
 The legacy single doc exists but has empty `chunks` array. Ingest must have failed mid-write previously, OR an admin manually cleared chunks.
 
-**Fix:** trigger `POST /aitegrity-core/faq-automation` to re-ingest from Sheet (this will create per-service docs directly via the new code path), then verify legacy doc is gone (or run `migrate_split_latest` to clean it up — should be no-op since no chunks to split).
+**Fix:** trigger `POST /rag-assistant/faq-automation` to re-ingest from Sheet (this will create per-service docs directly via the new code path), then verify legacy doc is gone (or run `migrate_split_latest` to clean it up — should be no-op since no chunks to split).
 
 ### `_checksum_source` produces different hash before vs after migration
 
@@ -223,7 +223,7 @@ If you confirm content is identical but hash differs → bug in `_checksum_sourc
 
 ### 415 "Content-Type must be text/plain" (FAQ endpoint)
 
-`POST /aitegrity-core/faq-automation` is a trigger endpoint that expects a
+`POST /rag-assistant/faq-automation` is a trigger endpoint that expects a
 plain-text body equal to `TRIGGER_TRUE_VALUE` (default `true`). Send:
 
 ```
@@ -236,7 +236,7 @@ Not JSON.
 
 ### 409 "Active token exists"
 
-`POST /aitegrity-core/session-id-generate` refuses to issue a new session while
+`POST /rag-assistant/session-id-generate` refuses to issue a new session while
 an active one exists for the same API key. Either:
 
 - Wait for the auto-deactivator (runs every `CHECK_INTERVAL_SECONDS`).

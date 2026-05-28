@@ -51,8 +51,8 @@ def test_other_slot_label_unknown_falls_back_to_english():
 def test_preamble_english_has_both_placeholders():
     from modules.system_detection.sd_meeting import build_meeting_picker_preamble
     out = build_meeting_picker_preamble("en",
-        service_label="Employment Background Screening", nickname="Alice")
-    assert "Employment Background Screening" in out
+        service_label="Background Check", nickname="Alice")
+    assert "Background Check" in out
     assert "Alice" in out
     assert out.count(". ") >= 1
     assert "\n" not in out

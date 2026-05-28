@@ -242,7 +242,7 @@ def render_serviceagent_prompt_01(*,
 
     fixed_head = sal + "\n" + pers + "\n"
     body_wo_ctx = (
-        "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services.\n"
+        "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services.\n"
         f"Target language: {language_name}. Answer strictly using the provided context chunks. Be concise (3 sentences), synthesize points, avoid repetition.\n"
         # f"You may use either the plain name (“{nick_plain or ''}”).\n\n"
         f"Relevant services:\n{_format_related_services(related_services)}\n\n"
@@ -337,7 +337,7 @@ def render_serviceagent_continue_prompt(
     fixed_head = sal + "\n" + pers + "\n"
 
     body_wo_ctx = (
-        "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Integrity’s services.\n"
+        "You are an AI Assistant acting as a professional, persuasive, and trustworthy business consultant providing accurate and up-to-date information about Acme Services’s services.\n"
         f"Target language: {language_name}. Use the context only if it is directly relevant; otherwise keep it natural and concise.\n"
         # f"You may use either the plain name (“{nick_plain or ''}”).\n\n"
         "Context:\n"
@@ -492,7 +492,7 @@ def render_serviceagent_prompt_final(
     closing_instruction = _closing_sentences_by_language(language_code, service_label)
 
     body = (
-        "You are an AI Assistant acting as a professional business consultant for Integrity's services.\n"
+        "You are an AI Assistant acting as a professional business consultant for Acme Services's services.\n"
         f"Target language: {language_name}. Use the context and the chat summary/history to write a closing.\n\n"
         f"Relevant services:\n{_format_related_services(service_label)}\n\n"
         "Knowledge Base Context:\n"
@@ -549,7 +549,7 @@ def render_serviceagent_postgate_prompt(
     fixed_head = sal + "\n" + pers + "\n"
 
     body_wo_ctx = (
-        "You are an AI Assistant acting as a professional business consultant for Integrity's services.\n"
+        "You are an AI Assistant acting as a professional business consultant for Acme Services's services.\n"
         f"Target language: {language_name}. Write ENTIRELY in {language_name}. Do NOT switch to English.\n"
         "Context:\n"
     )
@@ -694,7 +694,7 @@ def render_serviceagent_continue_question_prompt(
 
     body_wo_ctx = (
         "You are an AI Assistant acting as a professional, instructional, not persuasive, and trustworthy business consultant "
-        "providing accurate and up-to-date information about Integrity’s services.\n"
+        "providing accurate and up-to-date information about Acme Services’s services.\n"
         f"Target language: {language_name}. Use the context only if it is directly relevant; otherwise keep it natural and concise.\n"
         # f"You may use either the plain name (“{nick_plain or ''}”).\n\n"
         "Context:\n"
@@ -764,7 +764,7 @@ def render_serviceagent_continue_answerquestion_prompt(
 
     body_wo_ctx = (
         "You are an AI Assistant acting as a professional, instructional, not persuasive, and trustworthy business consultant "
-        "providing accurate and up-to-date information about Integrity’s services.\n"
+        "providing accurate and up-to-date information about Acme Services’s services.\n"
         f"Target language: {language_name}. Use the context only if it is directly relevant; otherwise keep it natural and concise.\n"
         # f"You may use either the plain name (“{nick_plain or ''}”).\n\n"
         "Context:\n"
@@ -810,7 +810,7 @@ def render_serviceagent_continue_answerquestion_prompt(
 # render_serviceagent_reset_prompt removed — Crisp handles reset natively.
 
 SERVICE_QUESTIONING = """
-You are a Qualification Assistant working inside Integrity's sales assistant.
+You are a Qualification Assistant working inside Acme Services's sales assistant.
 
 Goal:
 - Collect clear, structured information from the user to qualify a lead for the service:
@@ -865,7 +865,7 @@ def render_qfc_prompt(
     last_answer = user_answer.strip() or "(The user’s latest reply is not available; infer from history.)"
 
     return f"""
-You are a Qualification Assistant working inside Integrity's sales assistant.
+You are a Qualification Assistant working inside Acme Services's sales assistant.
 
 Goal:
 - Collect clear, structured information from the user to qualify a lead for the service:
@@ -921,7 +921,7 @@ Task:
 
 SA_SUMMARY_PROMPT = """
 You are a careful summarizer for a multilingual service-qualification flow
-inside Integrity's sales assistant.
+inside Acme Services's sales assistant.
 
 Goal:
 - Turn all question–answer (Q/A) pairs from the qualification flow into a concise

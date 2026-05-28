@@ -325,10 +325,10 @@ def test_faq_docs_for_service_sets_chunk_id_metadata():
 
     fake_doc = {
         "chunks": [
-            {"text": "S: WBS\nQ: q1\nA: a1", "service": "Whistleblowing System"},
-            {"text": "S: WBS\nQ: q2\nA: a2", "service": "Whistleblowing System"},
-            {"text": "", "service": "Whistleblowing System"},  # skipped
-            {"text": "S: WBS\nQ: q3\nA: a3", "service": "Whistleblowing System"},
+            {"text": "S: WBS\nQ: q1\nA: a1", "service": "Whistleblowing Hotline"},
+            {"text": "S: WBS\nQ: q2\nA: a2", "service": "Whistleblowing Hotline"},
+            {"text": "", "service": "Whistleblowing Hotline"},  # skipped
+            {"text": "S: WBS\nQ: q3\nA: a3", "service": "Whistleblowing Hotline"},
         ]
     }
     fake_coll = MagicMock()

@@ -16,7 +16,7 @@ def make_service_id(name: str) -> str:
     Raises ValueError if the result is empty.
 
     Examples:
-        "Whistleblowing System"        -> "whistleblowing-system"
+        "Whistleblowing Hotline"        -> "whistleblowing-system"
         "Service & Audit"              -> "service-audit"
         "Café Survey"                  -> "cafe-survey"
         "FAQ for Vertex AI Metabot"    -> "faq-for-vertex-ai-metabot"
@@ -37,7 +37,7 @@ def _check_collisions(services: list[tuple[str, str]]) -> None:
 
     services: list of (service_id, service_name) pairs.
 
-    Example error message: "service_id collisions detected: {'market-survey': ['Market Survey', 'market survey']}"
+    Example error message: "service_id collisions detected: {'market-survey': ['Market Research', 'market research']}"
     """
     from collections import defaultdict
     by_id: dict[str, list[str]] = defaultdict(list)

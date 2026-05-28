@@ -30,7 +30,7 @@ def _check_sa_key() -> Optional[Tuple[Response, Literal[401]]]:
         return _unauthorized(f"Invalid or missing Service-Agent API key in header '{header_name}'")
     return None
 
-@sa_bp.post("/aitegrity-core/chatbot/claude4sonnet/service-agent")
+@sa_bp.post("/rag-assistant/chatbot/claude4sonnet/service-agent")
 def service_agent_entrypoint() -> Tuple[Response, Literal[200]] | Tuple[Response, Literal[400]] | Tuple[Response, Literal[401]]:
     # 1) auth internal
     err = _check_sa_key()

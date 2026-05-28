@@ -14,7 +14,7 @@ cfg = Config()
 
 bp = Blueprint("chat_testing_ui", __name__, template_folder="templates")
 
-@bp.get("/aitegrity-core/chatbot/claude4sonnet/ui_testing/<name>")
+@bp.get("/rag-assistant/chatbot/claude4sonnet/ui_testing/<name>")
 def ui_testing(name: str):
     name = (name or "").strip()
     cfg = load_ui_config()
@@ -59,7 +59,7 @@ def ui_testing(name: str):
         },
     )
 
-@bp.post("/aitegrity-core/chatbot/claude4sonnet/ui_testing_proxy/<name>")
+@bp.post("/rag-assistant/chatbot/claude4sonnet/ui_testing_proxy/<name>")
 def ui_testing_proxy(name: str):
     cfg = load_ui_config()
     body = request.get_json(silent=True) or {}
@@ -74,8 +74,7 @@ def ui_testing_proxy(name: str):
     
     headers = {
         "Content-Type": "application/json",
-        cfg.api_header_name or "x-api-key": getenv("API_KEY", "4743f227-0b8c-4a22-827d-16d5eb18fb56"),  # kirim API_KEY backend dari .env
-        # cfg.api_header_name or "x-api-key": "4743f227-0b8c-4a22-827d-16d5eb18fb57",  # kirim API_KEY backend dari .env untuk testing
+        cfg.api_header_name or "x-api-key": getenv("API_KEY", ""),  # kirim API_KEY backend dari .env
     }
 
     import requests
@@ -92,7 +91,7 @@ def ui_testing_proxy(name: str):
     except Exception:
         return resp.text, resp.status_code, {"Content-Type": resp.headers.get("Content-Type", "text/plain")}
 
-@bp.post("/aitegrity-core/chatbot/claude4sonnet/ui_testing_activate/<name>")
+@bp.post("/rag-assistant/chatbot/claude4sonnet/ui_testing_activate/<name>")
 def ui_testing_activate(name: str):
     cfg = load_ui_config()
     doc, _ = find_account_by_name(cfg, name)
@@ -115,7 +114,7 @@ def ui_testing_activate(name: str):
         return jsonify(out["json"]), out["status_code"]
     return out.get("text",""), out["status_code"], {"Content-Type":"text/plain"}
 
-@bp.post("/aitegrity-core/chatbot/claude4sonnet/ui_testing_shutdown/<name>")
+@bp.post("/rag-assistant/chatbot/claude4sonnet/ui_testing_shutdown/<name>")
 def ui_testing_shutdown(name: str):
     cfg = load_ui_config()
     doc, _ = find_account_by_name(cfg, name)
