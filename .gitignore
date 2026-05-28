@@ -105,4 +105,6 @@ docs/exports/*
 # Override per file with `git add -f` if a specific artifact should ship.
 docs/superpowers/
 docs/i18n/sample-translations-*.md
-qa/smoke/
+qa/smoke/.env
+.env.*
+*.env
